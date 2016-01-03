@@ -10,20 +10,21 @@
 	require_once ROOT_PATH.'includes/functions.php' ;
 
 	if(!isset ($_SESSION)){session_start();} //si aucun session active
+
+	require_once ROOT_PATH.'vendor/payutc-json-client/jsonclient/JsonClient.class.php';
+	use \JsonClient\JsonException;
+	$payutcClient = new \JsonClient\AutoJsonClient(
+        Config::get('payutc_server'),
+        'KEY',
+        array(),
+        "PayIcam Json PHP Client",
+        isset($_SESSION['payutc_cookie']) ? $_SESSION['payutc_cookie'] : ""
+	);
+
 	require_once ROOT_PATH.'class/Auth.class.php' ;
-	if ((!empty($_POST['token']) && !Auth::validateToken($_POST['token'])) || (!empty($_GET['token']) && !Auth::validateToken($_GET['token']))) {
-		if ($Auth->isLogged()){
-      		header('Location:'.$_SERVER['PHP_SELF']);
-			Functions::setFlash('<strong>Erreur de Token</strong> Votre token n\'est plus valide !','danger');
-		}else{
-      		header('Location:connection.php');
-		}
-      	exit;
-	}
 
 	if (!in_array(basename($_SERVER['SCRIPT_FILENAME']), array('connection.php', 'logout.php'))){
 		$Auth->allow('member');
 	}
 
 	header('Content-Type: text/html; charset=utf-8');
-

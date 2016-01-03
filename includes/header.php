@@ -5,7 +5,7 @@
      <!-- Le styles -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
-    <link rel="shortcut icon" href="img/favicon.png" />
+    <link rel="shortcut icon" href="favicon.png" />
 
     <nav class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
@@ -22,7 +22,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="#About">A propos</a></li>
-            <li><a href="#About">FAQ & Tutos</a></li>
+            <li><a href="#FAQ">FAQ & Tutos</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -31,3 +31,6 @@
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
     </nav><!-- /.navbar -->
+
+    <div class="container">
+      <?= Functions::flash(); ?>

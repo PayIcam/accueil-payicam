@@ -7,54 +7,39 @@
     function __construct(){
         global $DB;
         $this->roles = array(
-            array("id"=>"1", "name"=>"Administrateur", 'slug'=> "admin", 'level'=>"2"),
-            array("id"=>"2", "name"=>"Membre", 'slug'=> "member", 'level'=>"1"),
-            array("id"=>"3", "name"=>"Non inscrit", 'slug'=> "non-inscrit", 'level'=>"0")
+            array('id'=>0, "name"=>"Membre", 'slug'=> "member", 'level'=>0),
+            array('id'=>1, "name"=>"Serveur et autre responsabilités", 'slug'=> "member++", 'level'=>1),
+            array('id'=>2, "name"=>"Administrateur de Fondation", 'slug'=> "admin", 'level'=>2),
+            array('id'=>3, "name"=>"Super Admin", 'slug'=> "super-admin", 'level'=>3)
         );
-        // On organise les rôles par leur slug dans le tableau
-        $roles = array(); 
-        foreach($this->roles as $d){
-            $roles[$d['slug']] = $d; 
-        }
-        $this->roles = $roles;
     }
 
     function loginUsingCas($ticket){
         global $DB;
+        global $payutcClient;
         require 'class/Cas.class.php';
-        $CAS = new Cas(Config::get('cas_url'));
+        // $CAS = new Cas(Config::get('cas_url'));
+        // $userEmail = $CAS->authenticate($ticket, Config::get('accueil-payicam'));
+        try {
+            $result = $payutcClient->loginCas(array("ticket" => $ticket, "service" => Config::get('accueil-payicam')));
+            $status = $payutcClient->getStatus();
+            $_SESSION['payutc_cookie'] = $payutcClient->cookie;
 
-        $userEmail = $CAS->authenticate($ticket,Config::get('accueil-payicam'));
+            $userRank = $payutcClient->hasUserAdminRights();
 
-        // if (!empty($userEmail) && $DB->findCount(self::TABLE_NAME,array('email'=>$userEmail),'email') == 1) {
-        //     $return = $DB->queryFirst('SELECT administrateurs.id, administrateurs.email,administrateurs.nom,administrateurs.prenom,administrateurs.online,roles.name,roles.slug,roles.level FROM administrateurs LEFT JOIN roles ON administrateurs.role_id=roles.id WHERE email=:email',array('email'=>$userEmail));
-        //     if (empty($return)) {
-        //         Functions::setFlash("Vous ne faites pas partie des administrateur de l'Administration de Ginger.<br>Faites la demande aux responsables au besoin.",'warning');
-        //         header('Location:connection.php');exit;
-        //         return false;
-        //     }else if($return['online'] == 1 && $return['level'] != 0){ // si l'utilisateur est actif dans la BDD
-        //         $_SESSION['Auth'] = array();
-        //         $_SESSION['Auth'] = $return;
-        //         return true;
-        //     }else{
-        //         Functions::setFlash('<strong>Votre compte n\'est pas actif !</strong><br/>Veuillez attendre que les administrateurs activent votre compte ou contactez nous !','warning');
-        //         header('Location:connection.php');exit;
-        //     }
-        // }else
-        if ($userEmail == 'AuthenticationFailure' || $userEmail == "Cas return is weird" || $userEmail == "Return cannot be parsed") {
-            Functions::setFlash($userEmail,'danger');
-            return false;
-        }else if(!empty($userEmail)){
             $_SESSION['Auth'] = array(
-                'email' => $userEmail,
-                'slug' => 'member',
-                'level' => 1
+                'email' => $status->user,
+                'firstname' => $status->user_data->firstname,
+                'lastname' => $status->user_data->lastname,
+                'slug' => $this->roles[$userRank]['slug'],
+                'roleName' => $this->roles[$userRank]['name'],
+                'level' => $userRank
             );
             return true;
-            // Functions::setFlash("Vous ne faites pas parti des administrateur de l'Administration<br>Faites la demande aux responsables au besoin.",'warning');
-            // header('Location:connection.php');exit;
+        } catch (Exception $e) {
+            Functions::setFlash($e->getMessage(),'danger');
+            return false;
         }
-        return false;
     }
 
     public function logCasOut(){
@@ -73,6 +58,19 @@
         }else{
             if($roles[$rang] > $this->user('level')){
                 $this->forbidden(); 
+            }else{
+                return true;
+            }
+        }
+    }
+
+    function hasRole($rang){
+        $roles = $this->getLevels();
+        if(!$this->user('slug')){
+            return false;
+        }else{
+            if($roles[$rang] > $this->user('level')){
+                return false;
             }else{
                 return true;
             }
@@ -162,9 +160,9 @@
     public function getRole($key){
         if (isset($this->roles[$key])) {
             return $this->roles[$key];
-        }else{ // C'est surement son iD
+        }else{ // C'est surement son slug
             foreach($this->roles as $d){
-                if ($d['id'] == $key) {
+                if ($d['slug'] == $key) {
                     return $d;
                 }
             }
