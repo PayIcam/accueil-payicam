@@ -5,7 +5,7 @@
 if (!empty($_GET['ticket'])) {
   $_SESSION['flash'] = array();
   if ($Auth->loginUsingCas($_GET['ticket'])) {
-    Functions::setFlash("Youhouhouuuu c'est la fête tu t'es authentifié avec le CAS Icam !!! :)",'success');
+    Functions::setFlash("Authentification réussie !",'success');
     header('Location:index.php');exit;
   }else{
     
