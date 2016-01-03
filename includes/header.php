@@ -7,6 +7,8 @@
     <link href="css/main.css" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.png" />
 
+    <title><?php if(isset($title_for_layout)){echo $title_for_layout.' - ';} ?><?= WEBSITE_TITLE; ?></title>
+
     <nav class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <div class="navbar-header">
@@ -20,10 +22,10 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#About">A propos</a></li>
-            <li><a href="#FAQ">FAQ & Tutos</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li<?php if(Functions::isPage('index')) echo ' class="active"'; ?>><a href="index.php">Home</a></li>
+            <li<?php if(Functions::isPage('about')) echo ' class="active"'; ?>><a href="about.php">A propos</a></li>
+            <li<?php if(Functions::isPage('faq')) echo ' class="active"'; ?>><a href="faq.php">FAQ & Tutos</a></li>
+            <li<?php if(Functions::isPage('contact')) echo ' class="active"'; ?>><a href="contact.php">Contact</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
           <li><a href="logout.php">Déconnexion</a></li>

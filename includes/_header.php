@@ -1,7 +1,8 @@
 <?php
 	define('DS', DIRECTORY_SEPARATOR);
 	define("ROOT_PATH", preg_replace('/includes$/', '', dirname(__FILE__)));
-	define("HOME_URL", dirname($_SERVER['PHP_SELF']));
+    define("HOME_URL", dirname($_SERVER['PHP_SELF']));
+	define("WEBSITE_TITLE", 'PayIcam');
 
 	require_once ROOT_PATH.'class/Config.php';
 	require "config.php";
