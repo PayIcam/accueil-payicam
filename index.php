@@ -54,26 +54,26 @@
 </div><!--/row-->
 
 <?php if ($Auth->hasRole('admin')): ?>
-  <h2>Liens vers l'Administration</h2>
+  <h2 class="page-header">Liens vers l'Administration</h2>
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <h3>Admin PayIcam</h3>
       <p>Application web permettant entre autre la gestion des articles, la gestion des droits, la trésorerie, ...</p>
       <p><a class="btn btn-primary" href="../scoobydoo" target="blank" role="button">Scoobydoo &raquo;</a>
     </div>
     <?php if ($Auth->hasRole('super-admin')): ?>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <h3>Gestion des données des élèves</h3>
       <p>Cette interface permet la gestion par exemple de l'affectation des identifiants cartes étudiantes aux élèves.</p>
       <p><a class="btn btn-primary" href="../admin_ginger" target="blank" role="button">Admin Ginger &raquo;</a>
     </div>
     <?php endif ?>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <h3>Vente par caisse physique</h3>
       <p>Application web de ventre des articles comme au Bar ou la cafet avec une caisse et une badgeuse.</p>
       <p><a class="btn btn-primary" href="../mozart" target="blank" role="button">Mozart &raquo;</a>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <h3>Admin ventes en ligne</h3>
       <p>Administration des ventes d'articles en ligne, celle de shotgun.</p>
       <p><a class="btn btn-primary" href="../shotgun/admin" target="blank" role="button">Shotgun &raquo;</a>
