@@ -24,7 +24,7 @@
 
 	require_once ROOT_PATH.'class/Auth.class.php' ;
 
-	if (!in_array(basename($_SERVER['SCRIPT_FILENAME']), array('connection.php', 'logout.php'))){
+	if (!in_array(basename($_SERVER['SCRIPT_FILENAME']), array('connection.php', 'logout.php', 'about.php'))){
 		$Auth->allow('member');
 	}
 

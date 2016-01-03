@@ -30,6 +30,8 @@ if (!empty($_GET['ticket'])) {
           padding-top: 40px;
           padding-bottom: 40px;
           background-color: #eee;
+          text-align: center;
+          
         }
 
         .form-signin {
@@ -81,8 +83,12 @@ if (!empty($_GET['ticket'])) {
     <div class="container">
       <?= Functions::flash(); ?>
         <form class="form-signin<?= (isset($_GET['errorLogin']))?' has-error':''; ?>" role="form">
-          <h2 class="form-signin-heading">Identifiez-vous !</h2>
-          <a href="https://cas.icam.fr/cas/login?service=<?= urlencode(Config::get('accueil-payicam')) ?>" class="btn btn-lg btn-info btn-block">Or click to log in using CAS Icam</a>
+          <p><img src="img/PayIcam.png" alt="PayIcam"></p>
+          <h2 class="form-signin-heading page-header">Identifiez-vous !</h2>
+          <br>
+          <p><a href="https://cas.icam.fr/cas/login?service=<?= urlencode(Config::get('accueil-payicam')) ?>" class="btn btn-lg btn-primary btn-block">Avec le CAS Icam</a></p>
+          <br>
+          <p><a href="about.php">à propos</a></p>
         </form>
 
     <script src="js/jquery.js"></script>

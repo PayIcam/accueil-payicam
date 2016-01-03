@@ -24,12 +24,16 @@
           <ul class="nav navbar-nav">
             <li<?php if(Functions::isPage('index')) echo ' class="active"'; ?>><a href="index.php">Home</a></li>
             <li<?php if(Functions::isPage('about')) echo ' class="active"'; ?>><a href="about.php">A propos</a></li>
+            <?php if ($Auth->isLogged()): ?>
             <li<?php if(Functions::isPage('faq')) echo ' class="active"'; ?>><a href="faq.php">FAQ & Tutos</a></li>
             <li<?php if(Functions::isPage('contact')) echo ' class="active"'; ?>><a href="contact.php">Contact</a></li>
+            <?php endif ?>
           </ul>
+          <?php if ($Auth->isLogged()): ?>
           <ul class="nav navbar-nav navbar-right">
-          <li><a href="logout.php">Déconnexion</a></li>
+            <li><a href="logout.php">Déconnexion</a></li>
           </ul>
+          <?php endif ?>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
     </nav><!-- /.navbar -->
