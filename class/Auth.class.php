@@ -37,6 +37,9 @@
             );
             return true;
         } catch (Exception $e) {
+            if (strpos($e, 'UserNotFound') !== false ){
+                header('Location:../casper');exit;
+            }
             Functions::setFlash($e->getMessage(),'danger');
             return false;
         }
