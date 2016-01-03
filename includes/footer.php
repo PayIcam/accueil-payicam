@@ -1,11 +1,11 @@
-<hr>
+  <hr>
 
-<footer class="footer">
-    <p class="clearfix">
-        <p>&copy;2015, PayIcam Dev Team</p>
-        <a class="pull-right" href="#">Back to top</a>
-    </p>
-</footer>
+  <footer class="footer">
+      <p class="clearfix">
+          &copy;2015, PayIcam, Antoine <em>(115)</em>, Aymeric <em>(117)</em>, Charles <em>(117)</em>
+          <a class="pull-right" href="#">Back to top</a>
+      </p>
+  </footer>
 
 </div> <!-- /container -->
 
