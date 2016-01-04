@@ -2,8 +2,21 @@
 	define('DS', DIRECTORY_SEPARATOR);
 	define("ROOT_PATH", preg_replace('/includes$/', '', dirname(__FILE__)));
     define("HOME_URL", dirname($_SERVER['PHP_SELF']));
-	define("WEBSITE_TITLE", 'PayIcam');
+	define("WEBSITE_TITLE", 'PayIcam');?>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#hide").click(function(){
+        $("p").hide();
+    });
+    $("#show").click(function(){
+        $("p").show();
+    });
+});
+</script>
+
+<?php
 	require_once ROOT_PATH.'class/Config.php';
 	require "config.php";
 	Config::initFromArray($_CONFIG);
@@ -29,3 +42,4 @@
 	}
 
 	header('Content-Type: text/html; charset=utf-8');
+
