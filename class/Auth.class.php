@@ -25,7 +25,7 @@
             $status = $payutcClient->getStatus();
             $_SESSION['payutc_cookie'] = $payutcClient->cookie;
 
-            $userRank = $payutcClient->hasUserAdminRights();
+            $userRank = $payutcClient->getUserLevel();
 
             $_SESSION['Auth'] = array(
                 'email' => $status->user,
