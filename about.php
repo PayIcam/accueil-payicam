@@ -17,7 +17,7 @@
     
 <h3>Changements apportés au sein de l'Icam</h3>
 <p>Il a fallu en effet adapter plusieurs choses à l'Icam. La plus grande a été celle de cartes étudiantes qu'il a fallu changer. On avait besoin désormais de cartes étudiantes avec une puce RFID pour permettre d'avoir un passe-droit sur son compte pour payer aux caisses physiques des associations.</p>
-<p>Désormais, il n'est plus nécessaire de renouveler ca carte étudiante tous les ans pour l'Icam. Il a fallu un coût supplémentaire de lancement, mais celui-ci est amorti sur 5 années désormais. Il faudra juste un autocollant pour renouveler la carte pour la nouvelle année scolaire.</p>
+<p>Désormais, il n'est plus nécessaire de renouveler sa carte étudiante tous les ans pour l'Icam. Il a fallu un coût supplémentaire de lancement, mais celui-ci est amorti sur 5 années désormais. Il faudra juste un autocollant pour renouveler la carte pour la nouvelle année scolaire.</p>
 
 <h3>Lancement</h3>
 <img src="img/logobaricam.png" alt="Bar Icam" class="pull-right" style="max-height:140px;">
