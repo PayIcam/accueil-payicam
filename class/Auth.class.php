@@ -45,10 +45,18 @@
         }
     }
 
-    public function logCasOut(){
-        require 'class/Cas.class.php';
-        $CAS = new Cas(Config::get('cas_url'));
-        return $CAS->logout();
+    public function logOut(){
+        global $payutcClient;
+        $status = $payutcClient->getStatus();
+        if($status->user) {
+            $payutcClient->logout();
+        }
+        $service = 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . "{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"; 
+        $casUrl = $payutcClient->getCasUrl()."logout?url=".urlencode($service);
+        $_SESSION = array();
+        session_destroy();
+
+        return $casUrl;
     }
     
     /**
