@@ -14,14 +14,14 @@
         );
     }
 
-    function loginUsingCas($ticket){
+    function loginUsingCas($ticket, $service=""){
         global $DB;
         global $payutcClient;
         require 'class/Cas.class.php';
-        // $CAS = new Cas(Config::get('cas_url'));
-        // $userEmail = $CAS->authenticate($ticket, Config::get('accueil-payicam'));
+
         try {
-            $result = $payutcClient->loginCas(array("ticket" => $ticket, "service" => Config::get('accueil-payicam')));
+            if (empty($service)) $service = Config::get('accueil-payicam');
+            $result = $payutcClient->loginCas(array("ticket" => $ticket, "service" => $service));
             $status = $payutcClient->getStatus();
             $_SESSION['payutc_cookie'] = $payutcClient->cookie;
 
@@ -64,10 +64,10 @@
      * */
     function allow($rang){
         $roles = $this->getLevels();
-        if(!$this->user('slug')){
+        if(!$this->getUserField('slug')){
             $this->forbidden(); 
         }else{
-            if($roles[$rang] > $this->user('level')){
+            if($roles[$rang] > $this->getUserField('level')){
                 $this->forbidden(); 
             }else{
                 return true;
@@ -77,10 +77,10 @@
 
     function hasRole($rang){
         $roles = $this->getLevels();
-        if(!$this->user('slug')){
+        if(!$this->getUserField('slug')){
             return false;
         }else{
-            if($roles[$rang] > $this->user('level')){
+            if($roles[$rang] > $this->getUserField('level')){
                 return false;
             }else{
                 return true;
@@ -91,13 +91,20 @@
     /**
      * Récupère une info utilisateur
      ***/
-    function user($field){
-        if($field == 'role') $field = 'slug'; 
+    function getUserField($field){
+        if($field == 'role') $field = 'slug';
         if(isset($_SESSION['Auth'][$field])){
             return $_SESSION['Auth'][$field];
         }else{
             return false; 
         }
+    }
+    
+    /**
+     * Récupère une info utilisateur
+     ***/
+    function getUser(){
+        return $_SESSION['Auth'];
     }
     
     /**
@@ -109,37 +116,37 @@
     }
 
     // -------------------- Security & Token functions -------------------- //
-    public static function generateToken($nom = ''){
-        $token = md5(uniqid(rand(147,1753), true));
-        $_SESSION['tokens'][$nom.'_token'] = $token;
-        $_SESSION['tokens'][$nom.'_token_time'] = time();
-        return $token;
-    }
+    // public static function generateToken($nom = ''){
+    //     $token = md5(uniqid(rand(147,1753), true));
+    //     $_SESSION['tokens'][$nom.'_token'] = $token;
+    //     $_SESSION['tokens'][$nom.'_token_time'] = time();
+    //     return $token;
+    // }
 
-    public static function validateToken($token, $nom = '', $temps = 600, $referer = ''){
-        if (empty($referer)){
-            $referer = Config::get('accueil-payicam').basename($_SERVER['REQUEST_URI']);
-        }
-        if(isset($_SESSION['tokens'][$nom.'_token']) && isset($_SESSION['tokens'][$nom.'_token_time']) && !empty($token))
-            if($_SESSION['tokens'][$nom.'_token'] == $token)
-                if($_SESSION['tokens'][$nom.'_token_time'] >= (time() - $temps)){
-                    if(!empty($_SERVER['HTTP_REFERER']) && dirname($_SERVER['HTTP_REFERER']) == dirname($referer))
-                        return true;
-                    elseif(empty($_SERVER['HTTP_REFERER']))
-                        return true;
-                }
-        return false;
-    }
+    // public static function validateToken($token, $nom = '', $temps = 600, $referer = ''){
+    //     if (empty($referer)){
+    //         $referer = Config::get('accueil-payicam').basename($_SERVER['REQUEST_URI']);
+    //     }
+    //     if(isset($_SESSION['tokens'][$nom.'_token']) && isset($_SESSION['tokens'][$nom.'_token_time']) && !empty($token))
+    //         if($_SESSION['tokens'][$nom.'_token'] == $token)
+    //             if($_SESSION['tokens'][$nom.'_token_time'] >= (time() - $temps)){
+    //                 if(!empty($_SERVER['HTTP_REFERER']) && dirname($_SERVER['HTTP_REFERER']) == dirname($referer))
+    //                     return true;
+    //                 elseif(empty($_SERVER['HTTP_REFERER']))
+    //                     return true;
+    //             }
+    //     return false;
+    // }
 
     // -------------------- isXXX functions -------------------- //
     function isLogged(){ // vérification de de l'existence d'une session "Auth", d'une session ouverte
-        if ($this->user('level') > 0)
+        if ($this->getUserField('level') !== false && $this->getUserField('level') >= 0)
             return true;
         else
             return false;
     }
     function isAdmin(){ //vérification que l'utilisateur loggué est administrateur
-        if ($this->user('role') == 'admin')
+        if ($this->getUserField('role') == 'admin')
             return true;
         else
             return false;
