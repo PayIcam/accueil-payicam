@@ -7,194 +7,107 @@ include 'includes/header.php'; // insertion du fichier header.php : entête, bar
 ?>
 <h1 class="page-header">Foire Aux Questions</h1>
 <p>Cette section va tenter de vous répondre aux questions que vous avez : </p>
+<p><i>N.B: Vous pouvez cliquer sur la question pour afficher la réponse! </i></p>
+
 
 <section class="faq">
   <h2 class="titreCategoryFaq">Questions générales</h2>
   <dl>
-    <dt>Question 1</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 2</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 3</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 4</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 5</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 6</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 7</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 8</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 9</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 10</dt>
-    <dd>Répense à la question !</dd>
-  </dl>
+    <dt>Qu'est ce que Payicam?</dt>
+    <dd>PayICAM est le système de virtualisation de l'argent de l'ICAM</dd>
+    <dt>Comment s'inscrire ou avoir des droits?</dt>
+    <dd>L'inscription n'est possible qu'avec une adresse mail ICAM et aucune autre. Lors de la première connexion vous signez une chartre.</dd>
+    <dt>Comment remettre de l'argent sur mon compte ?</dt>
+    <dd>En utilisant Casper (voir en dessous)</dd>
+    <dt>Comment effectuer des achats en ligne ?</dt>
+    <dd>En utilisant Shotgun (voir en dessous)</dd>
+    <dt>Ma carte ne marche plus que faire ?</dt>
+    <dd>Il arrive qu'il faille réencoder les cartes de temps en temps, il faut alors demander aux personnes du BDE
+      ou un membre de l'administration PayICAM</dd>
+    <dt>Je ne retrouve plus ma carte ou elle est abimée, c'est grave docteur ?</dt>
+    <dd>Oui, contacter un membre du BDE qui vous redirigera vers la personne qui gère la distribution des cartes en espace direction. Vous ne pouvez pas demander une autre carte que celle à votre nom</dd>
+    <dt>Les cartes se renouvellent tous les ans ?</dt>
+    <dd>Non, chaque carte contient une puce qui ets unique et qui coûte cher, vous gardez donc votre carte durant toutes vos études à l'ICAM</dd>
+    <dt>L'année de la carte de change pas ?</dt>
+    <dd>Si! Des autocollants officiels (avec cryptograme) vous sont distribués tous les ans par l'ICAM via les BDPs avec l'année en cours de validité afin de garder cette même carte comme carte étudiante</dd>
+    
 
   <h2 class="titreCategoryFaq">Casper</h2>
   <dl>
-    <dt>Question 1</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 2</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 3</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 4</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 5</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 6</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 7</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 8</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 9</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 10</dt>
-    <dd>Répense à la question !</dd>
-  </dl>
+    <dt>Qu'est ce que Casper ?</dt>
+    <dd><p>Casper est l'interface de rechargement de votre compte PayICAM, c'est via cette interface que vous gérez votre compte.</p>
+      <p><a href="https://www.youtube.com/watch?v=hHvvZ2qs0Pg" title="Vidéo_tuto_recharger_casper" target="_blank">Lien vers le tutoriel vidéo de rechargement de son compte PayICAM</a></p></dd>
+    <dt>Quel est le rechargement minimum/ maximum?</dt>
+    <dd>Le rechargement minimum est de 10€ et le maximum de 100€</dd>
+    <dt>Est ce que je peux dépasser les 100 € sur mon comtpe ?</dt>
+    <dd>Oui, le montant maximum sur un compte est de 1 000€</dd>
+    <dt>Qu'est ce que le virement à un ami ?</dt>
+    <dd>Vous pouvez virer de l'argent à un ami à qui vous devez de l'argent ou juste comme cadeau à condition que celui-ci soit inscrit sur le système PayICAM</dd>
+    <dt>Je ne peux pas payer en ligne avec ma carte, il y a t'il un autre moyen de recharger mon compte ?</dt>
+    <dd>Oui, le plus simple est de demander à un ami de recharger son compte est de vous faire un virement, ainsi vous pouvez lui rembourser en liquide!</dd>
+    <dt>A quoi sert le bouton "bloquer mon comtpe ?"</dt>
+    <dd>Le bouton de blocage de badge sert en cas de perte ou de vol de votre carte, afin d'eviter que une autre personne paye avec votre badge.</dd>
+    
+    
 
   <h2 class="titreCategoryFaq">Shotgun</h2>
   <dl>
-    <dt>Question 1</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 2</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 3</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 4</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 5</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 6</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 7</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 8</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 9</dt>
-    <dd>Répense à la question !</dd>
-    <dt>Question 10</dt>
-    <dd>Répense à la question !</dd>
-  </dl>
+    <dt>Qu'est ce que Shotgun ?</dt>
+    <dd>Shotgun est l'interface de payement en ligne, c'est grâce à elle que vous pouvez reserver des places ou des goodies.</dd>
+    <dt>Comment payer en ligne avec shotgun ?</dt>
+    <dd><a href="https://www.youtube.com/watch?v=dLDtx0rhRhk" title="Vidéo_tuto_shotgun" target="_blank">Lien vers le tutoriel vidéo de payement avec shotgun</a></dd>
+  </dl> 
+  
+
   <?php if ($Auth->hasRole('admin')): // uniquement pour les admin et super-admin ?> 
     <h2>Pour les administrateurs</h2>
     <h3 class="titreCategoryFaq">Scoobydoo</h3>
     <dl>
-      <dt>Question 1</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 2</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 3</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 4</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 5</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 6</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 7</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 8</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 9</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 10</dt>
-      <dd>Répense à la question !</dd>
+      <dt>Qu'est ce que scoobydoo ?</dt>
+      <dd>Scoobydoo est l'interface de gestion des associations et des articles.</dd>
+      <dt>La gestion de la trésorerie</dt>
+      <dd><a href="https://www.youtube.com/watch?v=ZvP8LPI5zPs" title="Vidéo_tuto_gestion_treso" target="_blank">Lien vers le tutoriel vidéo de gestion de la trésorerie</a></dd>
+      <dt>La gestion des droits</dt>
+      <dd><a href="https://www.youtube.com/watch?v=qoAEoVk473c" title="Vidéo_tuto_gestion_droits" target="_blank">Lien vers le tutoriel vidéo de gestion des droits</a></dd>
+       <dt>La gestion des articles</dt>
+      <dd><a href="https://www.youtube.com/watch?v=H4Ku3-sw98o" title="Vidéo_tuto_gestion_droits" target="_blank">Lien vers le tutoriel vidéo de gestion des articles</a></dd>
+
+      
+
+
     </dl>
 
     <h3 class="titreCategoryFaq">Shotgun</h3>
     <dl>
-      <dt>Question 1</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 2</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 3</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 4</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 5</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 6</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 7</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 8</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 9</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 10</dt>
-      <dd>Répense à la question !</dd>
+      <dt>Comment administrer Shotgun ?</dt>
+      <dd>Vidéo tuto à venir!</dd>
     </dl>
 
     <h3 class="titreCategoryFaq">Mozart</h3>
     <dl>
-      <dt>Lorem ipsum dolor sit amet.</dt>
-      <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo corrupti, deserunt totam voluptatibus libero nam ut maiores officia? Commodi quia voluptates facilis soluta eos mollitia praesentium laboriosam modi sit dolores porro, omnis? Nisi eos, facilis ea perferendis, natus, optio vitae sit magni tempore, dolorem repellendus? Ex nostrum molestiae, consequatur impedit natus!</dd>
-      <dt>Recusandae omnis sapiente sed magni.</dt>
-      <dd>Temporibus aliquam eveniet, sed facere sint consequatur aliquid impedit, architecto quaerat, in quos perferendis saepe eos et, odio provident. Eos magnam architecto laudantium sit quasi temporibus, ut quia eveniet amet explicabo est dicta praesentium voluptatum pariatur enim itaque nulla quos facilis distinctio iusto deserunt aspernatur cum. Itaque odit voluptates qui ipsa.</dd>
-      <dt>In facilis ab pariatur totam!</dt>
-      <dd>Asperiores, voluptatem facilis vero velit quas nisi sunt tempore voluptas? Aliquam explicabo quos voluptatum nulla placeat itaque architecto, voluptates excepturi maxime, dolorem eaque officia nobis nemo ipsum facilis quisquam rerum delectus nihil optio praesentium hic. Expedita ut dolores quia consectetur, nihil repellat similique amet dolorum, recusandae facilis impedit repudiandae in consequatur.</dd>
-      <dt>Vitae quos amet ab iusto!</dt>
-      <dd>Quam officiis dicta perferendis culpa veritatis nihil voluptas asperiores, pariatur nobis laudantium quas, maxime eaque exercitationem, delectus ullam molestias esse iusto, magnam eum quo eveniet atque qui perspiciatis reiciendis? Laboriosam nemo atque beatae ipsa ullam, iure facere quas obcaecati a! Accusamus veritatis ullam impedit rem blanditiis, perferendis deleniti in quas nemo!</dd>
-      <dt>Aperiam dolorum quod, quae soluta.</dt>
-      <dd>Quibusdam voluptates, ipsam, odio nobis ducimus aperiam dolore eum sint impedit explicabo, provident libero, mollitia modi placeat temporibus quidem voluptatem cumque deserunt laboriosam natus nulla facilis. Distinctio modi laboriosam possimus quod doloremque quas magnam, quisquam aliquid sapiente omnis ex illo sunt nihil, doloribus reprehenderit eius sed, aliquam rem velit architecto accusamus.</dd>
-      <dt>Maxime laborum accusantium, temporibus pariatur.</dt>
-      <dd>Voluptate vero, ab quam itaque corporis eius atque natus adipisci quaerat rerum facere suscipit modi incidunt ullam labore quos odio beatae iste totam deleniti! Quisquam necessitatibus quae aut architecto cum, dolor numquam ex quam itaque assumenda quasi deserunt consectetur amet beatae tempore, eaque expedita mollitia nemo. At, doloribus, nostrum! Libero, id.</dd>
-    </dl>
-  <?php endif ?>
-
-  <?php if ($Auth->hasRole('super-admin')): // uniquement pour les admin et super-admin ?>
-    <h2>Pour les super-administrateurs</h2>
-    <h3 class="titreCategoryFaq">Scoobydoo</h3>
-    <dl>
-      <dt>Question 1</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 2</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 3</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 4</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 5</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 6</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 7</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 8</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 9</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 10</dt>
-      <dd>Répense à la question !</dd>
-    </dl>
+      <dt>Qu'est ce que Mozart ?</dt>
+      <dd>Mozart est l'interface de vente.</dd>
+      <dt>Qu'est ce que Mozart utilise ?</dt>
+      <dd>Mozart s'utilise sur un ordinateur connecté à internet avec une badgeuse et peut imprimer les tickets sur une imprimante spéciale. Il a été concu pour fonctioner avec un écran tactile mais peut aussi fonctioner avec une souris</dd>
+      <dt>Comment mettre en place un point de vente?</dt>
+      <dd>Un point de vente se met en place par l'instalation du driver de la badgeuse ainsi que la validation des droits de vente sur Scoobydoo. Il faut l'autorisation d'un administrateur.</dd>
+      <dt>La badgeuse ne fonctionne pas que faire ?</dt>
+      <dd>Vérifier que la badgeuse est correctement branchée, lancer le script de "démarage badgeuse" qui a été installé sur l'ordinateur et accepter l'utilisation des scripts à risques dans le navigateur</dd>
+      <dt>Comment accepeter l'utilisation des des scripts à risques ?</dt>
+      <dd>Dans la barre d'adresse de votre navigateur (chrome) il y a normalement un petit bouclier tout à droite, cliquez dessus et appuyez sur "charger les scripts à risques". La page va se recharger.</dd>
+      <dt>Puis-je annuler une transaction ?</dt>
+      <dd>Oui! En cas d'erreur une transaction peut être annulée en repassant la carte en question sur la badgeuse, un pop-up s'affiche et vous propose d'annuler les transactions effectuées dans l'heure précédente.</dd>
+          </dl>
 
     <h3 class="titreCategoryFaq">Admin_Ginger</h3>
     <dl>
-      <dt>Question 1</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 2</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 3</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 4</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 5</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 6</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 7</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 8</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 9</dt>
-      <dd>Répense à la question !</dd>
-      <dt>Question 10</dt>
-      <dd>Répense à la question !</dd>
+      <dt>Qu'est ce que Admin_Ginger ?</dt>
+      <dd>Admin_Ginger est l'interface de gestion de la base de donnée Ginger qui est la base de donnée utilisateur reliée au CAS ICAM.</dd>
+      <dt>Qui y a accès?</dt>
+      <dd>Une liste nominative qui est gérée par PayICAM et le bureau du BDE</dd>
+      <dt>Réencoder des cartes ?</dt>
+      <dd>C'est en effet la principale fonction de admin-ginger</dd>
+
     </dl>
   <?php endif ?>
 </section>

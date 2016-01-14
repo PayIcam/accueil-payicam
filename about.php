@@ -33,7 +33,5 @@
 <br>
 <p>Pour la suite de l'aventure, le Projet PayIcam devient une association à part entière de l'Icam de Lille et va continuer de travailler main dans la main avec le nouveau BDE Wave et les différentes associations de l'Icam pour les aider à utiliser ces technologies web modernes.</p>
 
-<h2>Question technique et informatique</h2>
-<p>...</p>
 
 <?php include 'includes/footer.php';?>
