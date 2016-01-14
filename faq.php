@@ -38,8 +38,8 @@ include 'includes/header.php'; // insertion du fichier header.php : entête, bar
     <dd><p>Casper est l'interface de rechargement de votre compte PayICAM, c'est via cette interface que vous gérez votre compte.</p>
       <p><a href="https://www.youtube.com/watch?v=hHvvZ2qs0Pg" title="Vidéo_tuto_recharger_casper" target="_blank">Lien vers le tutoriel vidéo de rechargement de son compte PayICAM</a></p></dd>
     <dt>Quel est le rechargement minimum/ maximum?</dt>
-    <dd>Le rechargement minimum est de 10€ et le maximum de 100€</dd>
-    <dt>Est ce que je peux dépasser les 100 € sur mon comtpe ?</dt>
+    <dd>Le rechargement minimum est de 10€ et le maximum de 250€</dd>
+    <dt>Il y a t'il un montant maximum sur le compte ?</dt>
     <dd>Oui, le montant maximum sur un compte est de 1 000€</dd>
     <dt>Qu'est ce que le virement à un ami ?</dt>
     <dd>Vous pouvez virer de l'argent à un ami à qui vous devez de l'argent ou juste comme cadeau à condition que celui-ci soit inscrit sur le système PayICAM</dd>
