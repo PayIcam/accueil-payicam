@@ -15,8 +15,7 @@
     }
 
     function loginUsingCas($ticket, $service=""){
-        global $DB;
-        global $payutcClient;
+        global $DB, $payutcClient;
         require 'class/Cas.class.php';
 
         try {
@@ -52,7 +51,7 @@
             $payutcClient->logout();
         }
         $service = 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . "{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}"; 
-        $casUrl = $payutcClient->getCasUrl()."logout?url=".urlencode($service);
+        $casUrl = $payutcClient->getCasUrl()."logout?url=".urlencode(dirname($service));
         $_SESSION = array();
         session_destroy();
 

@@ -86,7 +86,7 @@ if (!empty($_GET['ticket'])) {
           <p><img src="img/PayIcam.png" alt="PayIcam"></p>
           <h2 class="form-signin-heading page-header">Identifiez-vous !</h2>
           <br>
-          <p><a href="https://cas.icam.fr/cas/login?service=<?= urlencode(Config::get('accueil-payicam')) ?>" class="btn btn-lg btn-primary btn-block">Connexion</a></p>
+          <p><a href="<?= $payutcClient->getCasUrl(); ?>login?service=<?= urlencode(Config::get('accueil-payicam')) ?>" class="btn btn-lg btn-primary btn-block">Connexion</a></p>
           <br>
           <p><a href="about.php">à propos</a></p>
         </form>

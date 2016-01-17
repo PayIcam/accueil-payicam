@@ -21,6 +21,7 @@
         "PayIcam Json PHP Client",
         isset($_SESSION['payutc_cookie']) ? $_SESSION['payutc_cookie'] : ""
 	);
+    $casUrl = $payutcClient->getCasUrl();
 
 	require_once ROOT_PATH.'class/Auth.class.php' ;
 
