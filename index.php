@@ -9,6 +9,25 @@
 <div class="jumbotron">
   <h1>Bienvenue sur PayIcam !</h1>
   <p>Ceci est la page d'accueil de payicam, vous pouvez choisir l'application que vous souhaitez utiliser </p>
+  <button type="button" class="btn btn-default" aria-label="Left Align">
+    <span class="glyphicon glyphicon-envelope"></span>
+    <a href="https://webmail.icam.fr/webmail/" target="_blank">Mail Icam</a>
+  </button>
+  <button type="button" class="btn btn-default" aria-label="Left Align">
+    <span class="glyphicon glyphicon-calendar"></span>
+    <a href="http://icam-ecap.capvalley.fr/" target="_blank">Planning Ecap Valley</a>
+  </button>
+  <button type="button" class="btn btn-default" aria-label="Left Align">
+    <span class="glyphicon glyphicon-lock"></span>
+    <a href="https://mail2.icam.fr/password/" target="_blank">Mot de passe ICAM</a>
+  </button>
+  <button type="button" class="btn btn-default" aria-label="Left Align">
+    <span class="glyphicon glyphicon-file"></span>
+    <a href="https://portfolio.icam.fr/" target="_blank">Portfolio Icam</a>
+  <button type="button" class="btn btn-default" aria-label="Left Align">
+    <span class="glyphicon glyphicon-folder-open"></span>
+    <a href="https://moodle.icam.fr/" target="_blank">Moodle Icam</a>
+  </button>
 </div>
 <div class="row">
   <div class="col-md-6">
@@ -52,6 +71,7 @@
     </div>
   </div>
 </div><!--/row-->
+
 
 <?php if ($Auth->hasRole('admin')): ?>
   <h2 class="page-header">Liens vers l'Administration</h2>
