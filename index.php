@@ -54,7 +54,7 @@
         <p>Vous pouvez désormais réserver en ligne grâce à PayIcam votre place pour le Gala !<br> Vous pouvez aussi juste voir le statut de votre réservation déjà effectuée.</p>
         <p><a class="btn btn-info" href="../inscription_galadesicam" role="button">Inscriptions au Gala des Icam 2017 &raquo;</a></p>
       </div>
-      <div class="col-sm-4"><img class="img-responsive" style="margin-top: 30px;max-height: 150px;" src="img/gala.png"/></p></div>
+      <div class="col-sm-4"><img class="img-responsive" style="margin-top: 30px;max-height: 150px;" src="img/gala.jpg"/></p></div>
     </div>
   </div>
 </div><!--/row-->
