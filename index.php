@@ -50,11 +50,11 @@
   <div class="col-md-6">
     <div class="row">
       <div class="col-sm-8">
-        <h3>Au Crépuscule d'un Règne</h3>
+        <h3>Spring Festival</h3>
         <p>Vous pouvez désormais réserver en ligne grâce à PayIcam votre place pour le Gala !<br> Vous pouvez aussi juste voir le statut de votre réservation déjà effectuée.</p>
-        <p><a class="btn btn-info" href="../inscription_galadesicam" role="button">Inscriptions au Gala des Icam 2017 &raquo;</a></p>
+        <p><a class="btn btn-info" href="../register_spring_festival" role="button">Inscriptions au Spring Festival 2017 &raquo;</a></p>
       </div>
-      <div class="col-sm-4"><img class="img-responsive" style="margin-top: 30px;max-height: 150px;" src="img/gala.jpg"/></p></div>
+      <div class="col-sm-4"><img class="img-responsive" style="margin-top: 30px;max-height: 150px;" src="img/spring.jpg"/></p></div>
     </div>
   </div>
 </div><!--/row-->
