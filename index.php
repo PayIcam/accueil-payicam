@@ -8,14 +8,7 @@
 
 <div class="jumbotron">
   <h1>Bienvenue sur PayIcam !</h1>
-  <p>Ceci est la page d'accueil de payicam, vous pouvez choisir l'application que vous souhaitez utiliser </p>
-  <p>
-    <a class="btn btn-default" href="https://webmail.icam.fr/webmail/" target="_blank"><span class="glyphicon glyphicon-envelope"></span> Mail Icam</a>
-    <a class="btn btn-default" href="http://icam-ecap.capvalley.fr/" target="_blank" title="Lien vers l'agenda Ecap Valley <?= "\n" ?>Pour se connecter, mettons pour antoine.giraud@2015.icam.fr,<?= "\n" ?>il faut metre Agiraud et en mdp ici115"><span class="glyphicon glyphicon-calendar"></span> Agenda Ecap Valley</a>
-    <a class="btn btn-default" href="https://mail2.icam.fr/password/" target="_blank" title="C'est important de changer son mot de passe,<?= "\n" ?>surtout si vous avez des resposabilités sur des associations de PayIcam...<?= "\n" ?>Si jamais vous n'avez pas à vous inscrire pour la première fois à PayIcam,<?= "\n" ?>Tentez de mettre un mdp sans % ou #"><span class="glyphicon glyphicon-lock"></span> Mot de passe ICAM</a>
-    <a class="btn btn-default" href="https://portfolio.icam.fr/" target="_blank"><span class="glyphicon glyphicon-file"></span> Portfolio Icam</a>
-    <a class="btn btn-default" href="https://moodle.icam.fr/" target="_blank"><span class="glyphicon glyphicon-folder-open"></span> Moodle Icam</a>
-  </p>
+  <p>Suite à un changement de serveur durant l'été, vous avez pu constater de nombreux messages d'erreur lors de votre utilisation de Payicam. Ces bugs disparaissent en rafraichissant les pages et n'ont pas d'impact sur le fonctionnement des différents modules. Nous en sommes désolé et nous faisons notre possible pour régler ce problème le plus rapidement possible. </p>
 </div>
 <div class="row">
   <div class="col-md-6">
@@ -41,10 +34,10 @@
   <div class="col-md-6">
     <div class="row">
       <div class="col-sm-8">
-        <h3>Associations</h3>
-        <p><a class="btn btn-info" href="https://www.facebook.com/ObjectifLune" target="_blank" role="button">Facebook BDE &raquo;</a></p>
+        <h3>Gala Icam</h3>
+        <p>Rendez-vous le 7 décembre pour l'annonce du thème! &raquo;</p>
       </div>
-      <div class="col-sm-4"><img class="img-responsive" style="margin-top: 30px;max-height: 150px;" src="img/bde.jpg"/></p></div>
+      <div class="col-sm-4"><img class="img-responsive" style="margin-top: 30px;max-height: 150px;" src="img/gala.jpg"/></p></div>
     </div>
   </div>
   <div class="col-md-6">

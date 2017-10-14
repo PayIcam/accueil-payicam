@@ -2,7 +2,7 @@
 
   <footer class="footer">
       <p class="clearfix">
-          &copy;2015, PayIcam, Antoine <em>(115)</em>, Aymeric <em>(117)</em>, Charles <em>(117)</em>
+          &copy;2017, PayIcam, Guillaume D.<em>(119)</em>, Grégoire D.<em>(119)</em>
           <a class="pull-right" href="#">Back to top</a>
       </p>
   </footer>
