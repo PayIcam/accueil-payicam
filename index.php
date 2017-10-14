@@ -7,8 +7,8 @@
 ?>
 
 <div class="jumbotron">
-  <h1>Bienvenue sur PayIcam !</h1>
-  <p>Suite à un changement de serveur durant l'été, vous avez pu constater de nombreux messages d'erreur lors de votre utilisation de Payicam. Ces bugs disparaissent en rafraichissant les pages et n'ont pas d'impact sur le fonctionnement des différents modules. Nous en sommes désolé et nous faisons notre possible pour régler ce problème le plus rapidement possible. </p>
+  <h2>Bienvenue sur PayIcam !</h2>
+  <p>&rarr; Changement serveur pendant l'été <br> &rarr; Si bug rafraichissez la page <br> &rarr; Bisous &hearts;</p>
 </div>
 <div class="row">
   <div class="col-md-6">
@@ -35,7 +35,7 @@
     <div class="row">
       <div class="col-sm-8">
         <h3>Gala Icam</h3>
-        <p>Rendez-vous le 7 décembre pour l'annonce du thème! &raquo;</p>
+        <p>Rendez-vous le 7 décembre pour l'annonce du thème!</p>
       </div>
       <div class="col-sm-4"><img class="img-responsive" style="margin-top: 30px;max-height: 150px;" src="img/gala.jpg"/></p></div>
     </div>
@@ -45,7 +45,7 @@
       <div class="col-sm-8">
         <h3>Spring Festival</h3>
         <p>Vous pouvez désormais réserver en ligne grâce à PayIcam votre place pour le Spring !<br> Vous pouvez aussi juste voir le statut de votre réservation déjà effectuée.</p>
-        <p><a class="btn btn-info" href="../register_spring_festival" role="button">Inscriptions au Spring Festival 2017 &raquo;</a></p>
+        <p><a class="btn btn-info" href="../register_spring_festival" role="button" disabled>Inscriptions au Spring Festival 2017 &raquo;</a></p>
       </div>
       <div class="col-sm-4"><img class="img-responsive" style="margin-top: 30px;max-height: 150px;" src="img/spring.jpg"/></p></div>
     </div>
