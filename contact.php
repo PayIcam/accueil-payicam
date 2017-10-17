@@ -7,6 +7,6 @@
 
 <h1 class="page-header">Contact</h1>
 <p>Vous pouvez nous contacter au mail suivant:</p>
-<a class="btn btn-default" href="mailto:payicam.lille@gmail.com">payicam.lille@gmail.com</a>
+<a class="btn btn-default" href="mailto:contact.payicam@gmail.com">contact.payicam@gmail.com</a>
 
 <?php include 'includes/footer.php';?>
