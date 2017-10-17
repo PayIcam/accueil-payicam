@@ -8,7 +8,7 @@
 
 <div class="jumbotron">
   <h2>Bienvenue sur PayIcam !</h2>
-  <p>&rarr; Changement serveur pendant l'été <br> &rarr; Si bug rafraichissez la page <br> &rarr; Bisous &hearts;</p>
+  <p>&rarr; Pour tout projet, bug, remarque, mot d'amour <br> &rarr; <a href="mailto:contact.payicam@gmail.com">contact.payicam@gmail.com</a> <br> &rarr; Bisous &hearts;</p>
 </div>
 <div class="row">
   <div class="col-md-6">
