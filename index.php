@@ -1,6 +1,10 @@
 <?php
   require_once 'includes/_header.php';
     $Auth->allow('member');
+
+
+
+
   $title_for_layout = 'Accueil';
   include 'includes/header.php'; // insertion du fichier header.php : entête, barre de navigation
 
@@ -10,6 +14,7 @@
   <h2>Bienvenue sur PayIcam !</h2>
   <p>&rarr; Pour tout projet, bug, remarque, mot d'amour <br> &rarr; <a href="mailto:contact.payicam@gmail.com">contact.payicam@gmail.com</a> <br> &rarr; Bisous &hearts;</p>
 </div>
+<a href="vote.php" class="btn btn-primary">Elections BDE</a>
 <div class="row">
   <div class="col-md-6">
     <div class="row">
