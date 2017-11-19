@@ -2,9 +2,28 @@
 	require_once 'includes/_header.php';
 	$Auth->allow('member');
 
+	require_once ROOT_PATH.'class/DB.php';
+	$confSQL = $_CONFIG['conf_sql_vote'];
+    try {
+        $DB = new \CoreHelpers\DB($confSQL['sql_host'],$confSQL['sql_user'],$confSQL['sql_pass'],$confSQL['sql_db']);
+    } catch (Exception $e) {
+        $DB = null;
+    }
+
 
 	$user = $Auth->getUser();
 	var_dump($user);
+
+	$vote = $DB->query('SELECT * FROM vote WHERE slug = "elections-bde-2017"');
+	$my_vote = $DB->query('SELECT * FROM vote_has_voters WHERE email = :email', ['email' => $user['email']]);
+	var_dump($vote);
+	var_dump($my_vote);
+
+	// si on est pas dans la période de vote, être recalé
+	// si on est après la période de vote, afficher le résultat !?? (une heure après ?)
+	// si il a déjà voté lui afficher son vote !
+	// si il n'a pas voté, option
+
 
 	$title_for_layout = 'Election BDE';
 	include 'includes/header.php'; // insertion du fichier header.php : entête, barre de navigation
