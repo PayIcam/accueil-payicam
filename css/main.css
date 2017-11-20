@@ -37,7 +37,7 @@ body{
 	}
 
 	#morph{
-		background-image: url('/../img/morpheus.jpg'); 
+		background-image: url('../img/morpheus.jpg'); 
 		background-repeat: no-repeat; 
 		width: 100%;
 		height: 100%; 
