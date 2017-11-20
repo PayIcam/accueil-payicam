@@ -18,7 +18,7 @@
 	$my_vote = $DB->query('SELECT * FROM vote_has_voters WHERE email = :email', ['email' => $user['email']]);
 	var_dump($vote);
 	var_dump($my_vote);
-	if ($my_vote != '') || !is_null($my_vote){
+	if ($my_vote[0] != ''){
 		Functions::setFlash("T'as déjà voté petit con",'danger');
     	header('Location:index.php');
 	}
