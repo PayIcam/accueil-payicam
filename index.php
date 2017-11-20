@@ -10,11 +10,14 @@
 
 ?>
 
-<div class="jumbotron">
+<!-- <div class="jumbotron">
   <h2>Bienvenue sur PayIcam !</h2>
   <p>&rarr; Pour tout projet, bug, remarque, mot d'amour <br> &rarr; <a href="mailto:contact.payicam@gmail.com">contact.payicam@gmail.com</a> <br> &rarr; Bisous &hearts;</p>
+</div> -->
+<div class="container">
+  <img src="img/annonce_vote.png" alt="image d'annonce du vote">
+<a href="vote.php" class="button" id="btn_vote">Vote ici pour ton BDE!</a>
 </div>
-<a href="vote.php" class="btn btn-primary">Elections BDE</a>
 <div class="row">
   <div class="col-md-6">
     <div class="row">

@@ -1,7 +1,5 @@
 <?php
 
-use \PDO;
-
 class DB {
 
     private $host     = 'localhost';

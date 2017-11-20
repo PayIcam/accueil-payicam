@@ -5,7 +5,7 @@
 	require_once ROOT_PATH.'class/DB.php';
 	$confSQL = $_CONFIG['conf_sql_vote'];
     try {
-        $DB = new \CoreHelpers\DB($confSQL['sql_host'],$confSQL['sql_user'],$confSQL['sql_pass'],$confSQL['sql_db']);
+        $DB = new DB($confSQL['sql_host'],$confSQL['sql_user'],$confSQL['sql_pass'],$confSQL['sql_db']);
     } catch (Exception $e) {
         $DB = null;
     }
@@ -18,6 +18,10 @@
 	$my_vote = $DB->query('SELECT * FROM vote_has_voters WHERE email = :email', ['email' => $user['email']]);
 	var_dump($vote);
 	var_dump($my_vote);
+	if ($my_vote != '') || !is_null($my_vote){
+		Functions::setFlash("T'as déjà voté petit con",'danger');
+    	header('Location:index.php');
+	}
 
 	// si on est pas dans la période de vote, être recalé
 	// si on est après la période de vote, afficher le résultat !?? (une heure après ?)
@@ -36,11 +40,11 @@
 		<div class="row" style="padding-top: 62%">
 			<div class="col-md-2 offset-md-1">
 				<!-- <input type="button" class="btn btn-sparrow btn-lg" value="Je prend le large avec les SP'ARROW!"></input> -->
-				<img src="logo sparrow.png" type="button" id="sparrow" class='rounded-circle' alt="sparrow" data-toggle="modal" data-target="#sparrowModal">
+				<img src="img/logo sparrow.png" type="button" id="sparrow" class='rounded-circle' alt="sparrow" data-toggle="modal" data-target="#sparrowModal">
 			</div>
 			<div class="col-md-2 offset-md-5">
 				<!-- <input type="button" class="btn btn-primary btn-lg" value="Je m'envole avec les SKY!"></input> -->
-				<img src="logo sky.png" type="button" alt="sky" class='rounded-circle' id="sky" data-toggle="modal" data-target="#skyModal">
+				<img src="img/logo sky.png" type="button" alt="sky" class='rounded-circle' id="sky" data-toggle="modal" data-target="#skyModal">
 			</div>
 		</div>
 		<div class="row" style="padding-top: 10%">
