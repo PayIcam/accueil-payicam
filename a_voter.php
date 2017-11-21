@@ -5,22 +5,22 @@
 	require_once ROOT_PATH.'class/DB.php';
 	$confSQL = $_CONFIG['conf_sql_vote'];
 
-    // try {
-    //     $DB = new DB($confSQL['sql_host'],$confSQL['sql_user'],$confSQL['sql_pass'],$confSQL['sql_db']);
-    // } catch (Exception $e) {
-    //     $DB = null;
-    // }
+    try {
+        $DB = new DB($confSQL['sql_host'],$confSQL['sql_user'],$confSQL['sql_pass'],$confSQL['sql_db']);
+    } catch (Exception $e) {
+        $DB = null;
+    }
 
 
 
-try
-{
-	$DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-}
-catch(Exeption $e)
-{
-	die('erreur:'.$e->getMessage());
-}
+// try
+// {
+// 	$DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
+// }
+// catch(Exeption $e)
+// {
+// 	die('erreur:'.$e->getMessage());
+// }
 
 
 
@@ -31,19 +31,19 @@ catch(Exeption $e)
 
 	$conf_sql_promo = $_CONFIG['conf_sql_promo'];
 
-	try
-{
-	$DB_promo = new PDO('mysql:host='.$conf_sql_promo['sql_host'].';dbname='.$conf_sql_promo['sql_db'].';charset=utf8',$conf_sql_promo['sql_user'],$conf_sql_promo['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-}
-catch(Exeption $e)
-{
-	die('erreur:'.$e->getMessage());
-}
-    // try {
-    //     $DB_promo = new DB($conf_sql_promo['sql_host'],$conf_sql_promo['sql_user'],$conf_sql_promo['sql_pass'],$conf_sql_promo['sql_db']);
-    // } catch (Exception $e) {
-    //     $DB_promo = null;
-    // }
+// 	try
+// {
+// 	$DB_promo = new PDO('mysql:host='.$conf_sql_promo['sql_host'].';dbname='.$conf_sql_promo['sql_db'].';charset=utf8',$conf_sql_promo['sql_user'],$conf_sql_promo['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
+// }
+// catch(Exeption $e)
+// {
+// 	die('erreur:'.$e->getMessage());
+// }
+    try {
+        $DB_promo = new DB($conf_sql_promo['sql_host'],$conf_sql_promo['sql_user'],$conf_sql_promo['sql_pass'],$conf_sql_promo['sql_db']);
+    } catch (Exception $e) {
+        $DB_promo = null;
+    }
 
     $user = $Auth->getUser();
 	var_dump($user);
@@ -60,7 +60,7 @@ catch(Exeption $e)
 
 	$date_vote=date('Y-m-d H:i:s');
 	$enreg= $DB->prepare('INSERT INTO vote_has_voters (vote_id, email, date_vote, promo, choice) value (:vote_id, :email, :date_vote, :promo, :choice)');
-	$enreg -> bindParam('vote_id', 1);
+	$enreg -> bindParam('vote_id', 1, PDO::PARAM_INT);
 	$enreg -> bindParam('email', $_SESSION['Auth']['email'], PDO::PARAM_STR);
 	$enreg -> bindParam('date_vote', $date_vote, PDO::PARAM_STR);
 	$enreg -> bindParam('promo', $promo, PDO::PARAM_INT);
