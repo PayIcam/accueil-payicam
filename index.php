@@ -15,8 +15,8 @@
   <p>&rarr; Pour tout projet, bug, remarque, mot d'amour <br> &rarr; <a href="mailto:contact.payicam@gmail.com">contact.payicam@gmail.com</a> <br> &rarr; Bisous &hearts;</p>
 </div> -->
 <div class="col-md-12">
-  <img src="img/annonce_vote.png" alt="image d'annonce du vote">
-  <a class="btn btn-secondary" href="vote.php" type='button'>Vote ici pour ton BDE!</a>
+  <img src="img/annonce_vote.png" alt="image d'annonce du vote" style="width: 100%">
+  <a class="btn btn-default" href="vote.php" type='button' style="width: 100%"><h4><strong>Vote ici pour ton BDE!</strong></h4></a>
 </div>
 <div class="row">
   <div class="col-md-6">

@@ -35,14 +35,14 @@
 	$enreg -> bindParam('email', $_SESSION['Auth']['email'], PDO::PARAM_STR);
 	$enreg -> bindParam('date_vote', $date_vote, PDO::PARAM_STR);
 	$enreg -> bindParam('promo', $promo, PDO::PARAM_INT);
-	$enreg -> bindParam('choice', $_POST, PDO::PARAM_INT);
+	$enreg -> bindParam('choice', $_POST, PDO::PARAM_STR);
 	try {
 		$enreg -> execute();
 	} catch (Exception $e) {
 		Functions::setFlash("Votre vote n'a pas été enregistré, si le problème persiste, contacter Payicam",'danger');
         header('Location:index.php');
     }
-    Functions::setFlash("Votre vote a bien été enregistré, ",'danger');
+    Functions::setFlash("Votre vote a bien été enregistré, ",'info');
         header('Location:index.php');
 
 
