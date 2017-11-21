@@ -16,7 +16,7 @@
 </div> -->
 <div class="container">
   <img src="img/annonce_vote.png" alt="image d'annonce du vote">
-<a href="vote.php" class="button" id="btn_vote">Vote ici pour ton BDE!</a>
+<a href="vote.php" class="btn btn-secondary" id="btn_vote">Vote ici pour ton BDE!</a>
 </div>
 <div class="row">
   <div class="col-md-6">
