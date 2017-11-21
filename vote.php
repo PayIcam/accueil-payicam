@@ -4,11 +4,16 @@
 
 	require_once ROOT_PATH.'class/DB.php';
 	$confSQL = $_CONFIG['conf_sql_vote'];
-    try {
-        $DB = new DB($confSQL['sql_host'],$confSQL['sql_user'],$confSQL['sql_pass'],$confSQL['sql_db']);
-    } catch (Exception $e) {
-        $DB = null;
-    }
+    // try {
+    //     $DB = new DB($confSQL['sql_host'],$confSQL['sql_user'],$confSQL['sql_pass'],$confSQL['sql_db']);
+    // } catch (Exception $e) {
+    //     $DB = null;
+    // }
+	try{
+	$DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
+	} catch(Exeption $e) {
+	die('erreur:'.$e->getMessage());
+	}
 
 
 	$user = $Auth->getUser();
