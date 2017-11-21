@@ -51,7 +51,7 @@ catch(Exeption $e)
 	// $vote = $DB->query('SELECT * FROM vote WHERE slug = "elections-bde-2017"');
 
 	$my_vote = $DB->prepare('SELECT * FROM vote_has_voters WHERE email = :email');
-	$my_vote -> bindParam('email', $user['email'], PDO::PARAM_STR)
+	$my_vote -> bindParam('email', $user['email'], PDO::PARAM_STR);
 	$my_vote->execute();
 	$vote_fait = $my_vote->fetch();
 	// $promo = $DB_promo->query('SELECT promo FROM users WHERE email = :email', ['email' => $user['email']]);
@@ -62,10 +62,9 @@ catch(Exeption $e)
     	header('Location:index.php');
 	}
 
-	$enreg= $DB->prepare('INSERT INTO vote_has_voters (vote_id, email, date_vote, promo, choice) values (:vote_id, :email, :date_vote, :promo, :choice)');
+	$enreg= $DB->prepare('INSERT INTO vote_has_voters (vote_id, email, date_vote, promo, choice) values (DEFAULT, :email, :date_vote, :promo, :choice)');
 
 	$date_vote=date('Y-m-d H:i:s');
-	$enreg -> bindParam('vote_id', 1, PDO::PARAM_INT);
 	$enreg -> bindParam('email', $_SESSION['Auth']['email'], PDO::PARAM_STR);
 	$enreg -> bindParam('date_vote', $date_vote, PDO::PARAM_STR);
 	// $enreg -> bindParam('promo', $promo, PDO::PARAM_INT);
