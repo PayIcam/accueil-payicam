@@ -33,8 +33,8 @@ body
 	#morph{
 		background-image: url('../../img/morpheus.jpg'); 
 		background-repeat: no-repeat; 
-		width: 100%;
-		height: 100%; 
-		min-height:400px;
+		width: 70%;
+		height: 70%; 
+		min-height:500px;
 	}
 }
