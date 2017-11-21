@@ -1,5 +1,6 @@
 .rounded-circle{
   border-radius: 50%;
+  background-color: white;
 }
 
 body
@@ -18,7 +19,6 @@ body
 #sparrow{
 	width: 200px;
 	height: 200px;
-	background-color: pink;
 }
 
 #sky{
