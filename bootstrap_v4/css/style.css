@@ -1,21 +1,35 @@
+.sep_bouton{
+	padding-top:65%;
+	width: 50%;
+}
+
 #sparrow{
 	width: 150px;
 	height: 150px;
-	background-color: rgba(0 0 0 0);
+	margin-left: 20%;
 }
 
 #sky{
 	width: 150px;
 	height: 150px;
-	background-color: rgba(0 0 0 0);
+	margin-left: 50%;
 
 }
 .rounded-circle{
-	background-color: pink;
+  border-radius: 50%;
 }
+
 body
 {
 	background-color: black;
+}
+
+#sep_bouton_bas{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+    align-items: center;
+
 }
 
 @media all and (min-width: 480px){
@@ -31,12 +45,12 @@ body
 	}
 
 	#morph{
-		display: block;
-		margin: 0 auto;
+		height:1140px;
+		width: 1140px;
+		margin: auto;
 		background-image: url('../../img/morpheus.jpg'); 
-		background-repeat: no-repeat; 
-/*		width: 70%;
-		height: 70%; 
-		min-height:500px;*/
+		background-repeat: no-repeat;
+		display: flex;
+		flex-wrap: wrap;
 	}
 }
