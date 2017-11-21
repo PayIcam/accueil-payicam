@@ -19,7 +19,7 @@
 	$user = $Auth->getUser();
 
 	// $vote = $DB->query('SELECT * FROM vote WHERE slug = "elections-bde-2017"');
-	$my_vote = $DB->prepare('SELECT * FROM vote_has_voters WHERE email = :email', ['email' => $user['email']]);
+	$my_vote = $DB->prepare('SELECT * FROM vote_has_voters WHERE email ='.$_SESSION['Auth']['email']);
 	$my_vote->execute();
 	$vote_fait = $my_vote->fetch();
 
