@@ -8,6 +8,9 @@
   $title_for_layout = 'Accueil';
   include 'includes/header.php'; // insertion du fichier header.php : entête, barre de navigation
 
+$date_debut=strtotime("21-11-2017 20:00");
+$date_fin=strtotime("21-11-2017 23:00");
+$date_actuelle=strtotime("now");
 ?>
 
 <!-- <div class="jumbotron">
@@ -16,7 +19,16 @@
 </div> -->
 <div class="col-md-12">
   <img src="img/annonce_vote.png" alt="image d'annonce du vote" style="width: 100%">
-  <a class="btn btn-warning" href="vote.php" type='button' style="width: 100%"><h4><strong>Vote ici pour ton BDE!</strong></h4></a>
+  <?php if ($date_debut > $date_actuelle){ ?>
+  		<a class="btn btn-warning" href="#" type='button' disabled style="width: 100%"><h4><strong>Ouverture du vote à 8h!</strong></h4></a>
+  	<?php 
+  } 
+  else if ($date_fin < $date_actuelle){ ?>
+  	<a class="btn btn-warning" href="#" type='button' disabled style="width: 100%"><h4><strong>Vote terminé. Rendez-vous à 20h pour le résultat!</strong></h4></a>
+  <?php }
+  else{ ?>
+  <a class="btn btn-warning" href="vote.php" type='button' style="width: 100%"><h4><strong>Vote ici pour ton BDE! (Fermeture du vote à 18h)</strong></h4></a>
+  <?php } ?>
 </div>
 <div class="row">
   <div class="col-md-6">
