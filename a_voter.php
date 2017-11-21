@@ -67,11 +67,10 @@ catch(Exeption $e)
     	header('Location:index.php');
 	}
 
-	$enreg= $DB->prepare('INSERT INTO vote_has_voters (email, date_vote, promo, choice) values (:email, :date_vote, :promo, :choice)');
+	$enreg= $DB->prepare('INSERT INTO vote_has_voters (email, promo, choice) values (:email, :promo, :choice)');
 
 	$date_vote=date('Y-m-d H:i:s');
 	$enreg -> bindParam('email', $user['email'], PDO::PARAM_STR);
-	$enreg -> bindParam('date_vote', $date_vote, PDO::PARAM_STR);
 	$enreg -> bindParam('promo', $promo_votant, PDO::PARAM_INT);
 	$enreg -> bindParam('choice', $_POST, PDO::PARAM_STR);
 	$enreg -> execute();
