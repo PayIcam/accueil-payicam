@@ -57,7 +57,7 @@ catch(Exeption $e)
 	// $promo = $DB_promo->query('SELECT promo FROM users WHERE email = :email', ['email' => $user['email']]);
 	// var_dump($vote);
 	// var_dump($my_vote);
-	if (count($vote_fait)>0){
+	if ($vote_fait != false){
 		Functions::setFlash("Charles arrête tes conneries",'danger');
     	header('Location:index.php');
 	}
