@@ -10,9 +10,6 @@
     // } catch (Exception $e) {
     //     $DB = null;
     // }
-
-
-
 try
 {
 	$DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
@@ -21,14 +18,6 @@ catch(Exeption $e)
 {
 	die('erreur:'.$e->getMessage());
 }
-
-
-
-
-
-
-
-
 	$conf_sql_promo = $_CONFIG['conf_sql_promo'];
 
 	try
@@ -78,7 +67,7 @@ catch(Exeption $e)
     	Functions::setFlash("Votre vote a bien été enregistré ",'info');
         header('Location:index.php');
 	} catch (Exception $e) {
-		Functions::setFlash("Votre vote n'a pas été enregistré, si le problème persiste, contacter Payicam",'danger');
+		Functions::setFlash("Votre vote n'a pas été enregistré, si le problème persiste, contactez Payicam",'danger');
         header('Location:index.php');
     }
 

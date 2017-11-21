@@ -11,6 +11,15 @@
 $date_debut=strtotime("21-11-2017 20:00");
 $date_fin=strtotime("21-11-2017 23:00");
 $date_actuelle=strtotime("now");
+
+$user = $Auth->getUser();
+
+	// $vote = $DB->query('SELECT * FROM vote WHERE slug = "elections-bde-2017"');
+	$my_vote = $DB->prepare('SELECT * FROM vote_has_voters WHERE email = :email');
+	$my_vote -> bindParam('email', $user['email'], PDO::PARAM_STR);
+	$my_vote -> execute();
+	$vote_fait = $my_vote->fetch();
+
 ?>
 
 <!-- <div class="jumbotron">
@@ -19,16 +28,22 @@ $date_actuelle=strtotime("now");
 </div> -->
 <div class="col-md-12">
   <img src="img/annonce_vote.png" alt="image d'annonce du vote" style="width: 100%">
-  <?php if ($date_debut > $date_actuelle){ ?>
-  		<a class="btn btn-warning" href="#" type='button' disabled style="width: 100%"><h4><strong>Ouverture du vote à 8h!</strong></h4></a>
-  	<?php 
-  } 
-  else if ($date_fin < $date_actuelle){ ?>
-  	<a class="btn btn-warning" href="#" type='button' disabled style="width: 100%"><h4><strong>Vote terminé. Rendez-vous à 20h pour le résultat!</strong></h4></a>
-  <?php }
-  else{ ?>
-  <a class="btn btn-warning" href="vote.php" type='button' style="width: 100%"><h4><strong>Vote ici pour ton BDE! (Fermeture du vote à 18h)</strong></h4></a>
-  <?php } ?>
+  <?php 
+
+  if ($vote_fait != false){ ?>
+		<a class="btn btn-warning" href="#" type='button' disabled style="width: 100%"><h4><strong>Vous avez déjà voté. Rendez-vous à 20h pour le résultat!</strong></h4></a>
+	<?php } else{
+	  if ($date_debut > $date_actuelle){ ?>
+	  		<a class="btn btn-warning" href="#" type='button' disabled style="width: 100%"><h4><strong>Ouverture du vote à 8h!</strong></h4></a>
+	  	<?php 
+	  } 
+	  else if ($date_fin < $date_actuelle){ ?>
+	  	<a class="btn btn-warning" href="#" type='button' disabled style="width: 100%"><h4><strong>Vote terminé. Rendez-vous à 20h pour le résultat!</strong></h4></a>
+	  <?php }
+	  else{ ?>
+	  <a class="btn btn-warning" href="vote.php" type='button' style="width: 100%"><h4><strong>Vote ici pour ton BDE! (Fermeture du vote à 18h)</strong></h4></a>
+	  <?php } 
+	}?>
 </div>
 <div class="row">
   <div class="col-md-6">
