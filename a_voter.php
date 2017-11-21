@@ -51,16 +51,16 @@
 	$vote = $DB->query('SELECT * FROM vote WHERE slug = "elections-bde-2017"');
 	$my_vote = $DB->query('SELECT * FROM vote_has_voters WHERE email = :email', ['email' => $user['email']]);
 	$promo = $DB_promo->query('SELECT promo FROM users WHERE email = :email', ['email' => $user['email']]);
-	var_dump($vote);
-	var_dump($my_vote);
+	// var_dump($vote);
+	// var_dump($my_vote);
 	if (count($my_vote)>0){
 		Functions::setFlash("Charles arrête tes conneries",'danger');
     	header('Location:index.php');
 	}
 
 	$date_vote=date('Y-m-d H:i:s');
-	$enreg= $DB->prepare('INSERT INTO vote_has_voters (vote_id, email, date_vote, promo, choice) value (:vote_id, :email, :date_vote, :promo, :choice)');
 	$enreg -> bindParam('vote_id', 1, PDO::PARAM_INT);
+	$enreg= $DB->prepare('INSERT INTO vote_has_voters (vote_id, email, date_vote, promo, choice) values (:vote_id, :email, :date_vote, :promo, :choice)');
 	$enreg -> bindParam('email', $_SESSION['Auth']['email'], PDO::PARAM_STR);
 	$enreg -> bindParam('date_vote', $date_vote, PDO::PARAM_STR);
 	$enreg -> bindParam('promo', $promo, PDO::PARAM_INT);
