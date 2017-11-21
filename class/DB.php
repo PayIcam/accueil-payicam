@@ -26,7 +26,7 @@ class DB {
         }
     }
 
-    public function query_antoine($sql, $data = array(),$fetch = PDO::FETCH_ASSOC){
+    public function query($sql, $data = array(),$fetch = PDO::FETCH_ASSOC){
         try{
             $req = $this->db->prepare($sql);
             $req->execute($data);
