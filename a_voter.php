@@ -24,7 +24,7 @@ $Auth->allow('member');
 	$promo = $DB_promo->query('SELECT promo FROM users WHERE email = :email', ['email' => $user['email']]);
 	var_dump($vote);
 	var_dump($my_vote);
-	if ($my_vote != '') || !is_null($my_vote){
+	if (count($my_vote)>0){
 		Functions::setFlash("Charles arrête tes conneries",'danger');
     	header('Location:index.php');
 	}
