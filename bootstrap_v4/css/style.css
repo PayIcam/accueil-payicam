@@ -1,13 +1,17 @@
 #sparrow{
 	width: 200px;
 	height: 200px;
+	background: transparent;
 }
 
 #sky{
 	width: 200px;
 	height: 200px;
+	background: transparent;
 }
-
+.row{
+	background: transparent;
+}
 body
 {
 	background-color: black;
