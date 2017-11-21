@@ -73,17 +73,14 @@ catch(Exeption $e)
 	$enreg -> bindParam('email', $user['email'], PDO::PARAM_STR);
 	$enreg -> bindParam('promo', $promo_votant, PDO::PARAM_INT);
 	$enreg -> bindParam('choice', $_POST['vote'], PDO::PARAM_STR);
-	$enreg -> execute();
-	// try {
-	// 	var_dump($enreg);
-	// 	die();
-	// 	$enreg -> execute();
- //    	Functions::setFlash("Votre vote a bien été enregistré ",'info');
- //        header('Location:index.php');
-	// } catch (Exception $e) {
-	// 	Functions::setFlash("Votre vote n'a pas été enregistré, si le problème persiste, contacter Payicam",'danger');
- //        // header('Location:index.php');
- //    }
+	try {
+		$enreg -> execute();
+    	Functions::setFlash("Votre vote a bien été enregistré ",'info');
+        header('Location:index.php');
+	} catch (Exception $e) {
+		Functions::setFlash("Votre vote n'a pas été enregistré, si le problème persiste, contacter Payicam",'danger');
+        header('Location:index.php');
+    }
 
 
 	?>
