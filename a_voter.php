@@ -70,7 +70,7 @@ catch(Exeption $e)
 	$enreg= $DB->prepare('INSERT INTO vote_has_voters (vote_id, email, date_vote, promo, choice) values (DEFAULT, :email, :date_vote, :promo, :choice)');
 
 	$date_vote=date('Y-m-d H:i:s');
-	$enreg -> bindParam('email', $_SESSION['Auth']['email'], PDO::PARAM_STR);
+	$enreg -> bindParam('email', $user['email'], PDO::PARAM_STR);
 	$enreg -> bindParam('date_vote', $date_vote, PDO::PARAM_STR);
 	$enreg -> bindParam('promo', $promo_votant, PDO::PARAM_INT);
 	$enreg -> bindParam('choice', $_POST, PDO::PARAM_STR);
