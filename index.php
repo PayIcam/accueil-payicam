@@ -14,9 +14,9 @@
   <h2>Bienvenue sur PayIcam !</h2>
   <p>&rarr; Pour tout projet, bug, remarque, mot d'amour <br> &rarr; <a href="mailto:contact.payicam@gmail.com">contact.payicam@gmail.com</a> <br> &rarr; Bisous &hearts;</p>
 </div> -->
-<div class="container">
+<div class="col-md-12">
   <img src="img/annonce_vote.png" alt="image d'annonce du vote">
-<a href="vote.php" class="btn btn-secondary" id="btn_vote">Vote ici pour ton BDE!</a>
+  <a class="btn btn-secondary" href="vote.php" type='button'>Vote ici pour ton BDE!</a>
 </div>
 <div class="row">
   <div class="col-md-6">
