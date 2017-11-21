@@ -71,7 +71,7 @@ catch(Exeption $e)
 
 	$date_vote=date('Y-m-d H:i:s');
 	$enreg -> bindParam('email', $user['email'], PDO::PARAM_STR);
-	$enreg -> bindParam('promo', $promo_votant, PDO::PARAM_INT);
+	$enreg -> bindParam('promo', $promo_votant['promo'], PDO::PARAM_INT);
 	$enreg -> bindParam('choice', $_POST['vote'], PDO::PARAM_STR);
 	try {
 		$enreg -> execute();
