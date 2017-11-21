@@ -50,7 +50,8 @@ catch(Exeption $e)
 
 	// $vote = $DB->query('SELECT * FROM vote WHERE slug = "elections-bde-2017"');
 
-	$my_vote = $DB->prepare('SELECT * FROM vote_has_voters WHERE email = :email', ['email' => $user['email']]);
+	$my_vote = $DB->prepare('SELECT * FROM vote_has_voters WHERE email = :email');
+	$my_vote -> bindParam('email', $user['email'], PDO::PARAM_STR)
 	$my_vote->execute();
 	$vote_fait = $my_vote->fetch();
 	// $promo = $DB_promo->query('SELECT promo FROM users WHERE email = :email', ['email' => $user['email']]);
