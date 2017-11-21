@@ -33,7 +33,7 @@ catch(Exeption $e)
 
 	try
 {
-	$DB_promo = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
+	$DB_promo = new PDO('mysql:host='.$conf_sql_promo['sql_host'].';dbname='.$conf_sql_promo['sql_db'].';charset=utf8',$conf_sql_promo['sql_user'],$conf_sql_promo['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
 }
 catch(Exeption $e)
 {
@@ -59,7 +59,8 @@ catch(Exeption $e)
 	}
 
 	$date_vote=date('Y-m-d H:i:s');
-	$enreg= $DB->prepare('INSERT INTO vote_has_voters (vote_id, email, date_vote, promo, choice) value (DEFAULT, :email, :date_vote, :promo, :choice)');
+	$enreg= $DB->prepare('INSERT INTO vote_has_voters (vote_id, email, date_vote, promo, choice) value (:vote_id, :email, :date_vote, :promo, :choice)');
+	$enreg -> bindParam('vote_id', 1);
 	$enreg -> bindParam('email', $_SESSION['Auth']['email'], PDO::PARAM_STR);
 	$enreg -> bindParam('date_vote', $date_vote, PDO::PARAM_STR);
 	$enreg -> bindParam('promo', $promo, PDO::PARAM_INT);
