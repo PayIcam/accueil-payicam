@@ -16,13 +16,13 @@ body
 }
 
 #sparrow{
-	width: 150px;
-	height: 150px;
+	width: 200px;
+	height: 200px;
 }
 
 #sky{
-	width: 150px;
-	height: 150px;
+	width: 200px;
+	height: 200px;
 }
 
 @media all and (max-width: 480px){
@@ -39,12 +39,12 @@ body
 
 	#sparrow:hover {
 		background-color: white;
-		box-shadow:0px 0px 400px 100px red;
+		box-shadow:0px 0px 500px 100px red;
 	}
 
 	#sky:hover{
 		background-color: white;   
-		box-shadow:0px 0px 400px 100px blue;
+		box-shadow:0px 0px 500px 100px blue;
 	}
 
 	#morph{
