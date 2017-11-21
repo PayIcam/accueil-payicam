@@ -54,7 +54,12 @@ catch(Exeption $e)
 	$my_vote -> bindParam('email', $user['email'], PDO::PARAM_STR);
 	$my_vote->execute();
 	$vote_fait = $my_vote->fetch();
-	// $promo = $DB_promo->query('SELECT promo FROM users WHERE email = :email', ['email' => $user['email']]);
+
+
+	$promo = $DB_promo->query('SELECT promo FROM users WHERE email = :email');
+	$promo -> bindParam('email', $user['email'], PDO::PARAM_STR);
+	$promo->execute();
+	$promo_votant = $promo->fetch();
 	// var_dump($vote);
 	// var_dump($my_vote);
 	if ($vote_fait != false){
@@ -67,8 +72,7 @@ catch(Exeption $e)
 	$date_vote=date('Y-m-d H:i:s');
 	$enreg -> bindParam('email', $_SESSION['Auth']['email'], PDO::PARAM_STR);
 	$enreg -> bindParam('date_vote', $date_vote, PDO::PARAM_STR);
-	// $enreg -> bindParam('promo', $promo, PDO::PARAM_INT);
-	$enreg -> bindParam('promo', 119, PDO::PARAM_INT);
+	$enreg -> bindParam('promo', $promo_votant, PDO::PARAM_INT);
 	$enreg -> bindParam('choice', $_POST, PDO::PARAM_STR);
 	try {
 		$enreg -> execute();
