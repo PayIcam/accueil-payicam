@@ -56,7 +56,7 @@ catch(Exeption $e)
 	$vote_fait = $my_vote->fetch();
 
 
-	$promo = $DB_promo->query('SELECT promo FROM users WHERE email = :email');
+	$promo = $DB_promo->prepare('SELECT promo FROM users WHERE email = :email');
 	$promo -> bindParam('email', $user['email'], PDO::PARAM_STR);
 	$promo->execute();
 	$promo_votant = $promo->fetch();
