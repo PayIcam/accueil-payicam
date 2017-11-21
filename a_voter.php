@@ -68,6 +68,7 @@ catch(Exeption $e)
 		Functions::setFlash("Charles arrête tes conneries",'danger');
     	header('Location:index.php');
 	}
+	else{
 
 	$enreg= $DB->prepare('INSERT INTO vote_has_voters (email, promo, choice) values (:email, :promo, :choice)');
 
@@ -83,6 +84,7 @@ catch(Exeption $e)
 		Functions::setFlash("Votre vote n'a pas été enregistré, si le problème persiste, contactez Payicam",'danger');
         header('Location:index.php');
     }
+}
 
 
 	?>
