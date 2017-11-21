@@ -10,6 +10,19 @@
     // } catch (Exception $e) {
     //     $DB = null;
     // }
+$date_debut=strtotime("21-11-2017 20:00");
+$date_fin=strtotime("21-11-2017 23:00");
+$date_actuelle=strtotime("now");
+
+if ($date_actuelle < $date_debut){
+	Functions::setFlash("Minute papillon!",'danger');
+	header('Location:index.php');
+}
+elseif ($date_actuelle > $date_fin) {
+	Functions::setFlash("Trop tard connard!",'danger');
+	header('Location:index.php');
+}
+
 try
 {
 	$DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));

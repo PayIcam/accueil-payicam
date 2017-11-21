@@ -37,7 +37,7 @@ $user = $Auth->getUser();
 	  		<a class="btn btn-warning" href="#" type='button' disabled style="width: 100%"><h4><strong>Ouverture du vote à 8h!</strong></h4></a>
 	  	<?php 
 	  } 
-	  else if ($date_fin < $date_actuelle){ ?>
+	  elseif ($date_fin < $date_actuelle){ ?>
 	  	<a class="btn btn-warning" href="#" type='button' disabled style="width: 100%"><h4><strong>Vote terminé. Rendez-vous à 20h pour le résultat!</strong></h4></a>
 	  <?php }
 	  else{ ?>
