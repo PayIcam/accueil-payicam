@@ -48,12 +48,14 @@ catch(Exeption $e)
     $user = $Auth->getUser();
 	// var_dump($user);
 
-	$vote = $DB->query('SELECT * FROM vote WHERE slug = "elections-bde-2017"');
+	// $vote = $DB->query('SELECT * FROM vote WHERE slug = "elections-bde-2017"');
+
 	$my_vote = $DB->query('SELECT * FROM vote_has_voters WHERE email = :email', ['email' => $user['email']]);
+	$vote_fait = $my_vote->fetch();
 	// $promo = $DB_promo->query('SELECT promo FROM users WHERE email = :email', ['email' => $user['email']]);
 	// var_dump($vote);
 	// var_dump($my_vote);
-	if (count($my_vote)>0){
+	if (count($vote_fait)>0){
 		Functions::setFlash("Charles arrête tes conneries",'danger');
     	header('Location:index.php');
 	}

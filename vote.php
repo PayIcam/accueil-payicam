@@ -13,9 +13,11 @@
 
 	$user = $Auth->getUser();
 
-	$vote = $DB->query('SELECT * FROM vote WHERE slug = "elections-bde-2017"');
+	// $vote = $DB->query('SELECT * FROM vote WHERE slug = "elections-bde-2017"');
 	$my_vote = $DB->query('SELECT * FROM vote_has_voters WHERE email = :email', ['email' => $user['email']]);
-	if (count($my_vote)>0){
+	$vote_fait = $my_vote->fetch();
+
+	if (count($vote_fait)>0){
 		Functions::setFlash("T'as déjà voté petit con",'danger');
     	header('Location:index.php');
 	}
