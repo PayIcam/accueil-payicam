@@ -11,7 +11,7 @@
     //     $DB = null;
     // }
 $date_debut=strtotime("21-11-2017 20:00");
-$date_fin=strtotime("21-11-2017 23:00");
+$date_fin=strtotime("22-11-2017 23:00");
 $date_actuelle=strtotime("now");
 
 if ($date_actuelle < $date_debut){

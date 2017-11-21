@@ -10,7 +10,7 @@
     //     $DB = null;
     // }
     $date_debut=strtotime("21-11-2017 20:00");
-	$date_fin=strtotime("21-11-2017 23:00");
+	$date_fin=strtotime("22-11-2017 23:00");
 	$date_actuelle=strtotime("now");
 
 	if ($date_actuelle < $date_debut){
@@ -67,35 +67,17 @@
 	</head>
 	<body>
 	<div id="morph">
-		<div class="sep_bouton">
+		<div class="sep_bouton" id="sep_bouton_sparrow">
 			<img src="img/logo sparrow.png" type="button" id="sparrow" class='rounded-circle' alt="sparrow" data-toggle="modal" data-target="#sparrowModal">
 
 		</div>
-		<div class="sep_bouton">
-			<img src="img/logo sky.png" type="button" alt="sky" class='rounded-circle' id="sky" data-toggle="modal" data-target="#skyModal">			
+		<div class="sep_bouton" id="sep_bouton_sky">
+			<img src="img/logo sky.png" type="button" alt="sky" class='rounded-circle' id="sky" data-toggle="modal" data-target="#skyModal">
 		</div>
 		<div id="sep_bouton_bas">
 			<input type="button" class="btn btn-secondary btn-lg" value="Je vote blanc" data-toggle="modal" data-target="#blancModal"></input>
 		</div>
 	</div>
-	<!-- <div id="morph">
-		<img src="morpheus.jpeg" alt="morpheus" style="width:100%;">
-		<div class="row" style="margin-top: 62%">
-			<div class="col-md-2 offset-md-1">
-				<input type="button" class="btn btn-sparrow btn-lg" value="Je prend le large avec les SP'ARROW!"></input>
-				<img src="img/logo sparrow.png" type="button" id="sparrow" class='rounded-circle' alt="sparrow" data-toggle="modal" data-target="#sparrowModal">
-			</div>
-			<div class="col-md-2 offset-md-5">
-				<input type="button" class="btn btn-primary btn-lg" value="Je m'envole avec les SKY!"></input>
-				<img src="img/logo sky.png" type="button" alt="sky" class='rounded-circle' id="sky" data-toggle="modal" data-target="#skyModal">
-			</div>
-		</div>
-		<div class="row" style="margin-bottom: 10%">
-			<div class="col-md-2 offset-md-5">
-				<input type="button" class="btn btn-secondary btn-lg" value="Je vote blanc" data-toggle="modal" data-target="#blancModal"></input>
-			</div>	
-		</div>
-	</div> -->
 <form action="a_voter.php" method="post">	
 	<div class="modal fade" id="sparrowModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">

@@ -1,20 +1,3 @@
-.sep_bouton{
-	padding-top:65%;
-	width: 50%;
-}
-
-#sparrow{
-	width: 150px;
-	height: 150px;
-	margin-left: 20%;
-}
-
-#sky{
-	width: 150px;
-	height: 150px;
-	margin-left: 50%;
-
-}
 .rounded-circle{
   border-radius: 50%;
 }
@@ -32,6 +15,26 @@ body
 
 }
 
+#sparrow{
+	width: 150px;
+	height: 150px;
+}
+
+#sky{
+	width: 150px;
+	height: 150px;
+}
+
+@media all and (max-width: 480px){
+
+	.sep_bouton{
+		padding-bottom: 10px;
+		display: flex;
+		justify-content: center;
+	}
+}
+
+
 @media all and (min-width: 480px){
 
 	#sparrow:hover {
@@ -45,12 +48,41 @@ body
 	}
 
 	#morph{
-		height:1140px;
-		width: 1140px;
+		height:800px;
+		width: 800px;
 		margin: auto;
+
 		background-image: url('../../img/morpheus.jpg'); 
 		background-repeat: no-repeat;
+		background-size: contain;
+
 		display: flex;
-		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
+	.sep_bouton{
+	padding-top:60%;
+	width: 100%;
+	}
+
+	#sep_bouton_sparrow:nth-child(1){
+		order: 1;
+	}
+
+	#sep_bouton_sky:nth-child(2){
+		order: 3;
+	}
+
+	#sep_bouton_bas:nth-child(3){
+		padding-top:80%;
+		order: 2;
+	}
+
+	#sparrow{
+		margin-left: 25%;
+	}
+
+	#sky{
+		margin-left: 20%;
 	}
 }

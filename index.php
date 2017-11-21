@@ -2,15 +2,22 @@
   require_once 'includes/_header.php';
     $Auth->allow('member');
 
-
+  require_once ROOT_PATH.'class/DB.php';
+  $confSQL = $_CONFIG['conf_sql_vote'];
 
 
   $title_for_layout = 'Accueil';
   include 'includes/header.php'; // insertion du fichier header.php : entête, barre de navigation
 
 $date_debut=strtotime("21-11-2017 20:00");
-$date_fin=strtotime("21-11-2017 23:00");
+$date_fin=strtotime("22-11-2017 23:00");
 $date_actuelle=strtotime("now");
+
+try{
+  $DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
+  } catch(Exeption $e) {
+  die('erreur:'.$e->getMessage());
+  }
 
 $user = $Auth->getUser();
 
