@@ -24,7 +24,7 @@
 	$my_vote -> execute();
 	$vote_fait = $my_vote->fetch();
 
-	if (count($vote_fait)>0){
+	if ($vote_fait != false){
 		Functions::setFlash("T'as déjà voté petit con",'danger');
     	header('Location:index.php');
 	}
