@@ -55,11 +55,11 @@
 	<body>
 	<div id="morph">
 		<div class="sep_bouton">
-			<img src="accueil-payicam/img/logo sparrow.png" type="button" id="sparrow" class='rounded-circle' alt="sparrow" data-toggle="modal" data-target="#sparrowModal">
+			<img src="img/logo sparrow.png" type="button" id="sparrow" class='rounded-circle' alt="sparrow" data-toggle="modal" data-target="#sparrowModal">
 
 		</div>
 		<div class="sep_bouton">
-			<img src="accueil-payicam/img/logo sky.png" type="button" alt="sky" class='rounded-circle' id="sky" data-toggle="modal" data-target="#skyModal">			
+			<img src="img/logo sky.png" type="button" alt="sky" class='rounded-circle' id="sky" data-toggle="modal" data-target="#skyModal">			
 		</div>
 		<div id="sep_bouton_bas">
 			<input type="button" class="btn btn-secondary btn-lg" value="Je vote blanc" data-toggle="modal" data-target="#blancModal"></input>
