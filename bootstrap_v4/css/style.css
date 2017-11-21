@@ -1,4 +1,5 @@
 #sparrow{
+	background-color: transparent; 
 	width: 250px;
 	height: 250px;
 }
@@ -6,24 +7,12 @@
 #sky{
 	width: 250px;
 	height: 250px;
-}
-
-#btn_vote{
-  display: block;
-  width: 100%;
-  color: #fff;
-  background-color: #009999;
-  border-color: #009999;
-}
-
-#btn_vote:hover{
-  border-color: #004d4d;
-  background-color: ##006666;
+	background-color: transparent; 
 }
 
 body
 {
-	background-color: : black;
+	background-color: black;
 }
 
 @media all and (min-width: 480px){
