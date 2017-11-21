@@ -1,5 +1,6 @@
 <?php
-$Auth->allow('member');
+	require_once 'includes/_header.php';
+	$Auth->allow('member');
 
 	require_once ROOT_PATH.'class/DB.php';
 	$confSQL = $_CONFIG['conf_sql_vote'];
