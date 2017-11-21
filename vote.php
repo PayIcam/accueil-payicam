@@ -56,7 +56,7 @@
 
 	<div class ="container" id="morph">
 		<!-- <img src="morpheus.jpeg" alt="morpheus" style="width:100%;"> -->
-		<div class="row" style="padding-top: 62%">
+		<div class="row" style="margin-top: 62%">
 			<div class="col-md-2 offset-md-1">
 				<!-- <input type="button" class="btn btn-sparrow btn-lg" value="Je prend le large avec les SP'ARROW!"></input> -->
 				<img src="img/logo sparrow.png" type="button" id="sparrow" class='rounded-circle' alt="sparrow" data-toggle="modal" data-target="#sparrowModal">
@@ -66,7 +66,7 @@
 				<img src="img/logo sky.png" type="button" alt="sky" class='rounded-circle' id="sky" data-toggle="modal" data-target="#skyModal">
 			</div>
 		</div>
-		<div class="row" style="padding-top: 10%">
+		<div class="row" style="margin-top: 10%">
 			<div class="col-md-2 offset-md-5">
 				<input type="button" class="btn btn-secondary btn-lg" value="Je vote blanc" data-toggle="modal" data-target="#blancModal"></input>
 			</div>	
