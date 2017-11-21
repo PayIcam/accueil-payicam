@@ -31,6 +31,8 @@ body
 	}
 
 	#morph{
+		display: block;
+		margin: 0 auto;
 		background-image: url('../../img/morpheus.jpg'); 
 		background-repeat: no-repeat; 
 /*		width: 70%;

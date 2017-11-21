@@ -66,7 +66,7 @@
 				<img src="img/logo sky.png" type="button" alt="sky" class='rounded-circle' id="sky" data-toggle="modal" data-target="#skyModal">
 			</div>
 		</div>
-		<div class="row" style="margin-top: 10%">
+		<div class="row" style="margin-bottom: 10%">
 			<div class="col-md-2 offset-md-5">
 				<input type="button" class="btn btn-secondary btn-lg" value="Je vote blanc" data-toggle="modal" data-target="#blancModal"></input>
 			</div>	
