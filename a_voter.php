@@ -30,8 +30,8 @@
     	header('Location:index.php');
 	}
 
-	$date_vote=getdate('Y-m-d h:i:s');
-	$enreg= $DB->prepare('INSERT INTO vote_has_voters (vote_id, email, date_vote, promo, choice) value (DEFAULT, :email, :date_vote, :promo, :choice');
+	$date_vote=date('Y-m-d H:i:s');
+	$enreg= $DB->prepare('INSERT INTO vote_has_voters (vote_id, email, date_vote, promo, choice) value (DEFAULT, :email, :date_vote, :promo, :choice)');
 	$enreg -> bindParam('email', $_SESSION['Auth']['email'], PDO::PARAM_STR);
 	$enreg -> bindParam('date_vote', $date_vote, PDO::PARAM_STR);
 	$enreg -> bindParam('promo', $promo, PDO::PARAM_INT);
