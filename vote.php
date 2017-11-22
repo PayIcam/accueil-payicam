@@ -46,6 +46,11 @@
 	$my_vote -> bindParam('email', $user['email'], PDO::PARAM_STR);
 	$my_vote -> execute();
 	$vote_fait = $my_vote->fetch();
+	
+	$promo = $DB_promo->prepare('SELECT promo FROM users WHERE mail = :email');
+	$promo -> bindParam('email', $user['email'], PDO::PARAM_STR);
+	$promo->execute();
+	$promo_votant = $promo->fetch();
 
 	if ($vote_fait != false){
 		Functions::setFlash("T'as déjà voté petit con",'danger');

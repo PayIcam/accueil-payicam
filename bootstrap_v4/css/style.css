@@ -24,7 +24,6 @@ body
 #sky{
 	width: 200px;
 	height: 200px;
-	background-color: pink;	
 }
 
 @media all and (max-width: 480px){
