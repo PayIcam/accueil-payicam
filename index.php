@@ -73,9 +73,9 @@ else { ?>
 	  else{ ?>
 	  <a class="btn btn-warning" href="vote.php" type='button' style="width: 100%"><h4><strong>Vote ici pour ton BDE! (Fermeture du vote à 15h)</strong></h4></a>
 	  <?php } 
-	}
-}?>
+	}?>
 </div>
+<?php } ?>
 <div class="row">
   <div class="col-md-6">
     <div class="row">
