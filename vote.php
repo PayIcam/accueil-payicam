@@ -4,13 +4,14 @@
 
 	require_once ROOT_PATH.'class/DB.php';
 	$confSQL = $_CONFIG['conf_sql_vote'];
+	$conf_sql_promo = $_CONFIG['conf_sql_promo'];
     // try {
     //     $DB = new DB($confSQL['sql_host'],$confSQL['sql_user'],$confSQL['sql_pass'],$confSQL['sql_db']);
     // } catch (Exception $e) {
     //     $DB = null;
     // }
-    $date_debut=strtotime("21-11-2017 20:00");
-	$date_fin=strtotime("22-11-2017 23:00");
+    $date_debut=strtotime("23-11-2017 07:00");
+	$date_fin=strtotime("23-11-2017 15:00");
 	$date_actuelle=strtotime("now");
 
 	if ($date_actuelle < $date_debut){
@@ -29,7 +30,16 @@
 	}
 
 
-	$user = $Auth->getUser();
+	try
+	{
+		$DB_promo = new PDO('mysql:host='.$conf_sql_promo['sql_host'].';dbname='.$conf_sql_promo['sql_db'].';charset=utf8',$conf_sql_promo['sql_user'],$conf_sql_promo['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
+	}
+	catch(Exeption $e)
+	{
+		die('erreur:'.$e->getMessage());
+	}
+
+		$user = $Auth->getUser();
 
 	// $vote = $DB->query('SELECT * FROM vote WHERE slug = "elections-bde-2017"');
 	$my_vote = $DB->prepare('SELECT * FROM vote_has_voters WHERE email = :email');
@@ -41,6 +51,10 @@
 		Functions::setFlash("T'as déjà voté petit con",'danger');
     	header('Location:index.php');
 	}
+	if ($promo_votant['promo'] == 119){ 
+		Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
+    	header('Location:index.php');
+    }?>
 
 	// si on est pas dans la période de vote, être recalé
 	// si on est après la période de vote, afficher le résultat !?? (une heure après ?)

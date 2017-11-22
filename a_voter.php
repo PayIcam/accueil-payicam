@@ -10,8 +10,8 @@
     // } catch (Exception $e) {
     //     $DB = null;
     // }
-$date_debut=strtotime("21-11-2017 20:00");
-$date_fin=strtotime("22-11-2017 23:00");
+$date_debut=strtotime("23-11-2017 07:00");
+$date_fin=strtotime("23-11-2017 15:00");
 $date_actuelle=strtotime("now");
 
 if ($date_actuelle < $date_debut){
@@ -65,7 +65,11 @@ catch(Exeption $e)
 	// var_dump($vote);
 	// var_dump($my_vote);
 	if ($vote_fait != false){
-		Functions::setFlash("Charles arrête tes conneries",'danger');
+		Functions::setFlash("Arrête tes conneries",'danger');
+    	header('Location:index.php');
+	}
+	elseif ($promo_votant['promo'] == 119){ 
+		Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
     	header('Location:index.php');
 	}
 	else{
