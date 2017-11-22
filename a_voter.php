@@ -10,8 +10,8 @@
     // } catch (Exception $e) {
     //     $DB = null;
     // }
-$date_debut=strtotime("22-11-2017 07:00");
-$date_fin=strtotime("22-11-2017 19:00");
+$date_debut=strtotime("23-11-2017 07:00");
+$date_fin=strtotime("23-11-2017 15:00");
 $date_actuelle=strtotime("now");
 
 if ($date_actuelle < $date_debut){

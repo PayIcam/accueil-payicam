@@ -9,8 +9,8 @@
   $title_for_layout = 'Accueil';
   include 'includes/header.php'; // insertion du fichier header.php : entête, barre de navigation
 
-$date_debut=strtotime("22-11-2017 07:00");
-$date_fin=strtotime("22-11-2017 19:00");
+$date_debut=strtotime("23-11-2017 07:00");
+$date_fin=strtotime("23-11-2017 15:00");
 $date_actuelle=strtotime("now");
 
 try{

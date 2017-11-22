@@ -11,12 +11,12 @@
     // } catch (Exception $e) {
     //     $DB = null;
     // }
-	$date_debut=strtotime("22-11-2017 07:00");
-	$date_fin=strtotime("22-11-2017 19:00");
+	$date_debut=strtotime("23-11-2017 07:00");
+	$date_fin=strtotime("23-11-2017 15:00");
 	$date_actuelle=strtotime("now");
 
 	if ($date_actuelle < $date_debut){
-		Functions::setFlash("Minute papillon!",'danger');
+		Functions::setFlash("Minute papillon, le vote commence bientôt!",'danger');
 		header('Location:index.php');
 	}
 	elseif ($date_actuelle > $date_fin) {
@@ -54,7 +54,7 @@
 	$promo_votant = $promo->fetch();
 
 	if ($vote_fait != false){
-		Functions::setFlash("T'as déjà voté petit con",'danger');
+		Functions::setFlash("Bien tenté petit con!",'danger');
     	header('Location:index.php');
 	}
 	if ($promo_votant['promo'] == 0){ 
