@@ -3,6 +3,7 @@
 	$Auth->allow('member');
 
 	require_once ROOT_PATH.'class/DB.php';
+	$title_for_layout = 'Election BDE';
 	$confSQL = $_CONFIG['conf_sql_vote'];
 	$conf_sql_promo = $_CONFIG['conf_sql_promo'];
     // try {
@@ -61,13 +62,7 @@
     	header('Location:index.php');
     }?>
 
-	// si on est pas dans la période de vote, être recalé
-	// si on est après la période de vote, afficher le résultat !?? (une heure après ?)
-	// si il a déjà voté lui afficher son vote !
-	// si il n'a pas voté, option
 
-
-	$title_for_layout = 'Election BDE';
 ?>
 <!DOCTYPE html>
 <html>
