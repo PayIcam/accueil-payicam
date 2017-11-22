@@ -46,7 +46,7 @@
 	$my_vote -> bindParam('email', $user['email'], PDO::PARAM_STR);
 	$my_vote -> execute();
 	$vote_fait = $my_vote->fetch();
-	
+
 	$promo = $DB_promo->prepare('SELECT promo FROM users WHERE mail = :email');
 	$promo -> bindParam('email', $user['email'], PDO::PARAM_STR);
 	$promo->execute();
@@ -56,7 +56,7 @@
 		Functions::setFlash("T'as déjà voté petit con",'danger');
     	header('Location:index.php');
 	}
-	if ($promo_votant['promo'] == 119){ 
+	if ($promo_votant['promo'] == 0){ 
 		Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
     	header('Location:index.php');
     }?>

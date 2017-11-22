@@ -68,7 +68,7 @@ catch(Exeption $e)
 		Functions::setFlash("Arrête tes conneries",'danger');
     	header('Location:index.php');
 	}
-	elseif ($promo_votant['promo'] == 119){ 
+	elseif ($promo_votant['promo'] == 0){ 
 		Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
     	header('Location:index.php');
 	}

@@ -49,7 +49,7 @@ $user = $Auth->getUser();
   <p>&rarr; Pour tout projet, bug, remarque, mot d'amour <br> &rarr; <a href="mailto:contact.payicam@gmail.com">contact.payicam@gmail.com</a> <br> &rarr; Bisous &hearts;</p>
 </div> -->
 <?php 
-if ($promo_votant['promo'] == 119){ ?>
+if ($promo_votant['promo'] == 0){ ?>
   <div class="jumbotron">
   <h2>Bienvenue sur PayIcam !</h2>
   <p>&rarr; Pour tout projet, bug, remarque, mot d'amour <br> &rarr; <a href="mailto:contact.payicam@gmail.com">contact.payicam@gmail.com</a> <br> &rarr; Bisous &hearts;</p>
