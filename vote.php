@@ -62,8 +62,6 @@
     	header('Location:index.php');
     }?>
 
-
-?>
 <!DOCTYPE html>
 <html>
 	<head>
