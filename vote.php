@@ -4,62 +4,67 @@
 
 	require_once ROOT_PATH.'class/DB.php';
 	$title_for_layout = 'Election BDE';
-	$confSQL = $_CONFIG['conf_sql_vote'];
-	$conf_sql_promo = $_CONFIG['conf_sql_promo'];
-    // try {
-    //     $DB = new DB($confSQL['sql_host'],$confSQL['sql_user'],$confSQL['sql_pass'],$confSQL['sql_db']);
-    // } catch (Exception $e) {
-    //     $DB = null;
-    // }
-	$date_debut=strtotime("23-11-2017 07:00");
-	$date_fin=strtotime("23-11-2017 15:00");
-	$date_actuelle=strtotime("now");
 
-	if ($date_actuelle < $date_debut){
-		Functions::setFlash("Minute papillon, le vote commence bientôt!",'danger');
-		header('Location:index.php');
-	}
-	elseif ($date_actuelle > $date_fin) {
-		Functions::setFlash("Trop tard connard!",'danger');
-		header('Location:index.php');
-	}
-
-	try{
-	$DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-	} catch(Exeption $e) {
-	die('erreur:'.$e->getMessage());
-	}
+	Functions::setFlash("Il n'y a rien à voir ici",'danger');
+	header('Location:index.php');
+	// $confSQL = $_CONFIG['conf_sql_vote'];
+	// $conf_sql_promo = $_CONFIG['conf_sql_promo'];
+ //    // try {
+ //    //     $DB = new DB($confSQL['sql_host'],$confSQL['sql_user'],$confSQL['sql_pass'],$confSQL['sql_db']);
+ //    // } catch (Exception $e) {
+ //    //     $DB = null;
+ //    // }
+	// $date_debut=strtotime("23-11-2017 07:00");
+	// $date_fin=strtotime("23-11-2017 15:00");
+	// $date_actuelle=strtotime("now");
 
 
-	try
-	{
-		$DB_promo = new PDO('mysql:host='.$conf_sql_promo['sql_host'].';dbname='.$conf_sql_promo['sql_db'].';charset=utf8',$conf_sql_promo['sql_user'],$conf_sql_promo['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-	}
-	catch(Exeption $e)
-	{
-		die('erreur:'.$e->getMessage());
-	}
 
-		$user = $Auth->getUser();
+	// if ($date_actuelle < $date_debut){
+	// 	Functions::setFlash("Minute papillon, le vote commence bientôt!",'danger');
+	// 	header('Location:index.php');
+	// }
+	// elseif ($date_actuelle > $date_fin) {
+	// 	Functions::setFlash("Trop tard connard!",'danger');
+	// 	header('Location:index.php');
+	// }
 
-	// $vote = $DB->query('SELECT * FROM vote WHERE slug = "elections-bde-2017"');
-	$my_vote = $DB->prepare('SELECT * FROM vote_has_voters WHERE email = :email');
-	$my_vote -> bindParam('email', $user['email'], PDO::PARAM_STR);
-	$my_vote -> execute();
-	$vote_fait = $my_vote->fetch();
+	// try{
+	// $DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
+	// } catch(Exeption $e) {
+	// die('erreur:'.$e->getMessage());
+	// }
 
-	$promo = $DB_promo->prepare('SELECT promo FROM users WHERE mail = :email');
-	$promo -> bindParam('email', $user['email'], PDO::PARAM_STR);
-	$promo->execute();
-	$promo_votant = $promo->fetch();
 
-	if ($vote_fait != false){
-		Functions::setFlash("Bien tenté petit con!",'danger');
-    	header('Location:index.php');
-	}
-	if ($promo_votant['promo'] == 0){ 
-		Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
-    	header('Location:index.php');
+	// try
+	// {
+	// 	$DB_promo = new PDO('mysql:host='.$conf_sql_promo['sql_host'].';dbname='.$conf_sql_promo['sql_db'].';charset=utf8',$conf_sql_promo['sql_user'],$conf_sql_promo['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
+	// }
+	// catch(Exeption $e)
+	// {
+	// 	die('erreur:'.$e->getMessage());
+	// }
+
+	// 	$user = $Auth->getUser();
+
+	// // $vote = $DB->query('SELECT * FROM vote WHERE slug = "elections-bde-2017"');
+	// $my_vote = $DB->prepare('SELECT * FROM vote_has_voters WHERE email = :email');
+	// $my_vote -> bindParam('email', $user['email'], PDO::PARAM_STR);
+	// $my_vote -> execute();
+	// $vote_fait = $my_vote->fetch();
+
+	// $promo = $DB_promo->prepare('SELECT promo FROM users WHERE mail = :email');
+	// $promo -> bindParam('email', $user['email'], PDO::PARAM_STR);
+	// $promo->execute();
+	// $promo_votant = $promo->fetch();
+
+	// if ($vote_fait != false){
+	// 	Functions::setFlash("Bien tenté petit con!",'danger');
+ //    	header('Location:index.php');
+	// }
+	// if ($promo_votant['promo'] == 0){ 
+	// 	Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
+ //    	header('Location:index.php');
     }?>
 
 <!DOCTYPE html>
