@@ -31,7 +31,9 @@
 <p>Après la première année et demi du système, <strong>Emmanuel Bourgain (116)</strong> trésorier du BDE Animal invita <strong>Antoine</strong>, <strong>Aymeric</strong> et <strong>Charles</strong> à continuer d'apporter des améliorations au système en fonction des besoins d'un trésorier du BDE par exemple.</p>
 <p>Dans cette lancée, différents ajouts ont été fait dont notamment l'intégration à PayIcam de l'application web <a href="https://github.com/mattgu74/shotgunutc" title="Github de ShotgunUTC">ShotgunUTC</a> développée par Matthieu Guffroy. Shotgun étant une microbilletterie en ligne qui va permettre aux étudiants de l'Icam de s'inscrire directement en ligne aux événements des associations de l'Icam tel que les soirées BDE, événements sportifs et autre.</p>
 <br>
-<p>Pour la suite de l'aventure, le Projet PayIcam devient une association à part entière de l'Icam de Lille et va continuer de travailler main dans la main avec le nouveau BDE Wave et les différentes associations de l'Icam pour les aider à utiliser ces technologies web modernes.</p>
+<p>Pour la suite de l'aventure, le Projet PayIcam devient une association à part entière de l'Icam de Lille et va continuer de travailler main dans la main avec le nouveau BDE Wave et les différentes associations de l'Icam pour les aider à utiliser ces technologies web modernes.
+
+<em>Oui, cette histoire n'est absolument pas à jour et oui, j'ai la flemme de m'en occuper.</em></p>
 
 
 <?php include 'includes/footer.php';?>

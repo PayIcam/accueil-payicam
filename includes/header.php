@@ -8,7 +8,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.png" />
-
+    <!-- <script type="text/javascript" href="https://popper.js.org"></script> -->
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -19,37 +19,55 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <title><?php if(isset($title_for_layout)){echo $title_for_layout.' - ';} ?><?= WEBSITE_TITLE; ?></title>
+  <!-- <title><?php if(isset($title_for_layout)){echo $title_for_layout.' - ';} ?><?= WEBSITE_TITLE; ?></title> -->
   </head>
   <body>
-    <nav class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href=""><img src="img/PayIcam-h30-white.png"></a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li<?php if(Functions::isPage('index')) echo ' class="active"'; ?>><a href="index.php">Home</a></li>
-            <li<?php if(Functions::isPage('about')) echo ' class="active"'; ?>><a href="about.php">A propos</a></li>
-            <?php if ($Auth->isLogged()): ?>
-            <li<?php if(Functions::isPage('faq')) echo ' class="active"'; ?>><a href="faq.php">FAQ & Tutos</a></li>
-            <li<?php if(Functions::isPage('contact')) echo ' class="active"'; ?>><a href="contact.php">Contact</a></li>
-            <?php endif ?>
-          </ul>
-          <?php if ($Auth->isLogged()): ?>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="logout.php">Déconnexion</a></li>
-          </ul>
-          <?php endif ?>
-        </div><!-- /.nav-collapse -->
-      </div><!-- /.container -->
-    </nav><!-- /.navbar -->
+<!-- Test couleurs de la nouvelle barre de navigation -->
+<!-- <nav class="navbar fixed-top navbar-dark "  style="background-color: #766839;">
+  <a class="navbar-brand" href="#">
+    <img src="img/PayIcam.png" width="100" height="30" class="d-inline-block align-top" alt="">
+  </a>
+</nav> -->
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><img src="img/PayIcam-h30-white.png" width="100" height="33" class="d-inline-block align-top" alt=""></a>
+      <button class="navbar-toggler collapsed my-2 my-lg-0" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"> Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+  
+  <div id="navbarNav" class="collapse navbar-collapse" >
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
+      <li class="nav-item active"><span class="sr-only">(current)</span></li>
+      <!-- <?php require "functions.php"; ?> -->
+      
+      <li class="nav-item" <?php if(Functions::isPage('index')) echo ' class="active"'; ?> ><a  class="nav-link" href="index.php">Accueil</a>     </li>
+      <li class="nav-item" <?php if(Functions::isPage('about')) echo ' class="active"'; ?> ><a  class="nav-link" href="about.php">A propos</a> </li>
+     <!--  <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li> -->
+<!-- accessible avec Auth -->
+      <li class="nav-item" <?php if(Functions::isPage('faq')) echo ' class="active"'; ?> ><a  class="nav-link" href="faq.php">FAQ & Tutos</a> </li>
+      <li class="nav-item" <?php if(Functions::isPage('contact')) echo ' class="active"'; ?> ><a  class="nav-link" href="contact.php">Contact</a> </li>
+<!-- accessible super admin -->
+        <li class="nav-item" ><a  class="nav-link" href="accueil_admin.php">Paramètres</a> </li>
+<!--  fin accessible super admin-->
+    </ul>
+    
+    <ul class="nav navbar-nav my-2 my-lg-0">
+      <li class="nav-item"><a  class="nav-link" href="logout.php">Déconnexion</a></li>
+    </ul>
+<!-- fin accessible avec Auth -->
+  </div>  <!-- /nav collapse-->
+
+  </div>  <!-- /container -->  
+</nav>  <!-- /navbar -->  
 
     <div class="container">
       <?= Functions::flash(); ?>

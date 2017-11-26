@@ -3,7 +3,7 @@
   <footer class="footer">
       <p class="clearfix">
           &copy;2017, PayIcam, Guillaume D.<em>(119)</em>, Grégoire D.<em>(119)</em>
-          <a class="pull-right" href="#">Back to top</a>
+          <a class="float-right" href="#">Back to top</a>
       </p>
   </footer>
 
