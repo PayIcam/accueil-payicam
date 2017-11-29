@@ -41,11 +41,11 @@
   $data_accueil_evenement2 = mysqli_fetch_array ($Resultat7);
 
 ?>
-<div class="container">
+<!-- <div class="container"> -->
 <!-- <div class="container " style="padding-top: 20px ;margin-bottom: 30px; height: 140px ;background-color: #d9d9d9; border-radius: 4px;"> -->
   <!-- <center><h2 class="display-4"><?php echo $data_baniere[0] ; ?></h2> <p class="lead"><?php echo $data_baniere[1] ; ?></p></center> -->
   
-</div> <!-- /container -->
+<!-- </div> --> <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 <div id="carouselExampleIndicators" style="padding-top: 0px ; margin-bottom: 30px; border-radius: 4px;" class="carousel slide" data-ride="carousel">
@@ -78,14 +78,14 @@
       <p><?php echo $data_slide3[1] ; ?></p>
       </div>
     </div>
-    <div class="carousel-item" >
+<!--     <div class="carousel-item" >
       <img class="d-block w-100" id="slide4" src="img/slide4.jpg" style="height: 500px; width:auto; object-fit: contain"  alt="Third slide">
-      <!-- "height:400px;padding-right:350px;padding-left: 350px" -->
+      "height:400px;padding-right:350px;padding-left: 350px" cette ligne en douvle commentaire
       <div class="carousel-caption d-none d-md-block">
       <h3><?php echo $data_slide4[0] ; ?></h3>
       <p><?php echo $data_slide4[1] ; ?></p>
       </div>
-    </div>
+    </div> -->
   </div>
 
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
