@@ -19,7 +19,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-  <!-- <title><?php if(isset($title_for_layout)){echo $title_for_layout.' - ';} ?><?= WEBSITE_TITLE; ?></title> -->
+   <title><?php if(isset($title_for_layout)){echo $title_for_layout.' - ';} ?><?= WEBSITE_TITLE; ?></title> 
   </head>
   <body>
 <!-- Test couleurs de la nouvelle barre de navigation -->
@@ -45,24 +45,34 @@
   <div id="navbarNav" class="collapse navbar-collapse" >
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
       <li class="nav-item active"><span class="sr-only">(current)</span></li>
-      <!-- <?php require "functions.php"; ?> -->
+      <?php 
+      // require "functions.php"; 
+      ?>
       
       <li class="nav-item" <?php if(Functions::isPage('index')) echo ' class="active"'; ?> ><a  class="nav-link" href="index.php">Accueil</a>     </li>
       <li class="nav-item" <?php if(Functions::isPage('about')) echo ' class="active"'; ?> ><a  class="nav-link" href="about.php">A propos</a> </li>
+
      <!--  <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>
       </li> -->
+
 <!-- accessible avec Auth -->
+<?php if ($Auth->isLogged()): ?>
       <li class="nav-item" <?php if(Functions::isPage('faq')) echo ' class="active"'; ?> ><a  class="nav-link" href="faq.php">FAQ & Tutos</a> </li>
       <li class="nav-item" <?php if(Functions::isPage('contact')) echo ' class="active"'; ?> ><a  class="nav-link" href="contact.php">Contact</a> </li>
+<?php endif ?>
 <!-- accessible super admin -->
+<?php if ($Auth->hasRole('super-admin')): ?>
         <li class="nav-item" ><a  class="nav-link" href="accueil_admin.php">Paramètres</a> </li>
+<?php endif ?>
 <!--  fin accessible super admin-->
     </ul>
-    
+<?php if ($Auth->isLogged()): ?>
     <ul class="nav navbar-nav my-2 my-lg-0">
       <li class="nav-item"><a  class="nav-link" href="logout.php">Déconnexion</a></li>
     </ul>
+<?php endif ?>    
+
 <!-- fin accessible avec Auth -->
   </div>  <!-- /nav collapse-->
 
