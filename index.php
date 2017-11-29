@@ -152,6 +152,7 @@
       </div>    <!-- /ROW -->
 
      <!--auth admin -->
+     <?php if ($Auth->hasRole('admin')): ?>
   <div class="container " style="height:60px; padding-top: 10px; margin-top: 20px; margin-bottom: 20px; border-radius: 4px; background-color: #d9d9d9;">
     <center><h2 class="page-header">Liens vers l'Administration</h2></center>
   </div >
@@ -167,6 +168,8 @@
         </div>
         </div>
             <!-- auth super admin -->
+           <?php if ($Auth->hasRole('super-admin')): ?>
+
          <div class="card border-dark ">
         <div class="card-body">
           <h4 class="card-title">Gestion des données des élèves</h4>
@@ -176,6 +179,8 @@
          <a class="btn btn-primary" href="../admin_ginger" target="_blank" role="button">Admin Ginger &raquo;</a>
         </div>
         </div>  <!-- fin auth super admin -->
+        <?php endif ?>
+
 
         <div class="card border-dark ">
         <div class="card-body">
@@ -197,8 +202,9 @@
         </div>
         </div>  
       </div>  <!-- /ROW -->
-
 <!-- fin Auth admin -->
+        <?php endif ?>
+
 </DIV>  <!-- /CARD-DECK -->
 
 <?php include 'includes/footer.php';?>
