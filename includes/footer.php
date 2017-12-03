@@ -2,7 +2,7 @@
 
   <footer class="footer">
       <p class="clearfix">
-          &copy;2017, PayIcam, Hugo R <em>119</em>
+          &copy;2017, PayIcam, Accueil réalisée par Hugo R. <em>119</em>
           <a class="float-right" href="#">Retour en haut</a>
       </p>
   </footer>
