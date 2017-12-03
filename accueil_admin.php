@@ -4,6 +4,7 @@
     $Auth->allow('member');
   include 'includes/header.php'; // insertion du fichier header.php : entête, barre de navigation
   include('config.php');
+  $confSQL = $_CONFIG['conf_accueil'];
 	$ConnexionBD = mysqli_connect($confSQL['sql_host'], $confSQL['sql_user'], $confSQL['sql_pass'], $confSQL['sql_db']);
   $Resultat1 = mysqli_query($ConnexionBD, "SELECT accueil_titre, accueil_message FROM payicam_accueil WHERE accueil_id=1");
   $Resultat2 = mysqli_query($ConnexionBD, "SELECT accueil_titre, accueil_message FROM payicam_accueil WHERE accueil_id=2");

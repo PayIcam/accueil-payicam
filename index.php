@@ -102,7 +102,7 @@ $title_for_layout = 'Accueil';
 	<DIV class="card-deck"> 
 
 		<div class="row" >
-			<div class="card border-dark ">
+			<div class="card border-dark" style="margin-bottom: 10px" >
 				<img class="card-img-top" style="max-height: 150px;"  src="img/carte.jpg" alt="Card image cap">
 				<div class="card-body">
 					<h4 class="card-title">Rechargement</h4>
@@ -113,7 +113,7 @@ $title_for_layout = 'Accueil';
 				</div>
 			</div>
 
-			<div class="card border-dark">
+			<div class="card border-dark" style="margin-bottom: 10px">
 				<img class="card-img-top" class="img-fluid" style="max-height: 150px;" src="img/ticket.png" alt="Card image cap">
 				<div class="card-body ">
 					<h4 class="card-title">Billeterie</h4>
@@ -126,7 +126,7 @@ $title_for_layout = 'Accueil';
 
 
 			
-			<div class="card border-dark">
+			<div class="card border-dark" style="margin-bottom: 10px">
 				<img class="card-img-top" class='img-fluid'  src='img/gala.jpg' alt="Card image cap">
 				<div class="card-body">
 					<h4 class="card-title"><?php echo $data_accueil_evenement1[0]?> </h4>
@@ -138,7 +138,7 @@ $title_for_layout = 'Accueil';
 				} ?>
 			</div>
 
-			<div class="card border-dark">
+			<div class="card border-dark" style="margin-bottom: 10px">
 				<img class="card-img-top" class="img-fluid"  src="img/spring.jpg" alt="Card image cap">
 				<div class="card-body">
 					<h4 class="card-title"><?php echo $data_accueil_evenement2[0]?></h4>
@@ -158,7 +158,7 @@ $title_for_layout = 'Accueil';
 			</div >
 			
 			<div class="row">
-				<div class="card border-dark ">
+				<div class="card border-dark" style="margin-bottom: 10px">
 					<div class="card-body">
 						<h4 class="card-title">Admin PayIcam</h4>
 						<p class="card-text">Application web permettant entre autre la gestion des articles, la gestion des droits, la trésorerie, ...</p>
@@ -170,7 +170,7 @@ $title_for_layout = 'Accueil';
 				<!-- auth super admin -->
 				<?php if ($Auth->hasRole('super-admin')): ?>
 
-					<div class="card border-dark ">
+					<div class="card border-dark" style="margin-bottom: 10px">
 						<div class="card-body">
 							<h4 class="card-title">Gestion des données des élèves</h4>
 							<p class="card-text">Cette interface permet la gestion par exemple de l'affectation des identifiants cartes étudiantes aux élèves.</p>
@@ -182,7 +182,7 @@ $title_for_layout = 'Accueil';
 				<?php endif ?>
 
 
-				<div class="card border-dark ">
+				<div class="card border-dark" style="margin-bottom: 10px">
 					<div class="card-body">
 						<h4 class="card-title">Vente par caisse physique</h4>
 						<p class="card-text">Application web de ventre des articles comme au Bar ou la cafet avec une caisse et une badgeuse.</p>
@@ -192,7 +192,7 @@ $title_for_layout = 'Accueil';
 					</div>
 				</div>
 
-				<div class="card border-dark ">
+				<div class="card border-dark" style="margin-bottom: 10px">
 					<div class="card-body">
 						<h4 class="card-title">Admin ventes en ligne</h4>
 						<p class="card-text">Administration des ventes d'articles en ligne, celle de shotgun.</p>
