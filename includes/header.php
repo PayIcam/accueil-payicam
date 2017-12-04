@@ -63,9 +63,9 @@
       <li class="nav-item" <?php if(Functions::isPage('contact')) echo ' class="active"'; ?> ><a  class="nav-link" href="contact.php">Contact</a> </li>
 <?php endif ?>
 <!-- accessible super admin -->
-<?php if ($Auth->hasRole('super-admin')): ?>
-        <li class="nav-item" ><a  class="nav-link" href="accueil_admin.php">Paramètres</a> </li>
-<?php endif ?>
+<!-- <?php if ($Auth->hasRole('super-admin')): ?>
+        //<li class="nav-item" ><a  class="nav-link" href="accueil_admin.php">Paramètres</a> </li>
+<?php endif ?> -->
 <!--  fin accessible super admin-->
     </ul>
 <?php if ($Auth->isLogged()): ?>
