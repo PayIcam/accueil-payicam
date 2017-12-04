@@ -2,8 +2,8 @@
 
   <footer class="footer">
       <p class="clearfix">
-          &copy;2017, PayIcam, Guillaume D.<em>(119)</em>, Grégoire D.<em>(119)</em>
-          <a class="pull-right" href="#">Back to top</a>
+          &copy;2017, PayIcam, Accueil réalisée par Hugo R. <em>119</em>
+          <a class="float-right" href="#">Retour en haut</a>
       </p>
   </footer>
 
