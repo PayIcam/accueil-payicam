@@ -1,0 +1,89 @@
+.rounded-circle{
+  border-radius: 50%;
+  background-color: white;
+}
+
+body
+{
+	background-color: black;
+}
+
+#sep_bouton_bas{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+    align-items: center;
+
+}
+
+#choix_2{
+	width: 200px;
+	height: 200px;
+}
+
+#choix_1{
+	width: 200px;
+	height: 200px;
+}
+
+@media all and (max-width: 480px){
+
+	.sep_bouton{
+		padding-bottom: 10px;
+		display: flex;
+		justify-content: center;
+	}
+}
+
+
+@media all and (min-width: 480px){
+
+	#choix_2:hover {
+		background-color: white;
+		box-shadow:0px 0px 500px 100px white;
+	}
+
+	#choix_1:hover{
+		background-color: white;   
+		box-shadow:0px 0px 500px 100px yellow;
+	}
+
+	#morph{
+		height:800px;
+		width: 800px;
+		margin: auto;
+
+		background-image: url('../../img/morpheus.jpg'); 
+		background-repeat: no-repeat;
+		background-size: contain;
+
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.sep_bouton{
+	padding-top:60%;
+	width: 100%;
+	}
+
+	#sep_bouton_choix_2:nth-child(1){
+		order: 1;
+	}
+
+	#sep_bouton_choix_1:nth-child(2){
+		order: 3;
+	}
+
+	#sep_bouton_bas:nth-child(3){
+		padding-top:80%;
+		order: 2;
+	}
+
+	#choix_2{
+		margin-left: 25%;
+	}
+
+	#choix_1{
+		margin-left: 20%;
+	}
+}
