@@ -143,3 +143,4 @@ elseif ($date_actuelle > $infos_vote['date_fin']) {
   </div>
 </form> -->
 </body>
+<?php include 'includes/footer.php';?>

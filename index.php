@@ -268,6 +268,12 @@ $title_for_layout = 'Accueil';
 
 </DIV>  <!-- /CARD-DECK -->
 
+<footer class="footer">
+  <p class="clearfix">
+      &copy;2017, PayIcam, page réalisée par Hugo R. <em>119</em>
+      <a class="float-right" href="#">Retour en haut</a>
+  </p>
+</footer>
 <?php include 'includes/footer.php';?>
 
 
