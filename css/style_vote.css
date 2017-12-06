@@ -44,7 +44,7 @@ body
 	}
 
 	#choix_1:hover{
-		background-color: white;   
+		background-color: white;
 		box-shadow:0px 0px 500px 100px yellow;
 	}
 
@@ -53,7 +53,7 @@ body
 		width: 800px;
 		margin: auto;
 
-		background-image: url('../../img/morpheus.jpg'); 
+		background-image: url('../img/morpheus.jpg'); 
 		background-repeat: no-repeat;
 		background-size: contain;
 
