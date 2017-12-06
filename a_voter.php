@@ -44,11 +44,11 @@ $promo_votant = $promo->fetch();
 
 
 $date_actuelle=date("Y-m-d H:i:s");
-if ($date_actuelle < $infos_vote['$date_debut']){
+if ($date_actuelle < $infos_vote['date_debut']){
   Functions::setFlash("Il n'y a pas de vote en cours",'danger');
   header('Location:index.php');
 }
-elseif ($date_actuelle > $infos_vote['$date_fin']) {
+elseif ($date_actuelle > $infos_vote['date_fin']) {
   Functions::setFlash("Le vote est terminé",'danger');
   header('Location:index.php');
 }
