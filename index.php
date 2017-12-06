@@ -147,7 +147,7 @@ $title_for_layout = 'Accueil';
 			<a class="btn btn-warning btn-lg btn-block" href="#" type='button' style="margin-bottom: 10px" disabled>Vous avez déjà voté. Rendez-vous ce soir pour le résultat!</a>
 		<?php } else{
 				if ($infos_vote['date_debut'] > $date_actuelle){ // verifie qu'on est pas en avance?>
-				<a class="btn btn-warning btn-lg btn-block" href="#" type='button' style="margin-bottom: 10px" disabled>Ouverture du vote <?php echo date('l', strtotime($infos_vote['date_debut'])) ?> à <?php echo date("G", strtotime($infos_vote['date_debut'])) ?>h!</a>
+				<a class="btn btn-warning btn-lg btn-block" href="#" type='button' style="margin-bottom: 10px" disabled>Ouverture du vote <?php echo strftime("%A", strtotime($infos_vote['date_debut'])) ?> à <?php echo date("G", strtotime($infos_vote['date_debut'])) ?>h!</a>
 				<?php 
 				} 
 				elseif ($infos_vote['date_fin'] < $date_actuelle){ // verifie qu'on est pas a la bourre?>
