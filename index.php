@@ -2,12 +2,12 @@
 require_once 'includes/_header.php';
 
 $Auth->allow('member');
+$user = $Auth->getUser();
 require_once ROOT_PATH.'class/DB.php';
 include('config.php');
 $title_for_layout = 'Accueil';
    include 'includes/header.php'; // insertion du fichier header.php : entête, barre de navigation
    $confSQL = $_CONFIG['conf_accueil'];
-
 
   // try{
   //   $DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
@@ -56,7 +56,6 @@ $title_for_layout = 'Accueil';
    {
    	die('erreur:'.$e->getMessage());
    }
-
    $my_vote = $DB->prepare('SELECT * FROM vote_has_voters WHERE email = :email');
    $my_vote -> bindParam('email', $user['email'], PDO::PARAM_STR);
    $my_vote -> execute();
@@ -78,6 +77,8 @@ $title_for_layout = 'Accueil';
    $date_end= strtotime($infos_vote['date_fin']);
   $jour_avant= date("Y-m-d H:i:s", strtotime("-1 days", $date_begin)); //Bouton vote apparait 1 jour avant
   $jour_apres= date("Y-m-d H:i:s", strtotime("+1 days", $date_end));  // disparait 1 jour après
+  date_default_timezone_set('Europe/Paris');
+  setlocale(LC_TIME, 'fr_FR.utf8','fra'); //pour afficher le jour du vote en français
 
 
   ?>
@@ -97,21 +98,21 @@ $title_for_layout = 'Accueil';
   			</ol>
   			<div class="carousel-inner">
   				<div class="carousel-item active">
-  					<img class="d-block w-100" src="img/slide1.jpg"  alt="First slide">
+  					<img class="d-block w-100" src="img/slide1.png"  alt="First slide">
   					<div class="carousel-caption d-none d-md-block">
   						<h3><?php echo $data_slide1[0] ; ?></h3>
   						<p><?php echo $data_slide1[1] ; ?></p>
   					</div>
   				</div>
   				<div class="carousel-item">
-  					<img class="d-block w-100" src="img/slide2.jpg" alt="Second slide">
+  					<img class="d-block w-100" src="img/slide2.png" alt="Second slide">
   					<div class="carousel-caption d-none d-md-block">
   						<h3><?php echo $data_slide2[0] ; ?></h3>
   						<p><?php echo $data_slide2[1] ; ?></p>
   					</div>
   				</div>
   				<div class="carousel-item" >
-  					<img class="d-block w-100" id="slide3" src="img/slide3.jpg" alt="Third slide">
+  					<img class="d-block w-100" id="slide3" src="img/slide3.png" alt="Third slide">
   					<!-- "height:400px;padding-right:350px;padding-left: 350px" -->
   					<div class="carousel-caption d-none d-md-block">
   						<h3><?php echo $data_slide3[0] ; ?></h3>
@@ -119,7 +120,7 @@ $title_for_layout = 'Accueil';
   					</div>
   				</div>
 <!--     <div class="carousel-item" >
-      <img class="d-block w-100" id="slide4" src="img/slide4.jpg" style="height: 500px; width:auto; object-fit: contain"  alt="Third slide">
+      <img class="d-block w-100" id="slide4" src="img/slide4.png" style="height: 500px; width:auto; object-fit: contain"  alt="Third slide">
       "height:400px;padding-right:350px;padding-left: 350px" cette ligne en douvle commentaire
       <div class="carousel-caption d-none d-md-block">
       <h3><?php echo $data_slide4[0] ; ?></h3>
@@ -140,7 +141,7 @@ $title_for_layout = 'Accueil';
 
 <div class="container">
 	<?php  	//DEBUT VOTE
-	if (($date_actuelle > $jour_avant) && ($date_actuelle < $jour_apres) && in_array($promo_votant['promo'], [122, 121, 120, 119, 118, 2022, 2021, 2020, 2019, 2018]) ){ // verifie intervalle de temps + promo A METTRE A JOUR TOUS LES ANS J'AI LA FLEMME DE FAIRE UN TRUC AUTOMATIQUE
+	if (($date_actuelle > $jour_avant) && ($date_actuelle < $jour_apres) && in_array($promo_votant['promo'], [122, 121, 120, 119, 118, 2022, 2021, 2020, 2019, 2018]) ){ // verifie intervalle de temps + PROMO A METTRE A JOUR TOUS LES ANS J'AI LA FLEMME DE FAIRE UN TRUC AUTOMATIQUE
 
 		if ($vote_fait != false){ // si déjà voté bloque le bouton?>
 			<a class="btn btn-warning btn-lg btn-block" href="#" type='button' style="margin-bottom: 10px" disabled>Vous avez déjà voté. Rendez-vous ce soir pour le résultat!</a>
@@ -163,7 +164,7 @@ $title_for_layout = 'Accueil';
 
 	<div class="row" >
 		<div class="card border-dark" style="margin-bottom: 10px" >
-			<img class="card-img-top" style="max-height: 150px;"  src="img/carte.jpg" alt="Card image cap">
+			<img class="card-img-top" style="max-height: 150px;"  src="img/carte.png" alt="Card image cap">
 			<div class="card-body">
 				<h4 class="card-title">Rechargement</h4>
 				<p class="card-text">Le rechargement se fait via Casper, l'interface web pour la gestion de son compte personnel </p>
@@ -187,7 +188,7 @@ $title_for_layout = 'Accueil';
 
 
 		<div class="card border-dark" style="margin-bottom: 10px">
-			<img class="card-img-top" class='img-fluid'  src='img/gala.jpg' alt="Card image cap">
+			<img class="card-img-top" class='img-fluid'  src='img/gala.png' alt="Card image cap">
 			<div class="card-body">
 				<h4 class="card-title"><?php echo $data_accueil_evenement1[0]?> </h4>
 				<p class="card-text"><?php echo $data_accueil_evenement1[1]?></p>
@@ -199,7 +200,7 @@ $title_for_layout = 'Accueil';
 		</div>
 
 		<div class="card border-dark" style="margin-bottom: 10px">
-			<img class="card-img-top" class="img-fluid"  src="img/spring.jpg" alt="Card image cap">
+			<img class="card-img-top" class="img-fluid"  src="img/spring.png" alt="Card image cap">
 			<div class="card-body">
 				<h4 class="card-title"><?php echo $data_accueil_evenement2[0]?></h4>
 				<p class="card-text"><?php echo $data_accueil_evenement2[1]?></p>
