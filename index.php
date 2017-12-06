@@ -76,7 +76,7 @@ $title_for_layout = 'Accueil';
    $date_begin= strtotime($infos_vote['date_debut']);
    $date_end= strtotime($infos_vote['date_fin']);
   $jour_avant= date("Y-m-d H:i:s", strtotime("-1 days", $date_begin)); //Bouton vote apparait 1 jour avant
-  $jour_apres= date("Y-m-d H:i:s", strtotime("+1 days", $date_end));  // disparait 1 jour après
+  $jour_apres= date("Y-m-d H:i:s", strtotime("+12 hours", $date_end));  // disparait 12 heures après
   date_default_timezone_set('Europe/Paris');
   setlocale(LC_TIME, 'fr_FR.utf8','fra'); //pour afficher le jour du vote en français
 

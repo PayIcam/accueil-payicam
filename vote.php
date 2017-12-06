@@ -95,7 +95,7 @@ elseif ($date_actuelle > $infos_vote['date_fin']) {
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
             <input type="hidden" name='vote' value="<?php echo ($infos_vote['choix_2']) ?>">
-            <input type="submit" class="btn btn-light" value="<?php echo("Je vote "+$infos_vote['choix_2']) ?>" >
+            <input type="submit" class="btn btn-light" value="<?php echo("Je vote ".$infos_vote['choix_2']) ?>" >
           </div>
         </div>
       </div>
@@ -117,7 +117,7 @@ elseif ($date_actuelle > $infos_vote['date_fin']) {
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
             <input type="hidden" name='vote' value="<?php echo ($infos_vote['choix_1']) ?>">
-            <input type="submit" class="btn btn-warning" value="<?php echo("Je vote "+$infos_vote['choix_1']) ?>" >
+            <input type="submit" class="btn btn-warning" value="<?php echo("Je vote ".$infos_vote['choix_1']) ?>" >
           </div>
         </div>
       </div>
