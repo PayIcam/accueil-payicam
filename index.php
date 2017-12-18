@@ -191,12 +191,18 @@ $title_for_layout = 'Accueil';
 			<img class="card-img-top" class='img-fluid'  src='img/gala.png' alt="Card image cap">
 			<div class="card-body">
 				<h4 class="card-title"><?php echo $data_accueil_evenement1[0]?> </h4>
-				<p class="card-text"><?php echo $data_accueil_evenement1[1]?></p>
+				<?php if (!in_array($promo_votant['promo'], [122, 121, 120, 119, 118, 2022, 2021, 2020, 2019, 2018]) ){ ?>
+				<p class="card-text">Vous n&acute; &ecirc;tes pas autoris&eacute; &agrave; prendre votre place sur Payicam, un lien Pumpkin sera bient&ocirc;t disponible</p>
+				<?php }
+				else { ?>
+
+			<p class="card-text"><?php echo $data_accueil_evenement1[1]?></p>
 			</div>   
 			<?php 
 			if ($data_accueil_evenement1[2]=='1'){ 
-				echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="../#" target="_blank" role="button" >'.$data_accueil_evenement1[3].' &raquo;</a></div>';
-			} ?>
+				echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="../inscription_galadesicam" target="_blank" role="button" >'.$data_accueil_evenement1[3].' &raquo;</a></div>';
+			} 
+		}?>
 		</div>
 
 		<div class="card border-dark" style="margin-bottom: 10px">
