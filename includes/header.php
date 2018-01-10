@@ -27,7 +27,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-   <!-- <title><?php if(isset($title_for_layout)){echo $title_for_layout.' - ';} ?><?= WEBSITE_TITLE; ?></title>  -->
+ <title><?php if(isset($title_for_layout)){echo $title_for_layout.' - ';} ?><?= WEBSITE_TITLE; ?></title> 
 
   <style>
 
@@ -93,7 +93,7 @@ ul li ul li:hover {background: #C0C0C6;
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
       <li class="nav-item active"><span class="sr-only">(current)</span></li>
       <?php 
-       require "functions.php"; 
+       //require "functions.php"; 
       ?>
       
       <li class="onglet" <?php if(Functions::isPage('index')) echo ' class="active"'; ?> ><a  class="nav-link" href="index.php">Accueil</a>     </li>
