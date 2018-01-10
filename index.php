@@ -208,7 +208,7 @@ $confSQL = $_CONFIG['conf_accueil'];
 					echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="../inscription_galadesicam" target="_blank" role="button" >'.$data_carte3[3].' &raquo;</a></div>';
 				}
 				else{
-					echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="151.80.232.129/gala_icam" target="_blank" role="button" >'.$data_carte3[3].' &raquo;</a></div>';
+					echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="http://151.80.232.129/gala_icam" target="_blank" role="button" >'.$data_carte3[3].' &raquo;</a></div>';
 
 				}
 			} ?>
