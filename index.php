@@ -4,47 +4,33 @@ require_once 'includes/_header.php';
 $Auth->allow('member');
 $user = $Auth->getUser();
 require_once ROOT_PATH.'class/DB.php';
-include('config.php');
+include('config.php');   
 $title_for_layout = 'Accueil';
-   include 'includes/header.php'; // insertion du fichier header.php : entête, barre de navigation
-   $confSQL = $_CONFIG['conf_accueil'];
+include 'includes/header.php'; // insertion du fichier header.php : entête, barre de navigation
+$confSQL = $_CONFIG['conf_accueil'];
 
-  // try{
-  //   $DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-  //   } catch(Exeption $e) {
-  //   die('erreur:'.$e->getMessage());
-  //   }
+  try{
+    $DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
+    } catch(Exeption $e) {
+    die('erreur:'.$e->getMessage());
+    }
 
-  //   for ($i = 1; $i<5; $i++){
-  //     $requete = $DB->prepare('SELECT accueil_titre, accueil_message FROM payicam_accueil WHERE accueil_id='.$i);
-  //     $requete -> execute();
-  //     $Resultat.$i = $requete->fetch();
-  //   }
+    for ($i = 1; $i<4; $i++){
+      $requete_slides = $DB->prepare("SELECT slide_image, slide_message FROM payicam_accueil_slide WHERE slide_id='$i'");
+      $requete_slides -> execute();
+      ${'data_slide'.$i} = $requete_slides->fetch();
+    }
 
-
-   $ConnexionBD = mysqli_connect($confSQL['sql_host'], $confSQL['sql_user'], $confSQL['sql_pass'], $confSQL['sql_db']);
-  // $Resultat1 = mysqli_query($ConnexionBD, "SELECT accueil_titre, accueil_message FROM payicam_accueil WHERE accueil_id=1");
-   $Resultat2 = mysqli_query($ConnexionBD, "SELECT accueil_titre, accueil_message FROM payicam_accueil WHERE accueil_id=2");
-   $Resultat3 = mysqli_query($ConnexionBD, "SELECT accueil_titre, accueil_message FROM payicam_accueil WHERE accueil_id=3");
-   $Resultat4 = mysqli_query($ConnexionBD, "SELECT accueil_titre, accueil_message FROM payicam_accueil WHERE accueil_id=4");
-   $Resultat5 = mysqli_query($ConnexionBD, "SELECT accueil_titre, accueil_message FROM payicam_accueil WHERE accueil_id=5");
-   $Resultat6 = mysqli_query($ConnexionBD, "SELECT evenement_titre, evenement_description, evenement_activation_bouton, evenement_bouton,evenement_afficher_cacher FROM payicam_evenement WHERE evenement_id='1'");
-   $Resultat7 = mysqli_query($ConnexionBD, "SELECT evenement_titre, evenement_description, evenement_activation_bouton, evenement_bouton FROM payicam_evenement WHERE evenement_id='2' ");
+    for ($i = 1; $i<5; $i++){
+      $requete_cartes = $DB->prepare("SELECT carte_titre, carte_description, carte_activation_bouton,
+      	carte_bouton,carte_photo FROM payicam_carte WHERE carte_id='$i'");
+      $requete_cartes -> execute();
+      ${'data_carte'.$i} = $requete_cartes->fetch();
+    }
 
 
-  // $data_baniere = mysqli_fetch_array($Resultat1);
-   $data_slide1 = mysqli_fetch_array($Resultat2);
-   $data_slide2 = mysqli_fetch_array($Resultat3);
-   $data_slide3 = mysqli_fetch_array($Resultat4);
-   $data_slide4 = mysqli_fetch_array($Resultat5);
-   $data_accueil_evenement1 = mysqli_fetch_array ($Resultat6);
-   $data_accueil_evenement2 = mysqli_fetch_array ($Resultat7);
 
-   try{  //DEBUT BDD VOTE
-   	$DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-   } catch(Exeption $e) {
-   	die('erreur:'.$e->getMessage());
-   }
+ //DEBUT BDD VOTE
 
    $conf_sql_promo = $_CONFIG['conf_sql_promo'];
 
@@ -56,6 +42,7 @@ $title_for_layout = 'Accueil';
    {
    	die('erreur:'.$e->getMessage());
    }
+
    $my_vote = $DB->prepare('SELECT * FROM vote_has_voters WHERE email = :email');
    $my_vote -> bindParam('email', $user['email'], PDO::PARAM_STR);
    $my_vote -> execute();
@@ -69,9 +56,10 @@ $title_for_layout = 'Accueil';
    $promo -> bindParam('email', $user['email'], PDO::PARAM_STR);
    $promo->execute();
    $promo_votant = $promo->fetch();
+
 //FIN BDD VOTE
 
-   // date pour vote
+   //date pour vote
    $date_actuelle = date("Y-m-d H:i:s");
    $date_begin= strtotime($infos_vote['date_debut']);
    $date_end= strtotime($infos_vote['date_fin']);
@@ -79,55 +67,40 @@ $title_for_layout = 'Accueil';
   $jour_apres= date("Y-m-d H:i:s", strtotime("+12 hours", $date_end));  // disparait 12 heures après
   date_default_timezone_set('Europe/Paris');
   setlocale(LC_TIME, 'fr_FR.utf8','fra'); //pour afficher le jour du vote en français
-
+  //fin date 
 
   ?>
-  <!-- <div class="container"> -->
-  	<!-- <div class="container " style="padding-top: 20px ;margin-bottom: 30px; height: 140px ;background-color: #d9d9d9; border-radius: 4px;"> -->
-  		<!-- <center><h2 class="display-4"><?php echo $data_baniere[0] ; ?></h2> <p class="lead"><?php echo $data_baniere[1] ; ?></p></center> -->
-
-  		<!-- </div> --> <!-- /container -->
-  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-
-  		<div id="carouselExampleIndicators" style="padding-top: 0px ; margin-bottom: 20px; border-radius: 4px;" class="carousel slide" data-ride="carousel">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  		
+<!-- CAROUSEL-->
+<div id="carouselExampleIndicators" style="padding-top: 0px ; margin-bottom: 20px; border-radius: 4px;" class="carousel slide" data-ride="carousel">
   			<ol class="carousel-indicators">
   				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
   				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
   				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  				<!-- <li data-target="#carouselExampleIndicators" data-slide-to="3"></li> -->
+
   			</ol>
+
   			<div class="carousel-inner">
   				<div class="carousel-item active">
-  					<img class="d-block w-100" src="img/slide1.png"  alt="First slide">
+  					<img class="d-block w-100" src="img/<?php echo $data_slide1[0] ; ?>"  alt="First slide">
   					<div class="carousel-caption d-none d-md-block">
-  						<h3><?php echo $data_slide1[0] ; ?></h3>
-  						<p><?php echo $data_slide1[1] ; ?></p>
-  					</div>
+					</div>
   				</div>
+  				
   				<div class="carousel-item">
-  					<img class="d-block w-100" src="img/slide2.png" alt="Second slide">
+  					<img class="d-block w-100" src="img/<?php echo $data_slide2[0] ; ?>" alt="Second slide">
   					<div class="carousel-caption d-none d-md-block">
-  						<h3><?php echo $data_slide2[0] ; ?></h3>
-  						<p><?php echo $data_slide2[1] ; ?></p>
-  					</div>
+            		</div>
   				</div>
+
   				<div class="carousel-item" >
-  					<img class="d-block w-100" id="slide3" src="img/slide3.png" alt="Third slide">
-  					<!-- "height:400px;padding-right:350px;padding-left: 350px" -->
+  					<img class="d-block w-100" id="slide3" src="img/<?php echo $data_slide3[0] ; ?>" alt="Third slide">
   					<div class="carousel-caption d-none d-md-block">
-  						<h3><?php echo $data_slide3[0] ; ?></h3>
-  						<p><?php echo $data_slide3[1] ; ?></p>
-  					</div>
+					</div>
   				</div>
-<!--     <div class="carousel-item" >
-      <img class="d-block w-100" id="slide4" src="img/slide4.png" style="height: 500px; width:auto; object-fit: contain"  alt="Third slide">
-      "height:400px;padding-right:350px;padding-left: 350px" cette ligne en douvle commentaire
-      <div class="carousel-caption d-none d-md-block">
-      <h3><?php echo $data_slide4[0] ; ?></h3>
-      <p><?php echo $data_slide4[1] ; ?></p>
-      </div>
-  </div> -->
-</div>
+
+			</div>
 
 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -137,9 +110,44 @@ $title_for_layout = 'Accueil';
 	<span class="carousel-control-next-icon" aria-hidden="true"></span>
 	<span class="sr-only">Next</span>
 </a>
-</div>
+</div>		<!-- /CAROUSEL-->
 
 <div class="container">
+
+<!-- MODAL horaires du barIcam -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Horaires du BarIcam</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+      		<div class="col-md-auto">
+		     	<img src="img/logobaricam.PNG" style="height: 160px; width: auto; padding: 10px" alt="bar logo">
+      		</div>
+      		<div class="col-md-auto" style="padding-top: 15px">
+		        <strong>Lundi :</strong> 21h30 - 23h <br>
+		        <strong>Mardi (sans alcools) :</strong> 17h30 - 19h <br>
+		        <strong>Mercredi :</strong> 22h00 - 23h30 <br>
+		        <strong>Jeudi :</strong> 18h00 - 20h30 <br>
+		        <strong>Vendredi :</strong> 21h30 - 23h
+       		</div>
+  		</div>
+  	   </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Retour</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>	<!-- /MODAL horaires du barIcam -->
+
+
+
 	<?php  	//DEBUT VOTE
 	if (($date_actuelle > $jour_avant) && ($date_actuelle < $jour_apres) && in_array($promo_votant['promo'], [122, 121, 120, 119, 118, 2022, 2021, 2020, 2019, 2018]) ){ // verifie intervalle de temps + PROMO A METTRE A JOUR TOUS LES ANS J'AI LA FLEMME DE FAIRE UN TRUC AUTOMATIQUE
 
@@ -157,66 +165,68 @@ $title_for_layout = 'Accueil';
 		<a class="btn btn-warning btn-lg btn-block" href="vote.php" type='button' style="margin-bottom: 10px" >Votez ici pour votre <?php echo $infos_vote['nom_vote'] ?>! (Fermeture du vote à <?php echo date("G", strtotime($infos_vote['date_fin'])) ?>h)</a>
 		<?php } 
 		} 
-	} ?><!--  FIN VOTE -->
+	} ?> <!-- FIN VOTE -->
 
+<DIV class="card-deck"> <!-- CARD-DECK-->
 
-<DIV class="card-deck"> 
-
-	<div class="row" >
+	<div class="row" > <!-- Ligne de 4 cartes publiques -->
 		<div class="card border-dark" style="margin-bottom: 10px" >
-			<img class="card-img-top" style="max-height: 150px;"  src="img/carte.png" alt="Card image cap">
+			<img class="card-img-top" style="max-height: 150px;"  src="img/<?php echo $data_carte1[4] ; ?>" alt="image carte 1" style="max-height: 150px;">
 			<div class="card-body">
-				<h4 class="card-title">Rechargement</h4>
-				<p class="card-text">Le rechargement se fait via Casper, l'interface web pour la gestion de son compte personnel </p>
-			</div>
-			<div class="card-footer bg-transparent">
-				<a class="btn btn-primary" href="../casper" target="_blank" role="button">Recharger &raquo;</a>
-			</div>
-		</div>
-
-		<div class="card border-dark" style="margin-bottom: 10px">
-			<img class="card-img-top" class="img-fluid" style="max-height: 150px;" src="img/ticket.png" alt="Card image cap">
-			<div class="card-body ">
-				<h4 class="card-title">Billeterie</h4>
-				<p class="card-text">La billeterie de l'Icam, si vous souhaitez acheter des places ou des goodies, shotgun est l'interface de vente en ligne!</p>
-			</div>
-			<div class="card-footer bg-transparent">
-				<a class="btn btn-primary" href="../shotgun" target="_blank" role="button">Shotgun &raquo;</a>
-			</div>
-		</div>
-
-
-
-		<div class="card border-dark" style="margin-bottom: 10px">
-			<img class="card-img-top" class='img-fluid'  src='img/gala.png' alt="Card image cap">
-			<div class="card-body">
-				<h4 class="card-title"><?php echo $data_accueil_evenement1[0]?> </h4>
-				<?php if (!in_array($promo_votant['promo'], [122, 121, 120, 119, 118, 2022, 2021, 2020, 2019, 2018]) ){ ?>
-				<p class="card-text">Vous n&acute; &ecirc;tes pas autoris&eacute; &agrave; prendre votre place sur Payicam, un lien Pumpkin sera bient&ocirc;t disponible</p>
-				<?php }
-				else { ?>
-
-			<p class="card-text"><?php echo $data_accueil_evenement1[1]?></p>
-			</div>   
-			<?php 
-			if ($data_accueil_evenement1[2]=='1'){ 
-				echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="../inscription_galadesicam" target="_blank" role="button" >'.$data_accueil_evenement1[3].' &raquo;</a></div>';
-			} 
-		}?>
-		</div>
-
-		<div class="card border-dark" style="margin-bottom: 10px">
-			<img class="card-img-top" class="img-fluid"  src="img/spring.png" alt="Card image cap">
-			<div class="card-body">
-				<h4 class="card-title"><?php echo $data_accueil_evenement2[0]?></h4>
-				<p class="card-text"><?php echo $data_accueil_evenement2[1]?></p>
+				<h4 class="card-title"><?php echo $data_carte1[0]?></h4>
+				<p class="card-text"><?php echo $data_carte1[1]?></p>
 			</div>
 			<?php 
-			if ($data_accueil_evenement2[2]=='1'){ 
-				echo ' <div class="card-footer bg-transparent"><a class="btn btn-primary" href="#" role="button">'; echo $data_accueil_evenement2[3].' &raquo;</a> </div>  ';
+			if ($data_carte1[2]=='1'){ 
+				echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="../#" target="_blank" role="button" >'.$data_carte1[3].' &raquo;</a></div>';
 			} ?>
 		</div>
-	</div>    <!-- /ROW -->
+
+		<div class="card border-dark" style="margin-bottom: 10px">
+			<img class="card-img-top" class="img-fluid"  src="img/<?php echo $data_carte2[4] ; ?>" alt="Card image cap" style="max-height: 150px;">
+			<div class="card-body">
+				<h4 class="card-title"><?php echo $data_carte2[0]?></h4>
+				<p class="card-text"><?php echo $data_carte2[1]?></p>
+			</div>
+			<?php 
+			if ($data_carte2[2]=='1'){ 
+				echo ' <div class="card-footer bg-transparent"><a class="btn btn-primary" href="#" role="button">'; echo $data_carte2[3].' &raquo;</a> </div>  ';
+			} ?>
+		</div>
+
+
+
+		<div class="card border-dark" style="margin-bottom: 10px"> <!-- gala -->
+			<img class="card-img-top" class='img-fluid'  src='img/<?php echo $data_carte3[4] ; ?>' alt="image carte 3">
+			<div class="card-body">
+				<h4 class="card-title"><?php echo $data_carte3[0]?> </h4>
+				<p class="card-text"><?php echo $data_carte3[1]?></p>
+			</div>   
+			<?php 
+			if ($data_carte3[2]=='1'){ 
+				if (in_array($promo_votant['promo'], [122, 121, 120, 119, 118, 2022, 2021, 2020, 2019, 2018]) ){
+					echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="../#" target="_blank" role="button" >'.$data_carte3[3].' &raquo;</a></div>';
+				}
+				else{
+					echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="151.80.232.129/gala_icam" target="_blank" role="button" >'.$data_carte3[3].' &raquo;</a></div>';
+
+				}
+			} ?>
+		</div>
+
+		<div class="card border-dark" style="margin-bottom: 10px">
+			<img class="card-img-top" class="img-fluid"  src="img/<?php echo $data_carte4[4] ; ?>" alt="Card image cap">
+			<div class="card-body">
+				<h4 class="card-title"><?php echo $data_carte4[0]?></h4>
+				<p class="card-text"><?php echo $data_carte4[1]?></p>
+			</div>
+			<?php 
+			if ($data_carte4[2]=='1'){ 
+				echo ' <div class="card-footer bg-transparent"><a class="btn btn-primary" href="#" role="button">'; echo $data_carte4[3].' &raquo;</a> </div>  ';
+			} ?>
+		</div>
+
+	</div>    <!-- /Ligne de 4 cartes publiques  -->
 
 	<!--auth admin -->
 	<?php if ($Auth->hasRole('admin')): ?>
@@ -224,7 +234,8 @@ $title_for_layout = 'Accueil';
 			<center><h2 class="page-header">Liens vers l'Administration</h2></center>
 		</div >
 
-		<div class="row">
+		<div class="row">	<!-- Ligne de 4 cartes admin  -->
+
 			<div class="card border-dark" style="margin-bottom: 10px">
 				<div class="card-body">
 					<h4 class="card-title">Admin PayIcam</h4>
@@ -234,7 +245,10 @@ $title_for_layout = 'Accueil';
 					<a class="btn btn-primary" href="../scoobydoo" target="_blank" role="button">Scoobydoo &raquo;</a>
 				</div>
 			</div>
+
+
 			<!-- auth super admin -->
+	
 			<?php if ($Auth->hasRole('super-admin')): ?>
 
 				<div class="card border-dark" style="margin-bottom: 10px">
@@ -245,9 +259,10 @@ $title_for_layout = 'Accueil';
 					<div class="card-footer bg-transparent">
 						<a class="btn btn-primary" href="../admin_ginger" target="_blank" role="button">Admin Ginger &raquo;</a>
 					</div>
-				</div>  <!-- fin auth super admin -->
+				</div>  
 			<?php endif ?>
-
+			<!-- fin auth super admin -->
+	
 
 			<div class="card border-dark" style="margin-bottom: 10px">
 				<div class="card-body">
@@ -268,9 +283,11 @@ $title_for_layout = 'Accueil';
 					<a class="btn btn-primary" href="../shotgun/admin" target="_blank" role="button">Shotgun &raquo;</a>
 				</div>
 			</div>  
-		</div>  <!-- /ROW -->
-		<!-- fin Auth admin -->
+
+		</div>  	<!-- /Ligne de 4 cartes admin  -->
 	<?php endif ?>
+		<!-- fin Auth admin -->
+	
 
 </DIV>  <!-- /CARD-DECK -->
 
