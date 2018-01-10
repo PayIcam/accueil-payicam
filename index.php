@@ -127,7 +127,7 @@ $confSQL = $_CONFIG['conf_accueil'];
       <div class="modal-body">
       	<div class="row">
       		<div class="col-md-auto">
-		     	<img src="img/logobaricam.PNG" style="height: 160px; width: auto; padding: 10px" alt="bar logo">
+		     	<img src="img/logobaricam.png" style="height: 160px; width: auto; padding: 10px" alt="bar logo">
       		</div>
       		<div class="col-md-auto" style="padding-top: 15px">
 		        <strong>Lundi :</strong> 21h30 - 23h <br>
@@ -178,7 +178,7 @@ $confSQL = $_CONFIG['conf_accueil'];
 			</div>
 			<?php 
 			if ($data_carte1[2]=='1'){ 
-				echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="../#" target="_blank" role="button" >'.$data_carte1[3].' &raquo;</a></div>';
+				echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="../casper" target="_blank" role="button" >'.$data_carte1[3].' &raquo;</a></div>';
 			} ?>
 		</div>
 
@@ -190,7 +190,7 @@ $confSQL = $_CONFIG['conf_accueil'];
 			</div>
 			<?php 
 			if ($data_carte2[2]=='1'){ 
-				echo ' <div class="card-footer bg-transparent"><a class="btn btn-primary" href="#" role="button">'; echo $data_carte2[3].' &raquo;</a> </div>  ';
+				echo ' <div class="card-footer bg-transparent"><a class="btn btn-primary" href="../shotgun" role="button">'; echo $data_carte2[3].' &raquo;</a> </div>  ';
 			} ?>
 		</div>
 
@@ -205,7 +205,7 @@ $confSQL = $_CONFIG['conf_accueil'];
 			<?php 
 			if ($data_carte3[2]=='1'){ 
 				if (in_array($promo_votant['promo'], [122, 121, 120, 119, 118, 2022, 2021, 2020, 2019, 2018]) ){
-					echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="../#" target="_blank" role="button" >'.$data_carte3[3].' &raquo;</a></div>';
+					echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="../inscription_galadesicam" target="_blank" role="button" >'.$data_carte3[3].' &raquo;</a></div>';
 				}
 				else{
 					echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="151.80.232.129/gala_icam" target="_blank" role="button" >'.$data_carte3[3].' &raquo;</a></div>';
