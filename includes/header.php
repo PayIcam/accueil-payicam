@@ -5,6 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
      <meta name="author" content="Hugo Renaudin, 119">
+     <!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112368112-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-112368112-1');
+	</script>
+
      <!-- Le styles -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
@@ -29,44 +39,6 @@
 
  <title><?php if(isset($title_for_layout)){echo $title_for_layout.' - ';} ?><?= WEBSITE_TITLE; ?></title> 
 
-  <style>
-
-ul {
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-ul li {display: inline-block;}
-/*ul li:hover {background: #C0C0C6; border-radius: 2px;
--moz-transition: all 0.4s linear;
-  -ms-transition: all 0.4s linear;
-  -o-transition: all 0.4s linear;
-  -webkit-transition: all 0.4s linear;
-  transition: all 0.4s linear;}*/
-ul li:hover ul {display: block;}
-ul li ul {
-  position: absolute;
-  width: 130px;
-  display: none;
-}
-ul li ul li { 
-  background: #353A40; 
-  display: block; 
-}
-ul li ul li a {display:block !important;
-  border-radius: 0px;} 
-ul li ul li:hover {background: #C0C0C6;
-
-  -moz-transition: all 0.6s linear;
-  -ms-transition: all 0.6s linear;
-  -o-transition: all 0.6s linear;
-  -webkit-transition: all 0.6s linear;
-  transition: all 0.6s linear;}
-
-.onglet:hover{border-bottom: 4px solid #C0C0C6; background: #353A40 ;}
-
-</style>
-
   </head>
   <body>
 <!-- Test couleurs de la nouvelle barre de navigation -->
@@ -77,50 +49,41 @@ ul li ul li:hover {background: #C0C0C6;
 </nav> -->
 
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="height: 63px">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <div class="navbar-header">
       <a class="navbar-brand" href="#"><img src="img/PayIcam-h30-white.png" width="100" height="33" class="d-inline-block align-top" alt=""></a>
-      <button class="navbar-toggler collapsed my-2 my-lg-0" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
       </button>
-    </div>
-  
-  <div id="navbarNav" class="collapse navbar-collapse" >
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
-      <li class="nav-item active"><span class="sr-only">(current)</span></li>
-      <?php 
-       //require "functions.php"; 
-      ?>
+
+  <div id="navbarSupportedContent" class="collapse navbar-collapse" >
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active"><a class="nav-link" href="#"><span class="sr-only">(current)</span></a></li>
       
-      <li class="onglet" <?php if(Functions::isPage('index')) echo ' class="active"'; ?> ><a  class="nav-link" href="index.php">Accueil</a>     </li>
-      <li class="onglet" <?php if(Functions::isPage('about')) echo ' class="active"'; ?> ><a  class="nav-link" href="about.php">À propos</a> </li>
+      <li class="nav-item"><a  class="nav-link" href="index.php">Accueil</a></li>
+      <li class="nav-item"><a  class="nav-link" href="about.php">À propos</a> </li>
 
 <!-- accessible avec Auth -->
-      <li class="onglet" <?php if(Functions::isPage('faq')) echo ' class="active"'; ?> ><a  class="nav-link" href="faq.php">FAQ & Tutos</a> </li>
-      
-      <li class="onglet" >
-        <a  class="nav-link" href="#" style="width: 130px; text-align: center">Liens utiles</a>
-        <ul>
-          <li class="nav-item" ><a  data-toggle="modal" data-target="#exampleModal" class="nav-link" href="#">Horaires du BarIcam</a> </li>
-          <li class="nav-item"><a  class="nav-link" href="https://planning.icam.fr/lille/">Hyperplanning</a> </li>
-          <li class="nav-item"><a  class="nav-link" href="https://moodle.icam.fr/">Moodle</a> </li>
-          <li class="nav-item"><a  class="nav-link" href="https://portfolio.icam.fr/">Portfolio</a> </li>
-          <li class="nav-item"><a  class="nav-link" href="http://www.icam-alumni.fr/">Annuaire Icam</a> </li>          
-          <li class="nav-item"><a  class="nav-link" href="https://password.icam.fr/">Changer mon mot de passe</a> </li>          
-
-        </ul> 
+      <li class="nav-item"><a  class="nav-link" href="faq.php">FAQ & Tutos</a></li>
+      <li class="nav-item dropdown" >
+        <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Liens utiles</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a  data-toggle="modal" data-target="#exampleModal" class="nav-link" href="#">Horaires du BarIcam</a>
+          <a  class="dropdown-item" href="https://planning.icam.fr/lille/">Hyperplanning</a>
+          <a  class="dropdown-item" href="https://moodle.icam.fr/">Moodle</a>
+          <a  class="dropdown-item" href="https://portfolio.icam.fr/">Portfolio</a>
+          <a  class="dropdown-item" href="http://www.icam-alumni.fr/">Annuaire Icam</a>        
+          <a  class="dropdown-item" href="https://password.icam.fr/">Changer mon mot de passe</a> 
+        </div>          
       </li>
-      <li class="onglet" <?php if(Functions::isPage('contact')) echo ' class="active"'; ?> ><a  class="nav-link" href="contact.php">Contact</a> </li>
+
+      <li class="nav-item"><a  class="nav-link" href="contact.php">Contact</a> </li>
     </ul>
 
     <ul class="nav navbar-nav my-2 my-lg-0">
       <!-- accessible super admin -->
-      <?php if ($Auth->hasRole('super-admin')): ?>
-        <li class="nav-item" ><a  class="nav-link" href="index_admin.php">Paramètres</a> </li>
+      <?php if ($Auth->hasRole('super-admin')): ?> 
+        <li class="nav-item" ><a  class="nav-link" href="index_admin.php">Paramètres</a> </li> 
       <?php endif ?>
       <!--  fin accessible super admin-->
       <li class="nav-item"><a  class="nav-link" href="logout.php">Déconnexion</a></li>
@@ -128,13 +91,8 @@ ul li ul li:hover {background: #C0C0C6;
 <!-- fin accessible avec Auth -->
 
   </div>  <!-- /nav collapse-->
+</div>
   </nav>  <!-- /navbar -->  
-  <!-- Button trigger modal -->
-
-
-
-  </div>  <!-- /container -->  
-
-
-    <div class="container">
-      <?= Functions::flash(); ?>
+<div class="container">
+  
+    <?= Functions::flash(); ?>
