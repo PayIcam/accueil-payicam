@@ -55,11 +55,9 @@ $confSQL = $_CONFIG['conf_accueil'];
    $promo = $DB_promo->prepare('SELECT promo, site FROM users WHERE mail = :email');
    $promo -> bindParam('email', $user['email'], PDO::PARAM_STR);
    $promo->execute();
-   $info = $promo->fetch();
-   $promo_votant = $info['promo'];
-
+   $promo_votant = $promo->fetch();
 //On tej les toulousain
-if ($info['site'] == 'Toulouse'){
+if ($promo_votant['site'] == 'Toulouse'){
 	header('Location:../accueil-toulouse');
 }
 //FIN BDD VOTE
