@@ -44,7 +44,8 @@ L’association ne s’arrête pas là et se lance sur le site de Toulouse débu
 &emsp;&emsp;<strong>Vice-Président :</strong> Grégoire Dervaux, <em>119</em> <br>
 &emsp;&emsp;<strong>Développeur java :</strong> Robin Lacheré, <em>119</em> <br>
 &emsp;&emsp;<strong>Développeur web :</strong> Hugo Renaudin, <em>119</em> <br>
-&emsp;&emsp;<strong>Responsable Gala :</strong> Grégoire Giraud, <em>120</em> <br><br>
+&emsp;&emsp;<strong>Responsable Gala :</strong> Grégoire Giraud, <em>120</em> <br>
+&emsp;&emsp;<strong>Graphiste :</strong> Martin Frys, <em>119</em> <br><br>
 &emsp;&emsp;<strong>Président d’honneur :</strong> Antoine Giraud, <em>115</em> <br>
 &emsp;&emsp;<strong>Anciens membres :</strong> <br>
 						&emsp;&emsp;&emsp;Louis André, <em>115</em> <br>
