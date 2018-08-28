@@ -76,7 +76,7 @@ if ($promo_votant['site'] == 'Toulouse'){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   		
 <!-- CAROUSEL-->
-<div id="carouselExampleIndicators" style="padding-top: 0px ; margin-bottom: 20px; border-radius: 4px;" class="carousel slide" data-ride="carousel">
+<!-- <div id="carouselExampleIndicators" style="padding-top: 0px ; margin-bottom: 20px; border-radius: 4px;" class="carousel slide" data-ride="carousel">
   			<ol class="carousel-indicators">
   				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
   				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -113,7 +113,7 @@ if ($promo_votant['site'] == 'Toulouse'){
 	<span class="carousel-control-next-icon" aria-hidden="true"></span>
 	<span class="sr-only">Next</span>
 </a>
-</div>		<!-- /CAROUSEL-->
+</div> -->		<!-- /CAROUSEL-->
 
 <div class="container">
 
