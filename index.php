@@ -115,6 +115,13 @@ if ($promo_votant['site'] == 'Toulouse'){
 </a>
 </div> -->		<!-- /CAROUSEL-->
 
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Bienvenue sur Payicam</h1>
+    <p class="lead">Pour toute remarque, bug ou mot d'amour, ça se passe ici: <a href="mailto:contact.payicam@gmail.com">contact.payicam@gmail.com</a></p>
+  </div>
+</div>
+
 <div class="container">
 
 <!-- MODAL horaires du barIcam -->
