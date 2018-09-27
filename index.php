@@ -117,8 +117,8 @@ if ($promo_votant['site'] == 'Toulouse'){
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Bienvenue sur Payicam</h1>
-    <p class="lead">Pour toute remarque, bug ou mot d'amour, ça se passe ici: <a href="mailto:contact.payicam@gmail.com">contact.payicam@gmail.com</a></p>
+    <h1 class="display-4" id="demo"></h1>
+    <p class="lead">Avant l'ouverture du bar!</p>
   </div>
 </div>
 
@@ -159,7 +159,7 @@ if ($promo_votant['site'] == 'Toulouse'){
 
 
 	<?php  	//DEBUT VOTE
-	if (($date_actuelle > $jour_avant) && ($date_actuelle < $jour_apres) && in_array($promo_votant['promo'], [122, 121, 120, 119, 118, 2022, 2021, 2020, 2019, 2018]) ){ // verifie intervalle de temps + PROMO A METTRE A JOUR TOUS LES ANS J'AI LA FLEMME DE FAIRE UN TRUC AUTOMATIQUE
+	if (($date_actuelle > $jour_avant) && ($date_actuelle < $jour_apres) && in_array($promo_votant['promo'], [24, 123, 122, 121, 120, 119, 2023, 2022, 2021, 2020, 2019]) ){ // verifie intervalle de temps + PROMO A METTRE A JOUR TOUS LES ANS J'AI LA FLEMME DE FAIRE UN TRUC AUTOMATIQUE
 
 		if ($vote_fait != false){ // si déjà voté bloque le bouton?>
 			<a class="btn btn-warning btn-lg btn-block" href="#" type='button' style="margin-bottom: 10px" disabled>Vous avez déjà voté. Rendez-vous ce soir pour le résultat!</a>
