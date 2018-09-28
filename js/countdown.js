@@ -1,29 +1,31 @@
+var clock;
+			
+$(document).ready(function() {
+	// Set dates.
+	var futureDate  = new Date("October 4, 2018 18:30:00");
+	var currentDate = new Date();
 
-// Set the date we're counting down to
-var countDownDate = new Date("Oct 4, 2018 18:30:").getTime();
+	// Calculate the difference in seconds between the future and current date
+	var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
 
-// Update the count down every 1 second
-var x = setInterval(function() {
+	// Calculate day difference and apply class to .clock for extra digit styling.
+	function dayDiff(first, second) {
+		return (second-first)/(1000*60*60*24);
+	}
 
-  // Get todays date and time
-  var now = new Date().getTime();
+	if (dayDiff(currentDate, futureDate) < 100) {
+		$('.clock').addClass('twoDayDigits');
+	} else {
+		$('.clock').addClass('threeDayDigits');
+	}
 
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+	if(diff < 0) {
+		diff = 0;
+	}
 
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  // Display the result in the element with id="demo"
-  document.getElementById("demo").innerHTML = days + "j " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-
-  // If the count down is finished, write some text
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
-  }
-}, 1000);
+	// Instantiate a coutdown FlipClock
+	clock = $('.clock').FlipClock(diff, {
+		clockFace: 'DailyCounter',
+		countdown: true
+	});
+});

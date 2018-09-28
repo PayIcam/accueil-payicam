@@ -2,7 +2,7 @@
 
 <footer class="footer">
   <p class="clearfix">
-      &copy;2017, PayIcam
+      &copy;2018, PayIcam
       <a class="float-right" href="#">Retour en haut</a>
   </p>
 </footer>
@@ -16,7 +16,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/countdown.js"></script>
+    <script src="js/countdown.js"></script> <!-- debut compteur -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/flipclock.min.js"></script> <!-- fin compteur -->
+
     <?php if (!empty($js_for_layout)): ?>
       <?php foreach ($js_for_layout as $v):?>
         <?php if (file_exists('js/'.$v.'.js')){ ?>
