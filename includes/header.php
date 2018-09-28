@@ -18,6 +18,7 @@
      <!-- Le styles -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <link href="css/flipclock.css" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.png" />
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
