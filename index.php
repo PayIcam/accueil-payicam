@@ -115,11 +115,8 @@ if ($promo_votant['site'] == 'Toulouse'){
 </a>
 </div> -->		<!-- /CAROUSEL-->
 
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-  	<div class="clock" style="margin:2em;"></div>
-    <h2 class="lead">Avant l'ouverture du bar!</h2>
-  </div>
+<div class="container">
+		<div class="clock" style="margin-left: 20%;"></div>
 </div>
 
 <div class="container">
