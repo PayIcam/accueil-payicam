@@ -115,9 +115,7 @@ if ($promo_votant['site'] == 'Toulouse'){
 </a>
 </div> -->		<!-- /CAROUSEL-->
 
-<div class="container">
-		<div class="clock" style="margin-left: 20%;"></div>
-</div>
+<div class="clock" id='decompte'></div>
 
 <div class="container">
 
