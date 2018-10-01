@@ -18,7 +18,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/countdown.js"></script> <!-- debut compteur -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="js/flipclock.min.js"></script> <!-- fin compteur -->
+    <script src="js/flipclock.js"></script> <!-- fin compteur -->
 
     <?php if (!empty($js_for_layout)): ?>
       <?php foreach ($js_for_layout as $v):?>
