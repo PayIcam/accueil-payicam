@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <meta name="author" content="Hugo Renaudin, 119">
      <!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112368112-1"></script>
 	<script>
@@ -23,7 +22,7 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-  
+
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -31,7 +30,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
- <title><?php if(isset($title_for_layout)){echo $title_for_layout.' - ';} ?><?= WEBSITE_TITLE; ?></title> 
+ <title><?php if(isset($title_for_layout)){echo $title_for_layout.' - ';} ?><?= WEBSITE_TITLE; ?></title>
 
   </head>
   <body>
@@ -53,7 +52,7 @@
   <div id="navbarSupportedContent" class="collapse navbar-collapse" >
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active"><a class="nav-link" href="#"><span class="sr-only">(current)</span></a></li>
-      
+
       <li class="nav-item"><a  class="nav-link" href="index.php">Accueil</a></li>
       <li class="nav-item"><a  class="nav-link" href="about.php">À propos</a> </li>
 
@@ -66,9 +65,9 @@
           <a  class="dropdown-item" href="https://planning.icam.fr/lille/">Hyperplanning</a>
           <a  class="dropdown-item" href="https://moodle.icam.fr/">Moodle</a>
           <a  class="dropdown-item" href="https://portfolio.icam.fr/">Portfolio</a>
-          <a  class="dropdown-item" href="http://www.icam-alumni.fr/">Annuaire Icam</a>        
-          <a  class="dropdown-item" href="https://password.icam.fr/">Changer mon mot de passe</a> 
-        </div>          
+          <a  class="dropdown-item" href="http://www.icam-alumni.fr/">Annuaire Icam</a>
+          <a  class="dropdown-item" href="https://password.icam.fr/">Changer mon mot de passe</a>
+        </div>
       </li>
 
       <li class="nav-item"><a  class="nav-link" href="contact.php">Contact</a> </li>
@@ -76,8 +75,8 @@
 
     <ul class="nav navbar-nav my-2 my-lg-0">
       <!-- accessible super admin -->
-      <?php if ($Auth->hasRole('super-admin')): ?> 
-        <li class="nav-item" ><a  class="nav-link" href="index_admin.php">Paramètres</a> </li> 
+      <?php if ($Auth->hasRole('super-admin')): ?>
+        <li class="nav-item" ><a  class="nav-link" href="index_admin.php">Paramètres</a> </li>
       <?php endif ?>
       <!--  fin accessible super admin-->
       <li class="nav-item"><a  class="nav-link" href="logout.php">Déconnexion</a></li>
@@ -86,7 +85,7 @@
 
   </div>  <!-- /nav collapse-->
 </div>
-  </nav>  <!-- /navbar -->  
+  </nav>  <!-- /navbar -->
 <div class="container">
-  
+
     <?= Functions::flash(); ?>

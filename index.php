@@ -4,7 +4,7 @@ require_once 'includes/_header.php';
 $Auth->allow('member');
 $user = $Auth->getUser();
 require_once ROOT_PATH.'class/DB.php';
-include('config.php');   
+include('config.php');
 $title_for_layout = 'Accueil';
 include 'includes/header.php'; // insertion du fichier header.php : entête, barre de navigation
 $confSQL = $_CONFIG['conf_accueil'];
@@ -70,13 +70,13 @@ if ($promo_votant['site'] == 'Toulouse'){
   $jour_apres= date("Y-m-d H:i:s", strtotime("+12 hours", $date_end));  // disparait 12 heures après
   date_default_timezone_set('Europe/Paris');
   setlocale(LC_TIME, 'fr_FR.utf8','fra'); //pour afficher le jour du vote en français
-  //fin date 
+  //fin date
 
   ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  		
+
 <!-- CAROUSEL-->
-<!-- <div id="carouselExampleIndicators" style="padding-top: 0px ; margin-bottom: 20px; border-radius: 4px;" class="carousel slide" data-ride="carousel">
+<!--<div id="carouselExampleIndicators" style="padding-top: 0px ; margin-bottom: 20px; border-radius: 4px;" class="carousel slide" data-ride="carousel">
   			<ol class="carousel-indicators">
   				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
   				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -90,7 +90,7 @@ if ($promo_votant['site'] == 'Toulouse'){
   					<div class="carousel-caption d-none d-md-block">
 					</div>
   				</div>
-  				
+
   				<div class="carousel-item">
   					<img class="d-block w-100" src="img/<?php echo $data_slide2[0] ; ?>" alt="Second slide">
   					<div class="carousel-caption d-none d-md-block">
@@ -113,9 +113,16 @@ if ($promo_votant['site'] == 'Toulouse'){
 	<span class="carousel-control-next-icon" aria-hidden="true"></span>
 	<span class="sr-only">Next</span>
 </a>
-</div> -->		<!-- /CAROUSEL-->
+</div>-->		<!-- /CAROUSEL-->
 
-<div class="clock" id='decompte'></div>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Bienvenue sur Payicam</h1>
+    <p class="lead">Pour toute remarque, bug ou mot d'amour, ça se passe ici: <a href="mailto:contact.payicam@gmail.com">contact.payicam@gmail.com</a></p>
+  </div>
+</div>
+
+<!-- <div class="clock" id='decompte'></div> -->
 
 <div class="container">
 
@@ -161,15 +168,15 @@ if ($promo_votant['site'] == 'Toulouse'){
 		<?php } else{
 				if ($infos_vote['date_debut'] > $date_actuelle){ // verifie qu'on est pas en avance?>
 				<a class="btn btn-warning btn-lg btn-block" href="#" type='button' style="margin-bottom: 10px" disabled>Ouverture du vote <?php echo strftime("%A", strtotime($infos_vote['date_debut'])) ?> à <?php echo date("G", strtotime($infos_vote['date_debut'])) ?>h!</a>
-				<?php 
-				} 
+				<?php
+				}
 				elseif ($infos_vote['date_fin'] < $date_actuelle){ // verifie qu'on est pas a la bourre?>
 				<a class="btn btn-warning btn-lg btn-block" href="#" type='button' style="margin-bottom: 10px" disabled>Vote terminé. Rendez-vous ce soir pour le résultat!</a>
 				<?php }
 		else{ //cas ou c'est bon?>
 		<a class="btn btn-warning btn-lg btn-block" href="vote.php" type='button' style="margin-bottom: 10px" >Votez ici pour votre <?php echo $infos_vote['nom_vote'] ?>! (Fermeture du vote à <?php echo date("G", strtotime($infos_vote['date_fin'])) ?>h)</a>
-		<?php } 
-		} 
+		<?php }
+		}
 	} ?> <!-- FIN VOTE -->
 
 <DIV class="card-deck"> <!-- CARD-DECK-->
@@ -181,8 +188,8 @@ if ($promo_votant['site'] == 'Toulouse'){
 				<h4 class="card-title"><?php echo $data_carte1[0]?></h4>
 				<p class="card-text"><?php echo $data_carte1[1]?></p>
 			</div>
-			<?php 
-			if ($data_carte1[2]=='1'){ 
+			<?php
+			if ($data_carte1[2]=='1'){
 				echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="../casper" target="_blank" role="button" >'.$data_carte1[3].' &raquo;</a></div>';
 			} ?>
 		</div>
@@ -193,8 +200,8 @@ if ($promo_votant['site'] == 'Toulouse'){
 				<h4 class="card-title"><?php echo $data_carte2[0]?></h4>
 				<p class="card-text"><?php echo $data_carte2[1]?></p>
 			</div>
-			<?php 
-			if ($data_carte2[2]=='1'){ 
+			<?php
+			if ($data_carte2[2]=='1'){
 				echo ' <div class="card-footer bg-transparent"><a class="btn btn-primary" href="../shotgun" role="button">'; echo $data_carte2[3].' &raquo;</a> </div>  ';
 			} ?>
 		</div>
@@ -206,9 +213,9 @@ if ($promo_votant['site'] == 'Toulouse'){
 			<div class="card-body">
 				<h4 class="card-title"><?php echo $data_carte3[0]?> </h4>
 				<p class="card-text"><?php echo $data_carte3[1]?></p>
-			</div>   
-			<?php 
-			if ($data_carte3[2]=='1'){ 
+			</div>
+			<?php
+			if ($data_carte3[2]=='1'){
 				if (in_array($promo_votant['promo'], [122, 121, 120, 119, 118, 2022, 2021, 2020, 2019, 2018]) ){
 					echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="../inscription_galadesicam" target="_blank" role="button" >'.$data_carte3[3].' &raquo;</a></div>';
 				}
@@ -225,8 +232,8 @@ if ($promo_votant['site'] == 'Toulouse'){
 				<h4 class="card-title"><?php echo $data_carte4[0]?></h4>
 				<p class="card-text"><?php echo $data_carte4[1]?></p>
 			</div>
-			<?php 
-			if ($data_carte4[2]=='1'){ 
+			<?php
+			if ($data_carte4[2]=='1'){
 				echo ' <div class="card-footer bg-transparent"><a class="btn btn-primary" href="#" role="button">'; echo $data_carte4[3].' &raquo;</a> </div>  ';
 			} ?>
 		</div>
@@ -253,7 +260,7 @@ if ($promo_votant['site'] == 'Toulouse'){
 
 
 			<!-- auth super admin -->
-	
+
 			<?php if ($Auth->hasRole('super-admin')): ?>
 
 				<div class="card border-dark" style="margin-bottom: 10px">
@@ -264,10 +271,10 @@ if ($promo_votant['site'] == 'Toulouse'){
 					<div class="card-footer bg-transparent">
 						<a class="btn btn-primary" href="../admin_ginger" target="_blank" role="button">Admin Ginger &raquo;</a>
 					</div>
-				</div>  
+				</div>
 			<?php endif ?>
 			<!-- fin auth super admin -->
-	
+
 
 			<div class="card border-dark" style="margin-bottom: 10px">
 				<div class="card-body">
@@ -287,12 +294,12 @@ if ($promo_votant['site'] == 'Toulouse'){
 				<div class="card-footer bg-transparent">
 					<a class="btn btn-primary" href="../shotgun/admin" target="_blank" role="button">Shotgun &raquo;</a>
 				</div>
-			</div>  
+			</div>
 
 		</div>  	<!-- /Ligne de 4 cartes admin  -->
 	<?php endif ?>
 		<!-- fin Auth admin -->
-	
+
 
 </DIV>  <!-- /CARD-DECK -->
 
