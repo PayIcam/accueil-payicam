@@ -8,7 +8,7 @@ if (!empty($_GET['ticket'])) {
     Functions::setFlash("Authentification réussie !",'success');
     header('Location:index.php');exit;
   }else{
-    
+
   }
 }
 
@@ -21,6 +21,7 @@ if (!empty($_GET['ticket'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Site internet Admin Ginger - Connexion">
     <meta name="author" content="Antoine Giraud">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112368112-1"></script>
     <link rel="shortcut icon" href="favicon.png">
 
     <!-- Le styles -->
@@ -31,7 +32,7 @@ if (!empty($_GET['ticket'])) {
           padding-bottom: 40px;
           background-color: #eee;
           text-align: center;
-          
+
         }
 
         .form-signin {
