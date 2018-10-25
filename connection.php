@@ -22,6 +22,13 @@ if (!empty($_GET['ticket'])) {
     <meta name="description" content="Site internet Admin Ginger - Connexion">
     <meta name="author" content="Antoine Giraud">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112368112-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-112368112-1');
+    </script>
     <link rel="shortcut icon" href="favicon.png">
 
     <!-- Le styles -->
