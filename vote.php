@@ -43,7 +43,7 @@ if ($vote_fait != false){
   Functions::setFlash("Bien tenté!",'danger');
   header('Location:index.php');
 }
-if (!in_array($promo_votant['promo'], [122, 121, 120, 119, 118, 2022, 2021, 2020, 2019, 2018]) ){ 
+if (!in_array($promo_votant['promo'], [24, 123, 122, 121, 120, 119, 2023, 2022, 2021, 2020, 2019]) ){
   Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
   header('Location:index.php');
 }
@@ -70,16 +70,15 @@ elseif ($date_actuelle > $infos_vote['date_fin']) {
   <div id="morph">
     <div class="sep_bouton" id="sep_bouton_choix_2">
       <img src="img/choix2.png" type="button" id="choix_2" class='rounded-circle' alt="choix_2" data-toggle="modal" data-target="#choix_2Modal">
-
     </div>
     <div class="sep_bouton" id="sep_bouton_choix_1">
       <img src="img/choix1.png" type="button" alt="choix_1" class='rounded-circle' id="choix_1" data-toggle="modal" data-target="#choix_1Modal">
     </div>
-    <!-- <div id="sep_bouton_bas"> ACTIVER POUR VOTE BLANC
+    <div id="sep_bouton_bas">
       <input type="button" class="btn btn-secondary btn-lg" value="Je vote blanc" data-toggle="modal" data-target="#blancModal"></input>
-    </div> -->
+    </div>
   </div>
-  <form action="a_voter.php" method="post"> 
+  <form action="a_voter.php" method="post">
     <div class="modal fade" id="choix_2Modal" tabindex="-1" role="dialog" aria-labelledby="choix_2_label" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -123,7 +122,7 @@ elseif ($date_actuelle > $infos_vote['date_fin']) {
       </div>
     </div>
   </form>
-<!-- <form action="a_voter.php" method="post"> ACTIVER POUR VOTE BLANC
+<form action="a_voter.php" method="post"> ACTIVER POUR VOTE BLANC
   <div class="modal fade" id="blancModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -144,6 +143,6 @@ elseif ($date_actuelle > $infos_vote['date_fin']) {
         </div>
     </div>
   </div>
-</form> -->
+</form>
 </body>
 <?php include 'includes/footer.php';?>
