@@ -234,7 +234,7 @@ if ($promo_votant['site'] == 'Toulouse'){
 			</div>
 			<?php
 			if ($data_carte4[2]=='1'){
-				echo ' <div class="card-footer bg-transparent"><a class="btn btn-primary" href="#" role="button">'; echo $data_carte4[3].' &raquo;</a> </div>  ';
+				echo ' <div class="card-footer bg-transparent"><a class="btn btn-primary" href="../reservation_sandwichs" role="button">'; echo $data_carte4[3].' &raquo;</a> </div>  ';
 			} ?>
 		</div>
 
