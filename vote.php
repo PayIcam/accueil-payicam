@@ -74,10 +74,20 @@ elseif ($date_actuelle > $infos_vote['date_fin']) {
     <div class="sep_bouton" id="sep_bouton_choix_1">
       <img src="img/choix1.png" type="button" alt="choix_1" class='rounded-circle' id="choix_1" data-toggle="modal" data-target="#choix_1Modal">
     </div>
+    <!-- <div class="sep_bouton" id="sep_bouton_choix_3">
+      <img src="img/choix1.png" type="button" alt="choix_3" class='rounded-circle' id="choix_3">
+    </div> -->
     <div id="sep_bouton_bas">
+        <!-- <img src="img/choix.png" type="button" alt="choix_1" class='rounded-circle' id="choix_1" data-toggle="modal" data-target="#blancModal"> -->
       <input type="button" class="btn btn-secondary btn-lg" value="Je vote blanc" data-toggle="modal" data-target="#blancModal"></input>
     </div>
   </div>
+    <div id="sep_bouton_bas">
+        <a href="vote.php">
+            <img src="img/choix3.png" type="button" alt="choix_3" class='rounded-circle' id="choix_3">
+        </a>
+      <!-- <input type="button" class="btn btn-secondary btn-lg" value="Je vote blanc" data-toggle="modal" data-target="#blancModal"></input> -->
+    </div>
   <form action="a_voter.php" method="post">
     <div class="modal fade" id="choix_2Modal" tabindex="-1" role="dialog" aria-labelledby="choix_2_label" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -122,7 +132,7 @@ elseif ($date_actuelle > $infos_vote['date_fin']) {
       </div>
     </div>
   </form>
-<form action="a_voter.php" method="post"> ACTIVER POUR VOTE BLANC
+<form action="a_voter.php" method="post">
   <div class="modal fade" id="blancModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

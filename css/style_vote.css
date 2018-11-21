@@ -9,11 +9,16 @@ body
 }
 
 #sep_bouton_bas{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#sep_bouton_bas_2{
 	width: 100%;
 	display: flex;
 	justify-content: center;
     align-items: center;
-
 }
 
 #choix_2{
@@ -22,6 +27,10 @@ body
 }
 
 #choix_1{
+    width: 200px;
+    height: 200px;
+}
+#choix_3{
 	width: 200px;
 	height: 200px;
 }
@@ -53,7 +62,7 @@ body
 		width: 800px;
 		margin: auto;
 
-		background-image: url('../img/morpheus.jpg'); 
+		background-image: url('../img/morpheus.jpg');
 		background-repeat: no-repeat;
 		background-size: contain;
 
