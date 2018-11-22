@@ -6,6 +6,7 @@ $user = $Auth->getUser();
 require_once ROOT_PATH.'class/DB.php';
 include('config.php');
 $title_for_layout = 'Accueil';
+$js_for_layout = array('bootstrap.min.js', 'indice_gala');
 include 'includes/header.php'; // insertion du fichier header.php : entête, barre de navigation
 $confSQL = $_CONFIG['conf_accueil'];
 
@@ -76,7 +77,7 @@ if ($promo_votant['site'] == 'Toulouse'){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 <!-- CAROUSEL-->
-<!--<div id="carouselExampleIndicators" style="padding-top: 0px ; margin-bottom: 20px; border-radius: 4px;" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleIndicators" style="padding-top: 0px ; margin-bottom: 20px; border-radius: 4px;" class="carousel slide" data-ride="carousel">
   			<ol class="carousel-indicators">
   				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
   				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -113,15 +114,14 @@ if ($promo_votant['site'] == 'Toulouse'){
 	<span class="carousel-control-next-icon" aria-hidden="true"></span>
 	<span class="sr-only">Next</span>
 </a>
-</div>-->		<!-- /CAROUSEL-->
+</div>		<!-- /CAROUSEL-->
 
-<div class="jumbotron jumbotron-fluid">
+<!-- <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4">Bienvenue sur Payicam</h1>
     <p class="lead">Pour toute remarque, bug ou mot d'amour, ça se passe ici: <a href="mailto:contact.payicam@gmail.com">contact.payicam@gmail.com</a></p>
   </div>
-</div>
-
+</div> -->
 <!-- <div class="clock" id='decompte'></div> -->
 
 <div class="container">
@@ -209,7 +209,7 @@ if ($promo_votant['site'] == 'Toulouse'){
 
 
 		<div class="card border-dark" style="margin-bottom: 10px"> <!-- gala -->
-			<img class="card-img-top" class='img-fluid'  src='img/<?php echo $data_carte3[4] ; ?>' alt="image carte 3">
+			<img class="card-img-top" id="indice_gala" class='img-fluid'  src='img/<?php echo $data_carte3[4] ; ?>' alt="image carte 3">
 			<div class="card-body">
 				<h4 class="card-title"><?php echo $data_carte3[0]?> </h4>
 				<p class="card-text"><?php echo $data_carte3[1]?></p>
@@ -225,6 +225,22 @@ if ($promo_votant['site'] == 'Toulouse'){
 				}
 			} ?>
 		</div>
+
+        <div class="modal fade" id="indice_gala_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Easter Egg !</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body table-responsive">
+                        <img src="img/indice_gala.png" alt="INDICE GALA">
+                    </div>
+                </div>
+            </div>
+        </div>
 
 		<div class="card border-dark" style="margin-bottom: 10px">
 			<img class="card-img-top" class="img-fluid"  src="img/<?php echo $data_carte4[4] ; ?>" alt="Card image cap">
