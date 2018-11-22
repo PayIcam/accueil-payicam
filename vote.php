@@ -2,7 +2,7 @@
 require_once 'includes/_header.php';
 $Auth->allow('member');
 require_once ROOT_PATH.'class/DB.php';
-$title_for_layout = 'Vote Payicam';
+$title_for_layout = 'Vote PayIcam';
 include 'includes/header.php';
 $confSQL = $_CONFIG['conf_accueil'];
 $conf_sql_promo = $_CONFIG['conf_sql_promo'];

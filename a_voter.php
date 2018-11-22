@@ -58,7 +58,7 @@ else{
     Functions::setFlash("Bien tenté!",'danger');
     header('Location:index.php');
   }
-  elseif ($promo_votant['promo'] == 0){ 
+  elseif ($promo_votant['promo'] == 0){
     Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
     header('Location:index.php');
   }
@@ -75,7 +75,7 @@ else{
       Functions::setFlash("Votre vote a bien été enregistré ",'info');
       header('Location:index.php');
     } catch (Exception $e) {
-      Functions::setFlash("Votre vote n'a pas été enregistré, si le problème persiste, contactez Payicam",'danger');
+      Functions::setFlash("Votre vote n'a pas été enregistré, si le problème persiste, contactez PayIcam",'danger');
       header('Location:index.php');
     }
   }

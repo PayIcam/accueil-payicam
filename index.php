@@ -118,7 +118,7 @@ if ($promo_votant['site'] == 'Toulouse'){
 
 <!-- <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Bienvenue sur Payicam</h1>
+    <h1 class="display-4">Bienvenue sur PayIcam</h1>
     <p class="lead">Pour toute remarque, bug ou mot d'amour, ça se passe ici: <a href="mailto:contact.payicam@gmail.com">contact.payicam@gmail.com</a></p>
   </div>
 </div> -->
