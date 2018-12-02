@@ -215,18 +215,12 @@ if ($promo_votant['site'] == 'Toulouse'){
 				<p class="card-text"><?php echo $data_carte3[1]?></p>
 			</div>
 			<?php
-			if ($data_carte3[2]=='1'){
-				if (in_array($promo_votant['promo'], [122, 121, 120, 119, 118, 2022, 2021, 2020, 2019, 2018]) ){
-					echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="../inscription_galadesicam" target="_blank" role="button" >'.$data_carte3[3].' &raquo;</a></div>';
-				}
-				else{
-					echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="http://151.80.232.129/gala_icam" target="_blank" role="button" >'.$data_carte3[3].' &raquo;</a></div>';
-
-				}
-			} ?>
+			if ($data_carte3[2]=='1'){ ?>
+				<div class="card-footer bg-transparent"><a class="btn btn-primary" href="https://payicam.icam.fr/billetterie/inscriptions/inscriptions.php?event_id=2" target="_blank" role="button" ><?=$data_carte3[3]?>&raquo;</a></div>;
+			<?php } ?>
 		</div>
 
-        <div class="modal fade" id="indice_gala_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- <div class="modal fade" id="indice_gala_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -240,7 +234,7 @@ if ($promo_votant['site'] == 'Toulouse'){
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 		<div class="card border-dark" style="margin-bottom: 10px">
 			<img class="card-img-top" class="img-fluid"  src="img/<?php echo $data_carte4[4] ; ?>" alt="Card image cap">
