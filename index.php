@@ -190,7 +190,7 @@ if ($promo_votant['site'] == 'Toulouse'){
 			</div>
 			<?php
 			if ($data_carte1[2]=='1'){
-				echo '<div class="card-footer bg-transparent"><a class="btn btn-primary" href="../casper" target="_blank" role="button" >'.$data_carte1[3].' &raquo;</a></div>';
+				echo '<div class="text-center card-footer bg-transparent"><a class="btn btn-primary" href="../casper" target="_blank" role="button" >'.$data_carte1[3].' &raquo;</a></div>';
 			} ?>
 		</div>
 
@@ -202,7 +202,7 @@ if ($promo_votant['site'] == 'Toulouse'){
 			</div>
 			<?php
 			if ($data_carte2[2]=='1'){
-				echo ' <div class="card-footer bg-transparent"><a class="btn btn-primary" href="../shotgun" role="button">'; echo $data_carte2[3].' &raquo;</a> </div>  ';
+				echo ' <div class="text-center card-footer bg-transparent"><a class="btn btn-primary" href="../shotgun" role="button">'; echo $data_carte2[3].' &raquo;</a> </div>  ';
 			} ?>
 		</div>
 
@@ -215,9 +215,9 @@ if ($promo_votant['site'] == 'Toulouse'){
 				<p class="card-text"><?php echo $data_carte3[1]?></p>
 			</div>
 			<?php
-			if ($data_carte3[2]=='1'){ ?>
-				<div class="card-footer bg-transparent"><a class="btn btn-primary" href="https://payicam.icam.fr/billetterie/inscriptions/inscriptions.php?event_id=2" target="_blank" role="button" ><?=$data_carte3[3]?>&raquo;</a></div>;
-			<?php } ?>
+			if ($data_carte3[2]=='1'){
+				echo '<div class="text-center card-footer bg-transparent"><a class="btn btn-primary" href="https://payicam.icam.fr/billetterie/inscriptions/inscriptions.php?event_id=2" target="_blank" role="button" >' . $data_carte3[3] . '&raquo;</a></div>';
+			} ?>
 		</div>
 
         <!-- <div class="modal fade" id="indice_gala_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -244,7 +244,7 @@ if ($promo_votant['site'] == 'Toulouse'){
 			</div>
 			<?php
 			if ($data_carte4[2]=='1'){
-				echo ' <div class="card-footer bg-transparent"><a class="btn btn-primary" href="../reservation_sandwichs" role="button">'; echo $data_carte4[3].' &raquo;</a> </div>  ';
+				echo ' <div class="text-center card-footer bg-transparent"><a class="btn btn-primary" href="../reservation_sandwichs" role="button">'; echo $data_carte4[3].' &raquo;</a> </div>  ';
 			} ?>
 		</div>
 
