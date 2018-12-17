@@ -199,9 +199,10 @@ if ($promo_votant['site'] == 'Toulouse'){
 				<p class="card-text"><?php echo $data_carte2[1]?></p>
 			</div>
 			<?php
-			if ($data_carte2[2]=='1'){
-				echo ' <div class="text-center card-footer bg-transparent"><a class="btn btn-primary" href="../shotgun" role="button">'; echo $data_carte2[3].' &raquo;</a> </div>  ';
-			} ?>
+			if ($data_carte2[2]=='1'){ ?>
+                <div class="text-center card-footer bg-transparent"><a class="btn btn-primary" href="../shotgun" role="button"><?=$data_carte2[3]?> &raquo;</a>
+				<a class="btn btn-primary" href="../billetterie" role="button">Billetterie &raquo;</a> </div>
+			<?php } ?>
 		</div>
 
 
