@@ -59,8 +59,8 @@
 <!-- accessible avec Auth -->
       <li class="nav-item"><a  class="nav-link" href="faq.php">FAQ & Tutos</a></li>
       <li class="nav-item dropdown" >
-        <a  class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Liens utiles</a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a  class="nav-link dropdown-toggle" href="#liens_utiles" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Liens utiles</a>
+        <div id="liens_utiles" class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a  class="dropdown-item" data-toggle="modal" data-target="#exampleModal" href="#">Horaires du BarIcam</a>
           <a  class="dropdown-item" href="https://planning.icam.fr/lille/">Hyperplanning</a>
           <a  class="dropdown-item" href="https://moodle.icam.fr/">Moodle</a>
