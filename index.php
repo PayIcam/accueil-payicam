@@ -24,9 +24,10 @@ $confSQL = $_CONFIG['conf_accueil'];
 
     for ($i = 1; $i<5; $i++){
       $requete_cartes = $DB->prepare("SELECT carte_titre, carte_description, carte_activation_bouton,
-      	carte_bouton,carte_photo FROM payicam_carte WHERE carte_id='$i'");
+      	carte_bouton,carte_photo,sites FROM payicam_carte WHERE carte_id='$i'");
       $requete_cartes -> execute();
       ${'data_carte'.$i} = $requete_cartes->fetch();
+      ${'data_carte'.$i}['sites'] = empty(${'data_carte'.$i}['sites']) ? array() : json_decode(${'data_carte'.$i}['sites']);
     }
 
 
@@ -56,11 +57,12 @@ $confSQL = $_CONFIG['conf_accueil'];
    $promo = $DB_promo->prepare('SELECT promo, site FROM users WHERE mail = :email');
    $promo -> bindParam('email', $user['email'], PDO::PARAM_STR);
    $promo->execute();
-   $promo_votant = $promo->fetch();
+   $promo = $promo->fetch();
 //On tej les toulousain
-if ($promo_votant['site'] == 'Toulouse'){
+if ($promo['site'] == 'Toulouse'){
 	header('Location:../accueil-toulouse');
 }
+
 //FIN BDD VOTE
 
    //date pour vote
@@ -159,7 +161,7 @@ if ($promo_votant['site'] == 'Toulouse'){
 
 
 	<?php  	//DEBUT VOTE
-	if (($date_actuelle > $jour_avant) && ($date_actuelle < $jour_apres) && in_array($promo_votant['promo'], [24, 123, 122, 121, 120, 119, 2023, 2022, 2021, 2020, 2019]) ){ // verifie intervalle de temps + PROMO A METTRE A JOUR TOUS LES ANS J'AI LA FLEMME DE FAIRE UN TRUC AUTOMATIQUE
+	if (($date_actuelle > $jour_avant) && ($date_actuelle < $jour_apres) && in_array($promo['promo'], [24, 123, 122, 121, 120, 119, 2023, 2022, 2021, 2020, 2019]) && $promo['site'] == 'Lille'){ // verifie intervalle de temps + PROMO A METTRE A JOUR TOUS LES ANS J'AI LA FLEMME DE FAIRE UN TRUC AUTOMATIQUE
 
 		if ($vote_fait != false){ // si déjà voté bloque le bouton?>
 			<a class="btn btn-warning btn-lg btn-block" href="#" type='button' style="margin-bottom: 10px" disabled>Vous avez déjà voté. Rendez-vous ce soir pour le résultat!</a>
@@ -180,6 +182,7 @@ if ($promo_votant['site'] == 'Toulouse'){
 <DIV class="card-deck"> <!-- CARD-DECK-->
 
 	<div class="row" > <!-- Ligne de 4 cartes publiques -->
+        <?php if(in_array($promo['site'], $data_carte1['sites'])) : ?>
 		<div class="card border-dark" style="margin-bottom: 10px" >
 			<img class="card-img-top" style="max-height: 150px;"  src="img/<?php echo $data_carte1[4] ; ?>" alt="image carte 1" style="max-height: 150px;">
 			<div class="card-body">
@@ -191,7 +194,9 @@ if ($promo_votant['site'] == 'Toulouse'){
 				echo '<div class="text-center card-footer bg-transparent"><a class="btn btn-primary" href="../casper" target="_blank" role="button" >'.$data_carte1[3].' &raquo;</a></div>';
 			} ?>
 		</div>
+        <?php endif; ?>
 
+        <?php if(in_array($promo['site'], $data_carte2['sites'])) : ?>
 		<div class="card border-dark" style="margin-bottom: 10px">
 			<img class="card-img-top" class="img-fluid"  src="img/<?php echo $data_carte2[4] ; ?>" alt="Card image cap" style="max-height: 150px;">
 			<div class="card-body">
@@ -204,9 +209,9 @@ if ($promo_votant['site'] == 'Toulouse'){
 				<a class="btn btn-primary" href="../billetterie" role="button">Billetterie &raquo;</a> </div>
 			<?php } ?>
 		</div>
+        <?php endif; ?>
 
-
-
+        <?php if(in_array($promo['site'], $data_carte3['sites'])) : ?>
 		<div class="card border-dark" style="margin-bottom: 10px"> <!-- gala -->
 			<img class="card-img-top" id="indice_gala" class='img-fluid'  src='img/<?php echo $data_carte3[4] ; ?>' alt="image carte 3">
 			<div class="card-body">
@@ -218,6 +223,7 @@ if ($promo_votant['site'] == 'Toulouse'){
 				echo '<div class="text-center card-footer bg-transparent"><a class="btn btn-primary" href="https://payicam.icam.fr/billetterie/inscriptions/inscriptions.php?event_id=2" target="_blank" role="button" >' . $data_carte3[3] . '&raquo;</a></div>';
 			} ?>
 		</div>
+        <?php endif; ?>
 
         <!-- <div class="modal fade" id="indice_gala_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -235,6 +241,7 @@ if ($promo_votant['site'] == 'Toulouse'){
             </div>
         </div> -->
 
+        <?php if(in_array($promo['site'], $data_carte4['sites'])) : ?>
 		<div class="card border-dark" style="margin-bottom: 10px">
 			<img class="card-img-top" class="img-fluid"  src="img/<?php echo $data_carte4[4] ; ?>" alt="Card image cap">
 			<div class="card-body">
@@ -246,6 +253,7 @@ if ($promo_votant['site'] == 'Toulouse'){
 				echo ' <div class="text-center card-footer bg-transparent"><a class="btn btn-primary" href="../reservation_sandwichs" role="button">'; echo $data_carte4[3].' &raquo;</a> </div>  ';
 			} ?>
 		</div>
+        <?php endif; ?>
 
 	</div>    <!-- /Ligne de 4 cartes publiques  -->
 
