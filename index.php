@@ -7,7 +7,7 @@ require_once ROOT_PATH.'class/DB.php';
 include('config.php');
 $title_for_layout = 'Accueil';
 $js_for_layout = array('bootstrap.min.js', 'indice_gala');
-include 'includes/header.php'; // insertion du fichier header.php : entête, barre de navigation
+
 $confSQL = $_CONFIG['conf_accueil'];
 
   try{
@@ -61,6 +61,7 @@ $confSQL = $_CONFIG['conf_accueil'];
 //On tej les toulousain
 if ($promo['site'] == 'Toulouse'){
 	header('Location:../accueil-toulouse');
+    die();
 }
 
 //FIN BDD VOTE
@@ -74,8 +75,12 @@ if ($promo['site'] == 'Toulouse'){
   date_default_timezone_set('Europe/Paris');
   setlocale(LC_TIME, 'fr_FR.utf8','fra'); //pour afficher le jour du vote en français
   //fin date
+  //
 
+include 'includes/header.php'; // insertion du fichier header.php : entête, barre de navigation
   ?>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 <!-- CAROUSEL-->
@@ -182,7 +187,7 @@ if ($promo['site'] == 'Toulouse'){
 <DIV class="card-deck"> <!-- CARD-DECK-->
 
 	<div class="row" > <!-- Ligne de 4 cartes publiques -->
-        <?php if(in_array($promo['site'], $data_carte1['sites'])) : ?>
+        <?php if(empty($data_carte1['sites']) || in_array($promo['site'], $data_carte1['sites'])) : ?>
 		<div class="card border-dark" style="margin-bottom: 10px" >
 			<img class="card-img-top" style="max-height: 150px;"  src="img/<?php echo $data_carte1[4] ; ?>" alt="image carte 1" style="max-height: 150px;">
 			<div class="card-body">
@@ -196,7 +201,7 @@ if ($promo['site'] == 'Toulouse'){
 		</div>
         <?php endif; ?>
 
-        <?php if(in_array($promo['site'], $data_carte2['sites'])) : ?>
+        <?php if(empty($data_carte2['sites']) || in_array($promo['site'], $data_carte2['sites'])) : ?>
 		<div class="card border-dark" style="margin-bottom: 10px">
 			<img class="card-img-top" class="img-fluid"  src="img/<?php echo $data_carte2[4] ; ?>" alt="Card image cap" style="max-height: 150px;">
 			<div class="card-body">
@@ -211,7 +216,7 @@ if ($promo['site'] == 'Toulouse'){
 		</div>
         <?php endif; ?>
 
-        <?php if(in_array($promo['site'], $data_carte3['sites'])) : ?>
+        <?php if(empty($data_carte3['sites']) || in_array($promo['site'], $data_carte3['sites'])) : ?>
 		<div class="card border-dark" style="margin-bottom: 10px"> <!-- gala -->
 			<img class="card-img-top" id="indice_gala" class='img-fluid'  src='img/<?php echo $data_carte3[4] ; ?>' alt="image carte 3">
 			<div class="card-body">
@@ -241,7 +246,7 @@ if ($promo['site'] == 'Toulouse'){
             </div>
         </div> -->
 
-        <?php if(in_array($promo['site'], $data_carte4['sites'])) : ?>
+        <?php if(empty($data_carte4['sites']) || in_array($promo['site'], $data_carte4['sites'])) : ?>
 		<div class="card border-dark" style="margin-bottom: 10px">
 			<img class="card-img-top" class="img-fluid"  src="img/<?php echo $data_carte4[4] ; ?>" alt="Card image cap">
 			<div class="card-body">
