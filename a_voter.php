@@ -56,7 +56,9 @@ else{
 
   if ($vote_fait != false){
     Functions::setFlash("Bien tenté!",'danger');
-    header('Location:index.php');
+    // header('Location:index.php');
+    header('Location: https://www.youtube.com/watch?v=ShNHTyyKHZ4');
+    die();
   }
   elseif ($promo_votant['promo'] == 0){
     Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
@@ -72,20 +74,19 @@ else{
     $enreg -> bindParam('choice', $_POST['vote'], PDO::PARAM_STR);
     try {
       $enreg -> execute();
-      Functions::setFlash("Votre vote a bien été enregistré ",'info');
-      // header('Location:index.php');
-      switch($_POST['vote']) {
-        case 'blanc':
-        header('Location: https://www.youtube.com/watch?v=_C-K4TTRc-A');
-          break;
-        case "umti'tigre":
-        header('Location: https://www.youtube.com/watch?v=Zwy1EN79o-k');
-          break;
-        case "env'owl":
-        header('Location: https://youtu.be/bcDeh_XuNis?t=70');
-          break;
-        die();
+      if($_POST['vote'] == 'blanc') {
+          header('Location: https://www.youtube.com/watch?v=_C-K4TTRc-A');
+          die();
+      } elseif($_POST['vote'] == "Umti'tigre") {
+          header('Location: https://www.youtube.com/watch?v=Zwy1EN79o-k');
+          die();
+      } elseif($_POST['vote'] == "Env'owl") {
+          header('Location: https://youtu.be/bcDeh_XuNis?t=70');
+          die();
       }
+      // Functions::setFlash("Votre vote a bien été enregistré ",'info');
+      // header('Location:index.php');
+
     } catch (Exception $e) {
       Functions::setFlash("Votre vote n'a pas été enregistré, si le problème persiste, contactez PayIcam",'danger');
       header('Location:index.php');
