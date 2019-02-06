@@ -73,7 +73,19 @@ else{
     try {
       $enreg -> execute();
       Functions::setFlash("Votre vote a bien été enregistré ",'info');
-      header('Location:index.php');
+      // header('Location:index.php');
+      switch($_POST['vote']) {
+        case 'blanc':
+        header('Location: https://www.youtube.com/watch?v=_C-K4TTRc-A');
+          break;
+        case "umti'tigre":
+        header('Location: https://www.youtube.com/watch?v=Zwy1EN79o-k');
+          break;
+        case "env'owl":
+        header('Location: https://youtu.be/bcDeh_XuNis?t=70');
+          break;
+        die();
+      }
     } catch (Exception $e) {
       Functions::setFlash("Votre vote n'a pas été enregistré, si le problème persiste, contactez PayIcam",'danger');
       header('Location:index.php');
