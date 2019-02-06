@@ -43,7 +43,7 @@ if ($vote_fait != false){
   Functions::setFlash("Bien tenté!",'danger');
   header('Location:index.php');
 }
-if (!in_array($promo_votant['promo'], [24, 123, 122, 121, 120, 119, 2023, 2022, 2021, 2020, 2019]) ){
+if (!in_array($promo_votant['promo'], [24, 123, 122, 121, 120, 119, 2023, 2022, 2021, 2020, 2019]) && $promo_votant['site'] != "Lille" ){
   Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
   header('Location:index.php');
 }
@@ -82,12 +82,12 @@ elseif ($date_actuelle > $infos_vote['date_fin']) {
       <input type="button" class="btn btn-secondary btn-lg" value="Je vote blanc" data-toggle="modal" data-target="#blancModal"></input>
     </div>
   </div>
-    <div id="sep_bouton_bas">
+    <!-- <div id="sep_bouton_bas">
         <a href="vote.php">
             <img src="img/choix3.png" type="button" alt="choix_3" class='rounded-circle' id="choix_3">
-        </a>
+        </a> -->
       <!-- <input type="button" class="btn btn-secondary btn-lg" value="Je vote blanc" data-toggle="modal" data-target="#blancModal"></input> -->
-    </div>
+    <!-- </div> -->
   <form action="a_voter.php" method="post">
     <div class="modal fade" id="choix_2Modal" tabindex="-1" role="dialog" aria-labelledby="choix_2_label" aria-hidden="true">
       <div class="modal-dialog" role="document">
