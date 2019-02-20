@@ -1,104 +1,107 @@
 <?php
 
-require 'config.php';
+require 'includes/_header.php';
 
-$confSQL = $_CONFIG['conf_accueil'];
+$confSQL = Config::get('conf_accueil');
 
 try{
     $DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
 } catch(Exeption $e) {
     die('erreur:'.$e->getMessage());
 }
+//CONNEXION A LA DB
 
-// Prise en compte de modifs dans les input sinon appel des anciennes donnees de la bdd
-for($i = 1; $i<5; $i++){
-    if(!empty($_POST['maj_titre_'.$i])) {
-        ${'maj_titre_'.$i} = htmlentities($_POST['maj_titre_'.$i], ENT_QUOTES);
+foreach($_POST['maj_titre'] as $carte_id => $titre) {
+    if(!empty($titre)) {
+        $titre = htmlspecialchars($titre);
     } else {
-        die("Il y a eu une erreur, un des champs n'est pas passé");
+        Functions::setFlashAndRedirect('index_admin.php', "T'as oublié de mettre un titre", 'danger');
     }
-    if(!empty($_POST['maj_description_'.$i])) {
-        ${'maj_description_'.$i} = htmlentities($_POST['maj_description_'.$i], ENT_QUOTES);
+    if(!empty($_POST['maj_description'][$carte_id])) {
+        $description = htmlspecialchars($_POST['maj_description'][$carte_id]);
     } else {
-        die("Il y a eu une erreur, un des champs n'est pas passé");
+        Functions::setFlashAndRedirect('index_admin.php', "T'as oublié de mettre une description", 'danger');
     }
-    if(!empty($_POST['carte_'.$i.'_bouton'])) {
-        ${'carte_'.$i.'_activation_bouton'} = $_POST['carte_'.$i.'_bouton'] == 'on' ? 1 : 0;
+    if(!empty($_POST['maj_actif'][$carte_id])) {
+        $activation_bouton = $_POST['maj_actif'][$carte_id] == 'off' ? 0 : 1;
     } else {
-        die("Il y a eu une erreur, un des champs n'est pas passé");
+        Functions::setFlashAndRedirect('index_admin.php', "On ne sait pas si tu veux activer la carte", 'danger');
     }
-    if(!empty($_POST['maj_nom_bouton_'.$i])) {
-        ${'maj_nom_bouton_'.$i} = htmlentities($_POST['maj_nom_bouton_'.$i], ENT_QUOTES);
+    if(!empty($_POST['maj_bouton'][$carte_id])) {
+        $bouton = htmlspecialchars($_POST['maj_bouton'][$carte_id]);
     } else {
-        die("Il y a eu une erreur, un des champs n'est pas passé");
+        Functions::setFlashAndRedirect('index_admin.php', "T'as oublié de mettre un nom au bouton", 'danger');
     }
-}
+    if(!empty($_POST['maj_lien'][$carte_id])) {
+        $lien = htmlspecialchars($_POST['maj_lien'][$carte_id]);
+    } else {
+        Functions::setFlashAndRedirect('index_admin.php', "T'as oublié de mettre un lien", 'danger');
+    }
 
-// Update des nouvelles infos modifiees dans la bdd
-for($i = 1; $i<5; $i++) {
-    $data = array("carte_titre" => ${'maj_titre_'.$i},
-    "carte_description" => ${'maj_description_'.$i},
-    "carte_activation_bouton" => ${'carte_'.$i.'_activation_bouton'},
-    "carte_bouton" => ${'maj_nom_bouton_'.$i},
-    "carte_id" => $i
+    $carte = array(
+        'carte_id' => $carte_id,
+        'carte_titre' => $titre,
+        'carte_description' => $description,
+        'carte_activation_bouton' => $activation_bouton,
+        'carte_bouton' => $bouton,
+        'carte_lien' => $lien
     );
 
-    $requete_update_cartes = $DB->prepare("UPDATE payicam_carte SET carte_titre=:carte_titre, carte_description=:carte_description, carte_activation_bouton=:carte_activation_bouton, carte_bouton=:carte_bouton WHERE carte_id=:carte_id");
-    $requete_update_cartes->execute(array("carte_titre" => ${'maj_titre_'.$i}, "carte_description" => ${'maj_description_'.$i}, "carte_activation_bouton" => ${'carte_'.$i.'_activation_bouton'}, "carte_bouton" => ${'maj_nom_bouton_'.$i},  "carte_id" => $i));
+    $update = $DB->prepare('UPDATE payicam_carte
+        SET carte_titre = :carte_titre,
+        carte_description = :carte_description,
+        carte_activation_bouton = :carte_activation_bouton,
+        carte_bouton = :carte_bouton,
+        carte_lien = :carte_lien
+        WHERE carte_id = :carte_id');
+    $update->execute($carte);
+
+    if(!empty($_FILES['input_image_carte']['name'][$carte_id])) {
+        upload_image('input_image_carte', 'carte', $carte_id);
+    }
 }
 
-// upload des images
-upload_images();
-
-header('Location: index_admin.php');
-die();
+foreach($_FILES['input_image_slide']['name'] as $slide_id => $name) {
+    if(!empty($_FILES['input_image_slide']['name'][$slide_id])) {
+        upload_image('input_image_slide', 'slide', $slide_id);
+    }
+}
+    
+Functions::setFlashAndRedirect('index_admin.php', "Modification effectuée");
 
 ////////////////////////////////////// Fonction pour l'upload d'images
-function upload_images($dossier='img/') {
-    global $_CONFIG, $DB;
-    $confSQL = $_CONFIG['conf_accueil'];
+function upload_image($index, $type, $id=null) {
+    if(!in_array($type, ['slide', 'carte'])) {
+        Functions::setFlashAndRedirect('index_admin.php', "Le type renseigné n'existe pas", "warning");
+    }
+    global $DB;
 
-    $extensions = array('.png','.PNG', '.gif','.GIF', '.jpg','.JPG', '.jpeg','.JPEG');
+    $extensions = array('.png', '.jpeg', '.gif');
+    $dossier = 'img/';
 
-    foreach($_FILES as $key => $image_file) {
-        if(empty($image_file['name'])) {
-            continue;
+    $name = empty($id) ? $_FILES[$index]['name'] : $_FILES[$index]['name'][$id];
+
+    $extension = strrchr($name, '.');
+    if(!in_array($extension, $extensions)) {
+        Functions::setFlashAndRedirect('index_admin.php', "Une des images n'est pas du bon format (jpeg/png/gif)", "warning");
+    }
+    $fichier = $dossier . $type . '_' . $id . $extension;
+
+    $tmp_name = empty($id) ? $_FILES[$index]['tmp_name'] : $_FILES[$index]['tmp_name'][$id];
+
+    if(move_uploaded_file($tmp_name, $fichier)) {
+        if($type=='slide') {
+            $requete_update_slide = $DB->prepare("UPDATE payicam_accueil_slide SET slide_image=:fichier WHERE slide_id=:id");
         }
-
-        $extension = strrchr($image_file['name'], '.');
-
-        if(!in_array($extension, $extensions)) {
-            $erreur = 'Vous devez uploader un fichier de type png, gif, jpg ou jpeg...';
+        elseif($type=='carte') {
+            $requete_update_slide = $DB->prepare("UPDATE payicam_carte SET carte_photo=:fichier WHERE carte_id=:id");
         }
-
-        if(!isset($erreur)){
-            $fichier = basename($image_file['name']);
-            $fichier = strtr($fichier,
-            'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
-            'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
-            $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
-
-            $explosion = explode("_", $key);
-            $type = $explosion[2];
-            $index = $explosion[3];
-
-            if(move_uploaded_file($image_file['tmp_name'], $dossier . $fichier)) {
-                if($type=='slide') {
-                    $requete_update_slide = $DB->prepare("UPDATE payicam_accueil_slide SET slide_image=:fichier WHERE slide_id=:index");
-                }
-                elseif($type=='carte') {
-                    $requete_update_slide = $DB->prepare("UPDATE payicam_carte SET carte_photo=:fichier WHERE carte_id=:index");
-                }
-                else {
-                    die("Le type d'image est incorrect");
-                }
-                $requete_update_slide->execute(array("fichier" => $fichier, "index" => $index));
-            }
-            else {
-                die("L'upload n'a pas fonctionné");
-            }
-        } else {
-            die($erreur);
+        else {
+            die("Le type d'image est incorrect");
         }
+        $requete_update_slide->execute(array("fichier" => $fichier, "id" => $id));
+    }
+    else {
+        Functions::setFlashAndRedirect('index_admin.php', "Pour une raison inconnue, l'upload n'a pas fonctionné", "warning");
     }
 }

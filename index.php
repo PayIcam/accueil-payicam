@@ -1,125 +1,103 @@
 <?php
-require_once 'includes/_header.php';
+require 'includes/_header.php';
 
 $Auth->allow('member');
 $user = $Auth->getUser();
-require_once ROOT_PATH.'class/DB.php';
-include('config.php');
+
 $title_for_layout = 'Accueil';
 $js_for_layout = array('bootstrap.min.js', 'indice_gala');
 
 $confSQL = $_CONFIG['conf_accueil'];
+$conf_ginger = $_CONFIG['conf_ginger'];
 
-  try{
-    $DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-    } catch(Exeption $e) {
-    die('erreur:'.$e->getMessage());
-    }
+try {
+	$DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
+	$db_ginger = new PDO('mysql:host='.$conf_ginger['sql_host'].';dbname='.$conf_ginger['sql_db'].';charset=utf8',$conf_ginger['sql_user'],$conf_ginger['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
+} catch(Exeption $e) {
+	die('erreur:'.$e->getMessage());
+}
 
-    for ($i = 1; $i<4; $i++){
-      $requete_slides = $DB->prepare("SELECT slide_image, slide_message FROM payicam_accueil_slide WHERE slide_id='$i'");
-      $requete_slides -> execute();
-      ${'data_slide'.$i} = $requete_slides->fetch();
-    }
+for ($i = 1; $i<5; $i++) {
+  $requete_cartes = $DB->prepare("SELECT carte_titre, carte_description, carte_activation_bouton,
+  	carte_bouton,carte_photo,sites FROM payicam_carte WHERE carte_id='$i'");
+  $requete_cartes -> execute();
+  ${'data_carte'.$i} = $requete_cartes->fetch();
+  ${'data_carte'.$i}['sites'] = empty(${'data_carte'.$i}['sites']) ? array() : json_decode(${'data_carte'.$i}['sites']);
+}
 
-    for ($i = 1; $i<5; $i++){
-      $requete_cartes = $DB->prepare("SELECT carte_titre, carte_description, carte_activation_bouton,
-      	carte_bouton,carte_photo,sites FROM payicam_carte WHERE carte_id='$i'");
-      $requete_cartes -> execute();
-      ${'data_carte'.$i} = $requete_cartes->fetch();
-      ${'data_carte'.$i}['sites'] = empty(${'data_carte'.$i}['sites']) ? array() : json_decode(${'data_carte'.$i}['sites']);
-    }
+$promo_site = $db_ginger->prepare('SELECT promo, site FROM users WHERE mail = :email');
+$promo_site -> bindParam('email', $user['email'], PDO::PARAM_STR);
+$promo_site->execute();
+$promo_site = $promo_site->fetch();
+$promo = $promo_site['promo'];
+$site = $promo_site['site'];
 
-
-
- //DEBUT BDD VOTE
-
-   $conf_sql_promo = $_CONFIG['conf_sql_promo'];
-
-   try
-   {
-   	$DB_promo = new PDO('mysql:host='.$conf_sql_promo['sql_host'].';dbname='.$conf_sql_promo['sql_db'].';charset=utf8',$conf_sql_promo['sql_user'],$conf_sql_promo['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-   }
-   catch(Exeption $e)
-   {
-   	die('erreur:'.$e->getMessage());
-   }
-
-   $my_vote = $DB->prepare('SELECT * FROM vote_has_voters WHERE email = :email');
-   $my_vote -> bindParam('email', $user['email'], PDO::PARAM_STR);
-   $my_vote -> execute();
-   $vote_fait = $my_vote->fetch();
-
-   $param_vote = $DB->prepare('SELECT * FROM vote_option');
-   $param_vote -> execute();
-   $infos_vote = $param_vote->fetch();
-
-   $promo = $DB_promo->prepare('SELECT promo, site FROM users WHERE mail = :email');
-   $promo -> bindParam('email', $user['email'], PDO::PARAM_STR);
-   $promo->execute();
-   $promo = $promo->fetch();
-//On tej les toulousain
-if ($promo['site'] == 'Toulouse'){
+if ($site == 'Toulouse'){
 	header('Location:../accueil-toulouse');
     die();
 }
 
-//FIN BDD VOTE
+$requete_slides = $DB->prepare("SELECT * FROM payicam_accueil_slide");
+$requete_slides->execute();
+$slides = $requete_slides->fetchAll();
 
-   //date pour vote
-   $date_actuelle = date("Y-m-d H:i:s");
-   $date_begin= strtotime($infos_vote['date_debut']);
-   $date_end= strtotime($infos_vote['date_fin']);
-  $jour_avant= date("Y-m-d H:i:s", strtotime("-1 days", $date_begin)); //Bouton vote apparait 1 jour avant
-  $jour_apres= date("Y-m-d H:i:s", strtotime("+12 hours", $date_end));  // disparait 12 heures après
-  date_default_timezone_set('Europe/Paris');
-  setlocale(LC_TIME, 'fr_FR.utf8','fra'); //pour afficher le jour du vote en français
-  //fin date
-  //
+$requete_cartes = $DB->prepare("SELECT * FROM payicam_carte");
+$requete_cartes->execute();
+$cartes = $requete_cartes->fetchAll();
+  
+$param_vote = $DB->prepare('SELECT * FROM vote_option');
+$param_vote -> execute();
+$infos_vote = $param_vote->fetch();
 
-include 'includes/header.php'; // insertion du fichier header.php : entête, barre de navigation
-  ?>
+$my_vote = $DB->prepare('SELECT * FROM vote_has_voters WHERE email = :email');
+$my_vote -> bindParam('email', $user['email'], PDO::PARAM_STR);
+$my_vote -> execute();
+$vote_fait = $my_vote->fetch();
+   
+$date_actuelle = date("Y-m-d H:i:s");
+$date_begin= strtotime($infos_vote['date_debut']);
+$date_end= strtotime($infos_vote['date_fin']);
+$jour_avant= date("Y-m-d H:i:s", strtotime("-1 days", $date_begin));//Bouton vote apparait 1 jour avant
+$jour_apres= date("Y-m-d H:i:s", strtotime("+12 hours", $date_end));// disparait 12 heures après
+date_default_timezone_set('Europe/Paris');
+setlocale(LC_TIME, 'fr_FR.utf8','fra');
+
+
+
+include 'includes/header.php'; ?>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 <!-- CAROUSEL-->
 <div id="carouselExampleIndicators" style="padding-top: 0px ; margin-bottom: 20px; border-radius: 4px;" class="carousel slide" data-ride="carousel">
-  			<ol class="carousel-indicators">
-  				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-  				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-  				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  			</ol>
 
-  			<div class="carousel-inner">
-  				<div class="carousel-item active">
-  					<img class="d-block w-100" src="img/<?php echo $data_slide1[0] ; ?>"  alt="First slide">
-  					<div class="carousel-caption d-none d-md-block">
-					</div>
-  				</div>
+	<ol class="carousel-indicators">
+	<?php foreach ($slides as $slide) { ?>
+			<li data-target="#carouselExampleIndicators" data-slide-to="<?= $slide["slide_id"] ?>" class="active"></li>
+	<?php } ?>
+	</ol>
+				
+	<div class="carousel-inner">
+	<?php $i=0; foreach ($slides as $key => $slide) { ?>
+		<div class="carousel-item <?= $i == 0 ? "active" : "" ?>">
+			<img class="d-block w-100" src="<?= $slide["slide_image"]?>"  alt="Card image cap">
+			<div class="carousel-caption d-none d-md-block"> </div>
+		</div>
+		<?php $i++; } ?>
+	</div>
 
-  				<div class="carousel-item">
-  					<img class="d-block w-100" src="img/<?php echo $data_slide2[0] ; ?>" alt="Second slide">
-  					<div class="carousel-caption d-none d-md-block">
-            		</div>
-  				</div>
+	<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="sr-only">Previous</span>
+	</a>
+	<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="sr-only">Next</span>
+	</a>
 
-  				<div class="carousel-item" >
-  					<img class="d-block w-100" id="slide3" src="img/<?php echo $data_slide3[0] ; ?>" alt="Third slide">
-  					<div class="carousel-caption d-none d-md-block">
-					</div>
-  				</div>
-			</div>
-
-<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-	<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-	<span class="sr-only">Previous</span>
-</a>
-<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-	<span class="carousel-control-next-icon" aria-hidden="true"></span>
-	<span class="sr-only">Next</span>
-</a>
-</div>		<!-- /CAROUSEL-->
+</div>		
+<!-- /CAROUSEL-->
 
 <!-- <div class="jumbotron jumbotron-fluid">
   <div class="container">
@@ -133,34 +111,30 @@ include 'includes/header.php'; // insertion du fichier header.php : entête, bar
 
 <!-- MODAL horaires du barIcam -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLabel">Horaires du BarIcam</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      	<div class="row">
-      		<div class="col-md-auto">
-		     	<img src="img/logobaricam.png" style="height: 160px; width: auto; padding: 10px" alt="bar logo">
-      		</div>
-      		<div class="col-md-auto" style="padding-top: 15px">
-		        <strong>Lundi :</strong> 21h30 - 23h <br>
-		        <strong>Mardi (sans alcools) :</strong> 17h30 - 19h <br>
-		        <strong>Mercredi :</strong> 22h00 - 23h30 <br>
-		        <strong>Jeudi :</strong> 18h00 - 20h30 <br>
-		        <strong>Vendredi :</strong> 21h30 - 23h
-       		</div>
-  		</div>
-  	   </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Retour</button>
-        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="exampleModalLabel">Horaires du BarIcam</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-auto">
+						<img src="img/logobaricam.png" style="height: 160px; width: auto; padding: 10px" alt="bar logo">
+					</div>
+					<div class="col-md-auto" style="padding-top: 15px">
+						<strong>Lundi :</strong> 21h30 - 23h <br>
+						<strong>Mardi (sans alcools) :</strong> 17h30 - 19h <br>
+						<strong>Mercredi :</strong> 22h00 - 23h30 <br>
+						<strong>Jeudi :</strong> 18h00 - 20h30 <br>
+						<strong>Vendredi :</strong> 21h30 - 23h
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>	<!-- /MODAL horaires du barIcam -->
 
 
@@ -184,12 +158,12 @@ include 'includes/header.php'; // insertion du fichier header.php : entête, bar
 		}
 	} ?> <!-- FIN VOTE -->
 
-<DIV class="card-deck"> <!-- CARD-DECK-->
+<div class="card-deck"> <!-- CARD-DECK-->
 
 	<div class="row" > <!-- Ligne de 4 cartes publiques -->
         <?php if(empty($data_carte1['sites']) || in_array($promo['site'], $data_carte1['sites'])) : ?>
 		<div class="card border-dark" style="margin-bottom: 10px" >
-			<img class="card-img-top" style="max-height: 150px;"  src="img/<?php echo $data_carte1[4] ; ?>" alt="image carte 1" style="max-height: 150px;">
+			<img class="card-img-top" style="max-height: 150px;"  src="<?php echo $data_carte1[4] ; ?>" alt="image carte 1" style="max-height: 150px;">
 			<div class="card-body">
 				<h4 class="card-title"><?php echo $data_carte1[0]?></h4>
 				<p class="card-text"><?php echo $data_carte1[1]?></p>
@@ -203,7 +177,7 @@ include 'includes/header.php'; // insertion du fichier header.php : entête, bar
 
         <?php if(empty($data_carte2['sites']) || in_array($promo['site'], $data_carte2['sites'])) : ?>
 		<div class="card border-dark" style="margin-bottom: 10px">
-			<img class="card-img-top" class="img-fluid"  src="img/<?php echo $data_carte2[4] ; ?>" alt="Card image cap" style="max-height: 150px;">
+			<img class="card-img-top" class="img-fluid"  src="<?php echo $data_carte2[4] ; ?>" alt="Card image cap" style="max-height: 150px;">
 			<div class="card-body">
 				<h4 class="card-title"><?php echo $data_carte2[0]?></h4>
 				<p class="card-text"><?php echo $data_carte2[1]?></p>
@@ -218,7 +192,7 @@ include 'includes/header.php'; // insertion du fichier header.php : entête, bar
 
         <?php if(empty($data_carte3['sites']) || in_array($promo['site'], $data_carte3['sites'])) : ?>
 		<div class="card border-dark" style="margin-bottom: 10px"> <!-- gala -->
-			<img class="card-img-top" id="indice_gala" class='img-fluid'  src='img/<?php echo $data_carte3[4] ; ?>' alt="image carte 3">
+			<img class="card-img-top" id="indice_gala" class='img-fluid'  src='<?php echo $data_carte3[4] ; ?>' alt="image carte 3">
 			<div class="card-body">
 				<h4 class="card-title"><?php echo $data_carte3[0]?> </h4>
 				<p class="card-text"><?php echo $data_carte3[1]?></p>
@@ -248,14 +222,14 @@ include 'includes/header.php'; // insertion du fichier header.php : entête, bar
 
         <?php if(empty($data_carte4['sites']) || in_array($promo['site'], $data_carte4['sites'])) : ?>
 		<div class="card border-dark" style="margin-bottom: 10px">
-			<img class="card-img-top" class="img-fluid"  src="img/<?php echo $data_carte4[4] ; ?>" alt="Card image cap">
+			<img class="card-img-top" class="img-fluid"  src="<?php echo $data_carte4[4] ; ?>" alt="Card image cap">
 			<div class="card-body">
 				<h4 class="card-title"><?php echo $data_carte4[0]?></h4>
 				<p class="card-text"><?php echo $data_carte4[1]?></p>
 			</div>
 			<?php
 			if ($data_carte4[2]=='1'){
-				echo ' <div class="text-center card-footer bg-transparent"><a class="btn btn-primary" href="../reservation_sandwichs" role="button">'; echo $data_carte4[3].' &raquo;</a> </div>  ';
+				echo ' <div class="text-center card-footer bg-transparent"><a class="btn btn-primary" href="RIEN POUR LE MOMENT" role="button">'; echo $data_carte4[3].' &raquo;</a> </div>  ';
 			} ?>
 		</div>
         <?php endif; ?>
@@ -323,6 +297,6 @@ include 'includes/header.php'; // insertion du fichier header.php : entête, bar
 		<!-- fin Auth admin -->
 
 
-</DIV>  <!-- /CARD-DECK -->
+</div>  <!-- /CARD-DECK -->
 
 <?php include 'includes/footer.php'; ?>
