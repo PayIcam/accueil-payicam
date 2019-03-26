@@ -17,14 +17,6 @@ try {
 	die('erreur:'.$e->getMessage());
 }
 
-for ($i = 1; $i<5; $i++) {
-  $requete_cartes = $DB->prepare("SELECT carte_titre, carte_description, carte_activation_bouton,
-  	carte_bouton,carte_photo,sites FROM payicam_carte WHERE carte_id='$i'");
-  $requete_cartes -> execute();
-  ${'data_carte'.$i} = $requete_cartes->fetch();
-  ${'data_carte'.$i}['sites'] = empty(${'data_carte'.$i}['sites']) ? array() : json_decode(${'data_carte'.$i}['sites']);
-}
-
 $promo_site = $db_ginger->prepare('SELECT promo, site FROM users WHERE mail = :email');
 $promo_site -> bindParam('email', $user['email'], PDO::PARAM_STR);
 $promo_site->execute();
@@ -32,7 +24,7 @@ $promo_site = $promo_site->fetch();
 $promo = $promo_site['promo'];
 $site = $promo_site['site'];
 
-if ($site == 'Toulouse'){
+if ($site == 'Toulouse') {
 	header('Location:../accueil-toulouse');
     die();
 }
@@ -161,80 +153,21 @@ include 'includes/header.php'; ?>
 <div class="card-deck"> <!-- CARD-DECK-->
 
 	<div class="row" > <!-- Ligne de 4 cartes publiques -->
-        <?php if(empty($data_carte1['sites']) || in_array($promo['site'], $data_carte1['sites'])) : ?>
+
+		<?php foreach($cartes as $carte) { ?>
+		<?php if(empty($data_carte1['sites']) || in_array($promo['site'], $data_carte1['sites'])) : ?>
 		<div class="card border-dark" style="margin-bottom: 10px" >
-			<img class="card-img-top" style="max-height: 150px;"  src="<?php echo $data_carte1[4] ; ?>" alt="image carte 1" style="max-height: 150px;">
+			<img class="card-img-top" style="max-height: 150px;"  src="<?php echo $carte['carte_photo'] ; ?>" alt="image carte" style="max-height: 150px;">
 			<div class="card-body">
-				<h4 class="card-title"><?php echo $data_carte1[0]?></h4>
-				<p class="card-text"><?php echo $data_carte1[1]?></p>
+				<h4 class="card-title"><?php echo $carte['carte_titre']?></h4>
+				<p class="card-text"><?php echo $carte['carte_description']?></p>
 			</div>
-			<?php
-			if ($data_carte1[2]=='1'){
-				echo '<div class="text-center card-footer bg-transparent"><a class="btn btn-primary" href="../casper" target="_blank" role="button" >'.$data_carte1[3].' &raquo;</a></div>';
-			} ?>
+
+			<div class="text-center card-footer bg-transparent"><a class="btn btn-primary" href="<?= $carte['carte_lien'] ?>" target="_blank" role="button" ><?= $carte['carte_bouton'] ?></a></div>
 		</div>
         <?php endif; ?>
-
-        <?php if(empty($data_carte2['sites']) || in_array($promo['site'], $data_carte2['sites'])) : ?>
-		<div class="card border-dark" style="margin-bottom: 10px">
-			<img class="card-img-top" class="img-fluid"  src="<?php echo $data_carte2[4] ; ?>" alt="Card image cap" style="max-height: 150px;">
-			<div class="card-body">
-				<h4 class="card-title"><?php echo $data_carte2[0]?></h4>
-				<p class="card-text"><?php echo $data_carte2[1]?></p>
-			</div>
-			<?php
-			if ($data_carte2[2]=='1'){ ?>
-                <div class="text-center card-footer bg-transparent"><a class="btn btn-primary" href="../shotgun" role="button"><?=$data_carte2[3]?> &raquo;</a>
-				<a class="btn btn-primary" href="../billetterie" role="button">Billetterie &raquo;</a> </div>
-			<?php } ?>
-		</div>
-        <?php endif; ?>
-
-        <?php if(empty($data_carte3['sites']) || in_array($promo['site'], $data_carte3['sites'])) : ?>
-		<div class="card border-dark" style="margin-bottom: 10px"> <!-- gala -->
-			<img class="card-img-top" id="indice_gala" class='img-fluid'  src='<?php echo $data_carte3[4] ; ?>' alt="image carte 3">
-			<div class="card-body">
-				<h4 class="card-title"><?php echo $data_carte3[0]?> </h4>
-				<p class="card-text"><?php echo $data_carte3[1]?></p>
-			</div>
-			<?php
-			if ($data_carte3[2]=='1'){
-				echo '<div class="text-center card-footer bg-transparent"><a class="btn btn-primary" href="https://payicam.icam.fr/billetterie/inscriptions/inscriptions.php?event_id=2" target="_blank" role="button" >' . $data_carte3[3] . '&raquo;</a></div>';
-			} ?>
-		</div>
-        <?php endif; ?>
-
-        <!-- <div class="modal fade" id="indice_gala_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Easter Egg !</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body table-responsive">
-                        <img src="img/indice_gala.png" alt="INDICE GALA">
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-        <?php if(empty($data_carte4['sites']) || in_array($promo['site'], $data_carte4['sites'])) : ?>
-		<div class="card border-dark" style="margin-bottom: 10px">
-			<img class="card-img-top" class="img-fluid"  src="<?php echo $data_carte4[4] ; ?>" alt="Card image cap">
-			<div class="card-body">
-				<h4 class="card-title"><?php echo $data_carte4[0]?></h4>
-				<p class="card-text"><?php echo $data_carte4[1]?></p>
-			</div>
-			<?php
-			if ($data_carte4[2]=='1'){
-				echo ' <div class="text-center card-footer bg-transparent"><a class="btn btn-primary" href="RIEN POUR LE MOMENT" role="button">'; echo $data_carte4[3].' &raquo;</a> </div>  ';
-			} ?>
-		</div>
-        <?php endif; ?>
-
-	</div>    <!-- /Ligne de 4 cartes publiques  -->
+        <?php } ?>
+	<!-- /Ligne de 4 cartes publiques  -->
 
 	<!--auth admin -->
 	<?php if ($Auth->hasRole('admin')): ?>
@@ -250,13 +183,11 @@ include 'includes/header.php'; ?>
 					<p class="card-text">Application web permettant entre autre la gestion des articles, la gestion des droits, la trésorerie, ...</p>
 				</div>
 				<div class="card-footer bg-transparent">
-					<a class="btn btn-primary" href="../scoobydoo" target="_blank" role="button">Scoobydoo &raquo;</a>
+					<center><a class="btn btn-primary" href="../scoobydoo" target="_blank" role="button">Scoobydoo &raquo;</a></center>
 				</div>
 			</div>
 
-
 			<!-- auth super admin -->
-
 			<?php if ($Auth->hasRole('super-admin')): ?>
 
 				<div class="card border-dark" style="margin-bottom: 10px">
@@ -265,12 +196,11 @@ include 'includes/header.php'; ?>
 						<p class="card-text">Cette interface permet la gestion par exemple de l'affectation des identifiants cartes étudiantes aux élèves.</p>
 					</div>
 					<div class="card-footer bg-transparent">
-						<a class="btn btn-primary" href="../admin_ginger" target="_blank" role="button">Admin Ginger &raquo;</a>
+						<center><a class="btn btn-primary" href="../admin_ginger" target="_blank" role="button">Admin Ginger &raquo;</a></center>
 					</div>
 				</div>
 			<?php endif ?>
 			<!-- fin auth super admin -->
-
 
 			<div class="card border-dark" style="margin-bottom: 10px">
 				<div class="card-body">
@@ -278,7 +208,7 @@ include 'includes/header.php'; ?>
 					<p class="card-text">Application web de ventre des articles comme au Bar ou la cafet avec une caisse et une badgeuse.</p>
 				</div>
 				<div class="card-footer bg-transparent">
-					<a class="btn btn-primary" href="../mozart" target="_blank" role="button">Mozart &raquo;</a>
+					<center><a class="btn btn-primary" href="../mozart" target="_blank" role="button">Mozart &raquo;</a></center>
 				</div>
 			</div>
 
@@ -288,7 +218,7 @@ include 'includes/header.php'; ?>
 					<p class="card-text">Administration des ventes d'articles en ligne, celle de shotgun.</p>
 				</div>
 				<div class="card-footer bg-transparent">
-					<a class="btn btn-primary" href="../shotgun/admin" target="_blank" role="button">Shotgun &raquo;</a>
+					<center><a class="btn btn-primary" href="../shotgun/admin" target="_blank" role="button">Shotgun &raquo;</a></center>
 				</div>
 			</div>
 

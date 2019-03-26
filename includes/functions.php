@@ -90,3 +90,44 @@ class Functions{
 }
 
 
+
+
+function upload_image($index, $type, $id=null, $array=null) {
+    var_dump($id);
+    if(!in_array($type, ['slide', 'carte'])) {
+        Functions::setFlashAndRedirect('index_admin.php', "Le type renseigné n'existe pas", "warning");
+    }
+    global $DB;
+
+    $extensions = array('.png', '.jpeg', '.gif');
+    $dossier = 'img/';
+
+    $name = empty($array) ? $_FILES[$index]['name'] : $_FILES[$index]['name'][$id];
+
+    $extension = strrchr($name, '.');
+    if(!in_array($extension, $extensions)) {
+        Functions::setFlashAndRedirect('index_admin.php', "Une des images n'est pas du bon format (jpeg/png/gif)", "warning");
+    }
+    $fichier = $dossier . $type . '_' . $id . $extension;
+
+    $tmp_name = empty($array) ? $_FILES[$index]['tmp_name'] : $_FILES[$index]['tmp_name'][$id];
+
+    if(move_uploaded_file($tmp_name, $fichier)) {
+        if($type=='slide') {
+            $requete_update_slide = $DB->prepare("UPDATE payicam_accueil_slide SET slide_image=:fichier WHERE slide_id=:id");
+        }
+        elseif($type=='carte') {
+            $requete_update_slide = $DB->prepare("UPDATE payicam_carte SET carte_photo=:fichier WHERE carte_id=:id");
+        }
+        else {
+            die("Le type d'image est incorrect");
+        }
+        $requete_update_slide->execute(array("fichier" => $fichier, "id" => $id));
+    }
+    else {
+        var_dump($_FILES[$index]["error"]);
+        var_dump($fichier);
+        die('rdc");"');
+        Functions::setFlashAndRedirect('index_admin.php', "Pour une raison inconnue, l'upload n'a pas fonctionné", "warning");
+    }
+}

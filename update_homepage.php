@@ -57,51 +57,14 @@ foreach($_POST['maj_titre'] as $carte_id => $titre) {
     $update->execute($carte);
 
     if(!empty($_FILES['input_image_carte']['name'][$carte_id])) {
-        upload_image('input_image_carte', 'carte', $carte_id);
+        upload_image('input_image_carte', 'carte', $carte_id, true);
     }
 }
 
 foreach($_FILES['input_image_slide']['name'] as $slide_id => $name) {
     if(!empty($_FILES['input_image_slide']['name'][$slide_id])) {
-        upload_image('input_image_slide', 'slide', $slide_id);
+        upload_image('input_image_slide', 'slide', $slide_id, true);
     }
 }
     
 Functions::setFlashAndRedirect('index_admin.php', "Modification effectuée");
-
-////////////////////////////////////// Fonction pour l'upload d'images
-function upload_image($index, $type, $id=null) {
-    if(!in_array($type, ['slide', 'carte'])) {
-        Functions::setFlashAndRedirect('index_admin.php', "Le type renseigné n'existe pas", "warning");
-    }
-    global $DB;
-
-    $extensions = array('.png', '.jpeg', '.gif');
-    $dossier = 'img/';
-
-    $name = empty($id) ? $_FILES[$index]['name'] : $_FILES[$index]['name'][$id];
-
-    $extension = strrchr($name, '.');
-    if(!in_array($extension, $extensions)) {
-        Functions::setFlashAndRedirect('index_admin.php', "Une des images n'est pas du bon format (jpeg/png/gif)", "warning");
-    }
-    $fichier = $dossier . $type . '_' . $id . $extension;
-
-    $tmp_name = empty($id) ? $_FILES[$index]['tmp_name'] : $_FILES[$index]['tmp_name'][$id];
-
-    if(move_uploaded_file($tmp_name, $fichier)) {
-        if($type=='slide') {
-            $requete_update_slide = $DB->prepare("UPDATE payicam_accueil_slide SET slide_image=:fichier WHERE slide_id=:id");
-        }
-        elseif($type=='carte') {
-            $requete_update_slide = $DB->prepare("UPDATE payicam_carte SET carte_photo=:fichier WHERE carte_id=:id");
-        }
-        else {
-            die("Le type d'image est incorrect");
-        }
-        $requete_update_slide->execute(array("fichier" => $fichier, "id" => $id));
-    }
-    else {
-        Functions::setFlashAndRedirect('index_admin.php', "Pour une raison inconnue, l'upload n'a pas fonctionné", "warning");
-    }
-}
