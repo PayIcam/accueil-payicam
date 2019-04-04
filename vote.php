@@ -33,17 +33,16 @@ $param_vote -> execute();
 $infos_vote = $param_vote->fetch();
 
 
-$promo = $DB_promo->prepare('SELECT promo FROM users WHERE mail = :email');
+$promo = $DB_promo->prepare('SELECT promo, site FROM users WHERE mail = :email');
 $promo -> bindParam('email', $user['email'], PDO::PARAM_STR);
 $promo->execute();
 $promo_votant = $promo->fetch();
-
 
 if ($vote_fait != false){
   Functions::setFlash("Bien tenté!",'danger');
   header('Location:index.php');
 }
-if (!in_array($promo_votant['promo'], [24, 123, 122, 121, 120, 119, 2023, 2022, 2021, 2020, 2019]) && $promo_votant['site'] != "Lille" ){
+if (!in_array($promo_votant['promo'], [24, 123, 2023]) && $promo_votant['site'] != "Lille" ){
   Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
   header('Location:index.php');
 }
@@ -72,14 +71,14 @@ elseif ($date_actuelle > $infos_vote['date_fin']) {
       <img src="img/choix2.png" type="button" id="choix_2" class='rounded-circle' alt="choix_2" data-toggle="modal" data-target="#choix_2Modal">
     </div>
     <div class="sep_bouton" id="sep_bouton_choix_1">
-      <img src="img/choix1.png" type="button" alt="choix_1" class='rounded-circle' id="choix_1" data-toggle="modal" data-target="#choix_1Modal">
+      <img src="img/choix1.jpg" type="button" alt="choix_1" class='rounded-circle' id="choix_1" data-toggle="modal" data-target="#choix_1Modal">
     </div>
     <!-- <div class="sep_bouton" id="sep_bouton_choix_3">
       <img src="img/choix1.png" type="button" alt="choix_3" class='rounded-circle' id="choix_3">
     </div> -->
     <div id="sep_bouton_bas">
         <!-- <img src="img/choix.png" type="button" alt="choix_1" class='rounded-circle' id="choix_1" data-toggle="modal" data-target="#blancModal"> -->
-      <input type="button" class="btn btn-secondary btn-lg" value="Je vote blanc" data-toggle="modal" data-target="#blancModal"></input>
+      <!-- <input type="button" class="btn btn-secondary btn-lg" value="Je vote blanc" data-toggle="modal" data-target="#blancModal"></input> -->
     </div>
   </div>
     <!-- <div id="sep_bouton_bas">
