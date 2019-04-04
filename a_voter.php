@@ -74,18 +74,18 @@ else{
     $enreg -> bindParam('choice', $_POST['vote'], PDO::PARAM_STR);
     try {
       $enreg -> execute();
-      if($_POST['vote'] == 'blanc') {
-          header('Location: https://www.youtube.com/watch?v=_C-K4TTRc-A');
-          die();
-      } elseif($_POST['vote'] == "Umti'tigre") {
-          header('Location: https://www.youtube.com/watch?v=Zwy1EN79o-k');
-          die();
-      } elseif($_POST['vote'] == "Env'owl") {
-          header('Location: https://youtu.be/bcDeh_XuNis?t=70');
-          die();
-      }
-      // Functions::setFlash("Votre vote a bien été enregistré ",'info');
-      // header('Location:index.php');
+      // if($_POST['vote'] == 'blanc') {
+      //     header('Location: https://www.youtube.com/watch?v=_C-K4TTRc-A');
+      //     die();
+      // } elseif($_POST['vote'] == "Umti'tigre") {
+      //     header('Location: https://www.youtube.com/watch?v=Zwy1EN79o-k');
+      //     die();
+      // } elseif($_POST['vote'] == "Env'owl") {
+      //     header('Location: https://youtu.be/bcDeh_XuNis?t=70');
+      //     die();
+      // }
+      Functions::setFlash("Votre vote a bien été enregistré ",'info');
+      header('Location:index.php');
 
     } catch (Exception $e) {
       Functions::setFlash("Votre vote n'a pas été enregistré, si le problème persiste, contactez PayIcam",'danger');
