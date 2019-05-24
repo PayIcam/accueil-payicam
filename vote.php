@@ -40,20 +40,24 @@ $promo_votant = $promo->fetch();
 if ($vote_fait != false){
   Functions::setFlash("Bien tenté!",'danger');
   header('Location:index.php');
+  die();
 }
-if (!in_array($promo_votant['promo'], [24, 123, 2023]) || $promo_votant['site'] != "Lille" ){
+if (!in_array($promo_votant['promo'], [122, 120]) || $promo_votant['site'] != "Lille" ){
   Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
   header('Location:index.php');
+  die();
 }
 
 $date_actuelle=date("Y-m-d H:i:s");
 if ($date_actuelle < $infos_vote['date_debut']){
   Functions::setFlash("Il n'y a pas de vote en cours",'danger');
   header('Location:index.php');
+  die();
 }
 elseif ($date_actuelle > $infos_vote['date_fin']) {
   Functions::setFlash("Le vote est terminé",'danger');
   header('Location:index.php');
+  die();
 }
 
 include 'includes/header.php';
@@ -68,7 +72,7 @@ include 'includes/header.php';
 <body>
   <div id="morph">
     <div class="sep_bouton" id="sep_bouton_choix_2">
-      <img src="img/choix2.png" type="button" id="choix_2" class='rounded-circle' alt="choix_2" data-toggle="modal" data-target="#choix_2Modal">
+      <img src="img/choix2.jpg" type="button" id="choix_2" class='rounded-circle' alt="choix_2" data-toggle="modal" data-target="#choix_2Modal">
     </div>
     <div class="sep_bouton" id="sep_bouton_choix_1">
       <img src="img/choix1.jpg" type="button" alt="choix_1" class='rounded-circle' id="choix_1" data-toggle="modal" data-target="#choix_1Modal">
