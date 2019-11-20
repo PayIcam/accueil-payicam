@@ -81,7 +81,7 @@ include 'includes/header.php';
       <img src="img/choix1.png" type="button" alt="choix_3" class='rounded-circle' id="choix_3">
     </div> -->
     <div class="sep_bouton" id="sep_bouton_choix_2">
-        <img src="img/choix2.jpg" type="button" alt="choix_2" class='rounded-circle' id="choix_2" data-toggle="modal" data-target="#blancModal">
+        <img src="img/choix2.png" type="button" alt="choix_2" class='rounded-circle' id="choix_2" data-toggle="modal" data-target="#blancModal">
       <!-- <input type="button" class="btn btn-secondary btn-lg" value="Je vote blanc" data-toggle="modal" data-target="#blancModal"></input> -->
     </div>
   </div>
