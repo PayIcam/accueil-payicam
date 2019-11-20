@@ -42,7 +42,7 @@ if ($vote_fait != false){
   header('Location:index.php');
   die();
 }
-if (!in_array($promo_votant['promo'], [122, 120]) || $promo_votant['site'] != "Lille" ){
+if (!in_array($promo_votant['promo'], [120, 121, 122, 123, 124, 2020, 2021, 2022, 2023, 2024, 24, 25]) || $promo_votant['site'] != "Lille" ){
   Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
   header('Location:index.php');
   die();
@@ -71,18 +71,18 @@ include 'includes/header.php';
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <body>
   <div id="morph">
-    <div class="sep_bouton" id="sep_bouton_choix_2">
-      <img src="img/choix2.jpg" type="button" id="choix_2" class='rounded-circle' alt="choix_2" data-toggle="modal" data-target="#choix_2Modal">
-    </div>
     <div class="sep_bouton" id="sep_bouton_choix_1">
-      <img src="img/choix1.jpg" type="button" alt="choix_1" class='rounded-circle' id="choix_1" data-toggle="modal" data-target="#choix_1Modal">
+      <img src="img/choix1.png" type="button" alt="choix_1" class='rounded-circle' id="choix_1" data-toggle="modal" data-target="#choix_1Modal">
     </div>
+    <!-- <div class="sep_bouton" id="sep_bouton_choix_2">
+      <img src="img/choix2.jpg" type="button" id="choix_2" class='rounded-circle' alt="choix_2" data-toggle="modal" data-target="#choix_2Modal">
+    </div> -->
     <!-- <div class="sep_bouton" id="sep_bouton_choix_3">
       <img src="img/choix1.png" type="button" alt="choix_3" class='rounded-circle' id="choix_3">
     </div> -->
     <div id="sep_bouton_bas">
-        <!-- <img src="img/choix.png" type="button" alt="choix_1" class='rounded-circle' id="choix_1" data-toggle="modal" data-target="#blancModal"> -->
-      <!-- <input type="button" class="btn btn-secondary btn-lg" value="Je vote blanc" data-toggle="modal" data-target="#blancModal"></input> -->
+        <img src="img/choix.png" type="button" alt="choix_1" class='rounded-circle' id="choix_1" data-toggle="modal" data-target="#blancModal">
+      <input type="button" class="btn btn-secondary btn-lg" value="Je vote blanc" data-toggle="modal" data-target="#blancModal"></input>
     </div>
   </div>
     <!-- <div id="sep_bouton_bas">

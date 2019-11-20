@@ -56,13 +56,14 @@ else{
 
   if ($vote_fait != false){
     Functions::setFlash("Bien tenté!",'danger');
-    // header('Location:index.php');
-    header('Location: https://www.youtube.com/watch?v=ShNHTyyKHZ4');
+    header('Location:index.php');
+    // header('Location: https://www.youtube.com/watch?v=ShNHTyyKHZ4');
     die();
   }
   elseif ($promo_votant['promo'] == 0){
     Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
     header('Location:index.php');
+    die();
   }
   else{
 
