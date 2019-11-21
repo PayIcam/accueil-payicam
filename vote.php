@@ -129,7 +129,9 @@ include 'includes/header.php';
             <p>Ce vote est définitif, êtes-vous sûr?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            <a href="https://www.youtube.com/watch?v=APaQbw1mrOM">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            </a>
             <input type="hidden" name='vote' value="<?php echo ($infos_vote['choix_1']) ?>">
             <input type="submit" class="btn btn-warning" value="<?php echo("Je vote ".$infos_vote['choix_1']) ?>" >
           </div>
@@ -151,7 +153,9 @@ include 'includes/header.php';
             <p>Ce vote est définitif, êtes-vous sûr?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            <a href="https://www.youtube.com/watch?v=V-PD5iz7qdE">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            </a>
             <input type="hidden" name='vote' value="blanc">
             <input type="submit" class="btn btn-light" value="Je vote blanc">
           </div>
