@@ -105,7 +105,9 @@ include 'includes/header.php';
             <p>Ce vote est définitif, êtes-vous sûr?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            <a href="https://www.youtube.com/watch?v=APaQbw1mrOM">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            </a>
             <input type="hidden" name='vote' value="<?php echo ($infos_vote['choix_2']) ?>">
             <input type="submit" class="btn btn-light" value="<?php echo("Je vote ".$infos_vote['choix_2']) ?>" >
           </div>
