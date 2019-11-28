@@ -34,7 +34,6 @@ $items = $requete_items->fetchAll();
   </thead>
   <tbody>
     <?php
-    $i=1;
     foreach($items as $items) { ?>
     <tr>
       <th scope="row"><?= $items['item_id']; ?></th>
@@ -129,7 +128,7 @@ $items = $requete_items->fetchAll();
 </form>
       </td> 
     </tr>
-    <?php $i++; } ?>
+    <?php } ?>
   </tbody>
 </table>
 
