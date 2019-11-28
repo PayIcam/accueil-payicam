@@ -71,6 +71,7 @@
       </li>
 
       <li class="nav-item"><a  class="nav-link" href="contact.php">Contact</a> </li>
+      <li class="nav-item"><a  class="nav-link" href="reservation.php">Réservations</a> </li>
     </ul>
 
     <ul class="nav navbar-nav my-2 my-lg-0">
