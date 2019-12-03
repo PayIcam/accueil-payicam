@@ -26,105 +26,67 @@ $items = $requete_items->fetchAll();
 <table class="table">
   <thead class="thead-light">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Objet</th>
-      <th scope="col">Quantité</th>
-      <th scope="col">Action</th>
+      <th scope="col"><center>#</center></th>
+      <th scope="col"><center>Objet</center></th>
+      <th scope="col"><center>Quantité</center></th>
+      <th scope="col"><center>Action</center></th>
     </tr>
   </thead>
   <tbody>
     <?php
     foreach($items as $items) { ?>
     <tr>
-      <th scope="row"><?= $items['item_id']; ?></th>
-      <td><?= $items['name']; ?></td>
-      <td><?= $items['quantity']; ?></td>
+      <th scope="row"><center><?= $items['item_id']; ?></center></th>
+      <td><center><?= $items['name']; ?></center></td>
+      <td><center><?= $items['quantity']; ?></center></td>
       <td>
-      
 <!-- Réserver un objet -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#LouerObjet">
-  Réserver
-</button>
-<div class="modal fade" id="LouerObjet" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Demande pour <?= $items['name']; ?></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method="post" action="ajouter_reservation.php">
-          <div class="form-group">
-            <div class="form-group">
-              <label for="exampleFormControlSelect1">Quantité</label>
-              <select class="form-control" id="exampleFormControlSelect1" name="">
-                <option>10</option>
-                <option>30</option>
-                <option>50</option>
-                <option>80</option>
-                <option>100</option>
-                <option>150</option>
-                <option>200</option>
-                <option>300</option>
-              </select>
-            </div>
-            <label>Adresse mail</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="prénom.nom@promo.icam.fr">
-            DEBUT
-            <input type="datetime-local" class="form-control" name="blabla">
-            FIN
-            <input type="datetime-local" class="form-control" name="blabla5">
-
-
-
-
-
-
-
-            <div class='input-group date' id='datetimepicker6'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="oi oi-pencil"></span>
-                </span>
-            </div>
-
-
-            
-            
-            
-            
-            <div class='input-group date' id='datetimepicker7'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-          </div> 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#LouerObjet">Réserver</button>
+  <div class="modal fade" id="LouerObjet" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Demande pour <?= $items['name']; ?></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-            <button type="button" class="btn btn-primary">Envoyer la demande</button>
-        </form>
+        <div class="modal-body">
+          <form method="post" action="ajouter_reservation.php">
+            <div class="form-group">
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">Quantité</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="reservation_quantity">
+                  <option>10</option>
+                  <option>30</option>
+                  <option>50</option>
+                  <option>80</option>
+                  <option>100</option>
+                  <option>150</option >
+                  <option>200</option>
+                  <option>300</option>
+                </select>
+              </div>
+              <label for="exampleFormControlSelect1">Date de début</label>
+              <input type="datetime-local" class="form-control" name="reservation_start_date">
+              <label for="exampleFormControlSelect1">Date de fin</label>
+              <input type="datetime-local" class="form-control" name="reservation_end_date">
+              <input type="hidden" class="form-control" name="reservation_statue" value="w">
+              <input type="hidden" name="object_id" value="<?php echo $items['item_id']; ?>">
+            </div> 
+          </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+              <button type="submit" class="btn btn-primary" action="ajouter_reservation.php">Envoyer la demande</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
 <form method="post" action="supprimer_objet.php">
-<button type="submit" class="btn btn-danger">Supprimer</button>
-<input type="hidden" name="object_id" value="<?php echo $items['item_id']; ?>">
+  <input type="hidden" name="object_id" value="<?php echo $items['item_id']; ?>">
+  <button type="submit" class="btn btn-danger">Supprimer</button>
 </form>
       </td> 
     </tr>
@@ -140,7 +102,7 @@ $items = $requete_items->fetchAll();
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Formulaire d'ajout d'un objet</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Ajouter un objet</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -153,7 +115,6 @@ $items = $requete_items->fetchAll();
             <p class="card-text">
               <textarea class="form-control" name= "object_description" autofocus placeholder="Description de l'objet" rows="4"></textarea>
             </p>
-            <input type="email" class="form-control" id="exampleFormControlInput1" name="object_owner" placeholder="prénom.nom@promo.icam.fr">
           </div>
         </div>
           <div class="modal-footer">
@@ -167,6 +128,5 @@ $items = $requete_items->fetchAll();
 
 <!-- Gestion des réservations -->
 <a class="btn btn-primary" href="reservation_admin.php" role="button">Gérer les réservations</a>
-
 
 <?php include 'includes/footer.php'; ?>

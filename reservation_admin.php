@@ -27,12 +27,12 @@ $reservations = $requete_reservations->fetchAll();
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Objet</th>
-      <th scope="col">Quantité</th>
-      <th scope="col">Demandeur</th>
-      <th scope="col">Début</th>
-      <th scope="col">Fin</th>
-      <th scope="col">Action</th>
+      <th scope="col"><center>Objet</center></th>
+      <th scope="col"><center>Quantité</center></th>
+      <th scope="col"><center>Demandeur</center></th>
+      <th scope="col"><center>Début</center></th>
+      <th scope="col"><center>Fin</center></th>
+      <th scope="col"><center>Action</center></th>
     </tr>
   </thead>
   <tbody>
@@ -40,13 +40,13 @@ $reservations = $requete_reservations->fetchAll();
     $i=1;
     foreach($reservations as $reservations) { ?>
     <tr>
-      <th scope="row">1</th>
-      <td><?= $reservations['item_id']; ?></td>
-      <td><?= $reservations['email']; ?></td>
-      <td><?= $reservations['quantity']; ?></td>
-      <td><?= $reservations['start_date']; ?></td>
-      <td><?= $reservations['end_date']; ?></td>
-      <td><?= $reservations['status']; ?></td>
+      <th scope="row"><?= $reservations['reservation_id']; ?></th>
+      <td><center><?= $reservations['item_id']; ?></center></td>
+      <td><center><?= $reservations['quantity']; ?></center></td>
+      <td><center><?= $reservations['email']; ?></center></td>
+      <td><center><?= $reservations['start_date']; ?></center></td>
+      <td><center><?= $reservations['end_date']; ?></center></td>
+      <td><center><?= $reservations['status']; ?></center></td>
     </tr>
     <?php $i++; } ?>
   </tbody>
