@@ -26,7 +26,7 @@ $reservations = $requete_reservations->fetchAll();
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col"><center>#</center></th>
       <th scope="col"><center>Objet</center></th>
       <th scope="col"><center>Quantité</center></th>
       <th scope="col"><center>Demandeur</center></th>
@@ -46,7 +46,46 @@ $reservations = $requete_reservations->fetchAll();
       <td><center><?= $reservations['email']; ?></center></td>
       <td><center><?= $reservations['start_date']; ?></center></td>
       <td><center><?= $reservations['end_date']; ?></center></td>
-      <td><center><?= $reservations['status']; ?></center></td>
+      <td><center>
+                  <button type="button" class="
+                  <?php if ($reservations['status'] == 'w') {echo "btn btn-primary";}
+                        if ($reservations['status'] == 'v') {echo "btn btn-success";}
+                        if ($reservations['status'] == 'a') {echo "btn btn-danger";}
+                        if ($reservations['status'] == 'f') {echo "btn btn-secondary";}
+                        ?>" data-toggle="modal" data-target="#exampleModalCenter">
+                  <?php if ($reservations['status'] == 'w') {echo "En attente";}
+                        if ($reservations['status'] == 'v') {echo "Acceptée";}
+                        if ($reservations['status'] == 'a') {echo "Refusée";}
+                        if ($reservations['status'] == 'f') {echo "Terminée";}
+                        ?></button>
+                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Statut de la réservation</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <form method="post" action="modifier_reservation.php">
+                          <div class="modal-body">
+                            <select class="selectpicker" multiple data-max-options="4" name="reservation_statue">
+                              <option>En attente</option>
+                              <option>Accepter la réservation</option>
+                              <option>Refuser la réservation</option>
+                              <option>Conclure la réservation</option>
+                            </select>
+                            <input type="hidden" name="reservation_id" value="<?php echo $reservations['reservation_id']; ?>">
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-primary" action="modifier_reservation.php">Valider</button>  
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+        </center></td>
     </tr>
     <?php $i++; } ?>
   </tbody>
