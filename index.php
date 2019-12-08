@@ -166,7 +166,7 @@ include 'includes/header.php'; // insertion du fichier header.php : entête, bar
 
 
 	<?php  	//DEBUT VOTE
-	if (($date_actuelle > $jour_avant) && ($date_actuelle < $jour_apres) && in_array($promo['promo'], [122]) && $promo['site'] == 'Lille'){ // verifie intervalle de temps + PROMO A METTRE A JOUR TOUS LES ANS J'AI LA FLEMME DE FAIRE UN TRUC AUTOMATIQUE
+	if (($date_actuelle > $jour_avant) && ($date_actuelle < $jour_apres) && in_array($promo['promo'], [120, 121, 122, 123, 124, 2020, 2021, 2022, 2023, 2024, 24, 25]) && $promo['site'] == 'Lille'){ // verifie intervalle de temps + PROMO A METTRE A JOUR TOUS LES ANS J'AI LA FLEMME DE FAIRE UN TRUC AUTOMATIQUE
 
 		if ($vote_fait != false){ // si déjà voté bloque le bouton?>
 			<a class="btn btn-warning btn-lg btn-block" href="#" type='button' style="margin-bottom: 10px" disabled>Vous avez déjà voté. Rendez-vous ce soir pour le résultat!</a>
