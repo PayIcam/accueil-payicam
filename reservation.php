@@ -64,7 +64,6 @@ $items = $requete_items->fetchAll();
                                                     <input type="datetime-local" class="form-control" name="reservation_start_date">
                                                     <label for="exampleFormControlSelect1">Date de fin</label>
                                                     <input type="datetime-local" class="form-control" name="reservation_end_date">
-                                                    <input type="hidden" name="reservation_status" value="W">
                                                     <input type="hidden" name="object_id" value="<?php echo $item['item_id']; ?>">
                                                 </div> 
                                             </div>
