@@ -8,12 +8,11 @@ require_once ROOT_PATH.'class/DB.php';
 include('config.php');
 $title_for_layout = 'Accueil';
 $js_for_layout = array('bootstrap.min.js', 'indice_gala');
-
 $confSQL = $_CONFIG['conf_accueil'];
 
-try{
+try {
     $DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-    } catch(Exeption $e) {
+} catch(Exeption $e) {
     die('erreur:'.$e->getMessage());
 }
 
