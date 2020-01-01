@@ -81,83 +81,32 @@ include 'includes/header.php'; ?>
 } ?>
 
 <div id="cards" class="card-deck">
-	<div class="row"> <!-- Ligne de 4 cartes publiques -->
-		<?php $i=0; foreach($cartes as $carte): ?>
-    		<?php if (empty($carte['sites']) || in_array($site, json_decode($carte['sites']))): ?>
-        		<div class="card border-dark" style="margin-bottom: 10px">
-        			<img class="card-img-top" style="max-height: 150px;" src="img/<?= $carte['photo_url']; ?>" alt="image carte" style="max-height: 150px;">
-        			<div class="card-body">
-        				<h4 class="card-title"><?= $carte['title']?></h4>
-        				<p class="card-text"><?= $carte['description']?></p>
-        			</div>
-                    <?php if($carte['active_button']): ?>
-                        <div class="text-center card-footer bg-transparent">
-                            <a class="btn btn-primary" href="../<?= $carte['target'] ?>" target="_blank" role="button"><?= $carte['button_title'] ?> »</a>
-                            <?php if ($i==1): ?>
-                                <a class="btn btn-primary" href="../billetterie" target="_blank" role="button">Billetterie »</a>
-                            <?php endif; ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            <?php $i++; endif; ?>
-        <?php endforeach; ?>
+	<div class="row">
+		<?php $i=0; foreach($cartes as $carte) {
+    		if (empty($carte['sites']) || in_array($site, json_decode($carte['sites']))) {
+                displayCard($carte, $i);
+                $i++;
+            }
+        } ?>
     </div>
-	<!--auth admin -->
+
 	<?php if ($Auth->hasRole('admin')): ?>
 		<div class="container" style="background-color: #d9d9d9; margin-top: 10px; margin-bottom: 10px">
 			<h2 class="page-header text-center">Liens vers l'Administration</h2>
 		</div>
-		<div class="row"><!-- Ligne de 4 cartes admin  -->
-			<div class="card border-dark" style="margin-bottom: 10px">
-				<div class="card-body">
-					<h4 class="card-title">Admin PayIcam</h4>
-					<p class="card-text">Application web permettant entre autre la gestion des articles, la gestion des droits, la trésorerie, ...</p>
-				</div>
-				<div class="text-center card-footer bg-transparent">
-					<a class="btn btn-primary" href="../scoobydoo" target="_blank" role="button">Scoobydoo &raquo;</a>
-				</div>
-			</div>
 
-			<!-- auth super admin -->
-			<?php if ($Auth->hasRole('super-admin')): ?>
-
-				<div class="card border-dark" style="margin-bottom: 10px">
-					<div class="card-body">
-						<h4 class="card-title">Gestion des données des élèves</h4>
-						<p class="card-text">Cette interface permet la gestion par exemple de l'affectation des identifiants cartes étudiantes aux élèves.</p>
-					</div>
-					<div class="card-footer bg-transparent text-center">
-						<a class="btn btn-primary" href="../admin_ginger" target="_blank" role="button">Admin Ginger &raquo;</a>
-					</div>
-				</div>
-			<?php endif ?>
-			<!-- fin auth super admin -->
-
-			<div class="card border-dark" style="margin-bottom: 10px">
-				<div class="card-body">
-					<h4 class="card-title">Vente par caisse physique</h4>
-					<p class="card-text">Application web de ventre des articles comme au Bar ou la cafet avec une caisse et une badgeuse.</p>
-				</div>
-				<div class="card-footer bg-transparent text-center">
-					<a class="btn btn-primary" href="../mozart" target="_blank" role="button">Mozart &raquo;</a>
-				</div>
-			</div>
-
-			<div class="card border-dark" style="margin-bottom: 10px">
-				<div class="card-body">
-					<h4 class="card-title">Admin ventes en ligne</h4>
-					<p class="card-text">Administration des ventes d'articles en ligne, celle de shotgun.</p>
-				</div>
-				<div class="card-footer bg-transparent text-center">
-					<a class="btn btn-primary" href="../shotgun/admin" target="_blank" role="button">Shotgun &raquo;</a>
-				</div>
-			</div>
-
-		</div>  	<!-- /Ligne de 4 cartes admin  -->
+        <div class="row">
+            <?php foreach($cartes_admin as $carte) {
+                if (!$carte['is_super_admin'] || $Auth->hasRole('super-admin')) {
+                    if (empty($carte['sites']) || in_array($site, json_decode($carte['sites']))) {
+                        displayCard($carte, $i);
+                    }
+                }
+            } ?>
+        </div>
 	<?php endif ?>
-		<!-- fin Auth admin -->
 
 
-</div>  <!-- /CARD-DECK -->
+</div>
 
 <?php include 'includes/footer.php'; ?>

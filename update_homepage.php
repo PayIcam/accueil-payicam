@@ -18,16 +18,17 @@ foreach($_POST['title'] as $carte_id => $title) {
     } else {
         Functions::setFlashAndRedirect('index_admin.php', "On ne sait pas si tu veux activer la carte", 'danger');
     }
-    if(!empty($_POST['maj_bouton'][$carte_id])) {
-        $bouton = htmlspecialchars($_POST['maj_bouton'][$carte_id]);
+    if(!empty($_POST['button_title'][$carte_id])) {
+        $bouton = htmlspecialchars($_POST['button_title'][$carte_id]);
     } else {
-        Functions::setFlashAndRedirect('index_admin.php', "T'as oublié de mettre un nom au bouton", 'danger');
+        Functions::setFlashAndRedirect('index_admin.php', "T'as oublié de mettre un titre au bouton", 'danger');
     }
-    if(!empty($_POST['target'][$carte_id])) {
+    if(isset($_POST['target'][$carte_id])) {
         $target = htmlspecialchars($_POST['target'][$carte_id]);
     } else {
         Functions::setFlashAndRedirect('index_admin.php', "T'as oublié de mettre un lien", 'danger');
     }
+    $is_super_admin = isset($_POST['is_super_admin'][$carte_id]) ? 1:0;
 
     $carte = [
         'id' => $carte_id,
@@ -36,9 +37,11 @@ foreach($_POST['title'] as $carte_id => $title) {
         'active_button' => $active_button,
         'button_title' => $bouton,
         'target' => $target,
+        'is_super_admin' => $is_super_admin,
     ];
 
-    $update = $accueil_db->prepare('UPDATE cartes SET title = :title, description = :description, active_button = :active_button, button_title = :button_title, target = :target WHERE id = :id');
+
+    $update = $accueil_db->prepare('UPDATE cartes SET title = :title, description = :description, active_button = :active_button, button_title = :button_title, target = :target, is_super_admin = :is_super_admin WHERE id = :id');
     $update->execute($carte);
 
     if(!empty($_FILES['input_image_carte']['name'][$carte_id])) {

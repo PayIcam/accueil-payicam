@@ -32,17 +32,19 @@ if(empty($_FILES['file']['name'])) {
     Functions::setFlashAndRedirect('index_admin.php', "Ajout de carte : Il n'y a pas d'image", 'danger');
 }
 
-$photo_url = upload_image('file', 'carte');
+$image_url = upload_image('file', 'carte');
 $new_carte = array(
     'title' => $title,
     'description' => $description,
     'active_button' => $active_button,
     'button_title' => $button_title,
     'target' => $target,
-    'photo_url' => $photo_url,
+    'image_url' => $image_url,
+    'is_admin' => isset($_POST['is_admin']) ? 1:0,
+    'is_super_admin' => isset($_POST['is_super_admin']) ? 1:0,
 );
 
-$add_carte = $accueil_db->prepare('INSERT INTO cartes(title, description, active_button, button_title, target, photo_url) VALUES (:title, :description, :active_button, :button_title, :target, :photo_url)');
+$add_carte = $accueil_db->prepare('INSERT INTO cartes(title, description, active_button, button_title, target, image_url, is_admin, is_super_admin) VALUES (:title, :description, :active_button, :button_title, :target, :image_url, :is_admin, :is_super_admin)');
 $add_carte->execute($new_carte);
 $carte_id = $accueil_db->lastInsertId();
 
