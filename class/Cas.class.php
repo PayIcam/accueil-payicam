@@ -1,34 +1,34 @@
-<?php 
+<?php
 
 include('class/httpful.phar');
 
 class Cas{
     protected $url;
     protected $timeout;
-    
+
     public function __construct($url, $timeout=10){
         $this->url = $url;
         $this->timeout = $timeout;
     }
-    
+
     public function authenticate($ticket, $service){
         $r = \Httpful\Request::get($this->getValidateUrl($ticket, $service))
           ->sendsXml()
           ->timeoutIn($this->timeout)
           ->send();
 	// var_dump($r);
-        
+
 	$user = $body = trim(str_replace("\n", "", $r->raw_body));
-		
+
         try {
             $xml = new SimpleXMLElement($body);
         }catch (Exception $e) {
             echo "Return cannot be parsed : '{$body}'",  $e->getMessage(), "\n";
             // return (string)"Return cannot be parsed";
         }
-        
+
         $namespaces = $xml->getNamespaces();
-        
+
         $serviceResponse = $xml->children($namespaces['cas']);
         $user = $serviceResponse->authenticationSuccess->user;
         //*/
@@ -64,7 +64,7 @@ class Cas{
             return false;
         }
     }
-    
+
     public function getValidateUrl($ticket, $service){
         return $this->url."serviceValidate?ticket=".urlencode($ticket)."&service=".urlencode($service);
     }
