@@ -3,8 +3,6 @@
 require 'includes/_header.php';
 $Auth->allow('super-admin');
 
-$confSQL = Config::get('conf_accueil');
-
 $delete_carte = $accueil_db->prepare('DELETE FROM cartes WHERE id=:id');
 $delete_carte->execute(array('id' => $_GET['id']*1));
 

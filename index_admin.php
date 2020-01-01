@@ -2,19 +2,10 @@
 
 require_once 'includes/_header.php';
 
-$Auth->allow('super-admin');
-$user = $Auth->getUser();
 $title_for_layout = 'Accueil';
 $js_for_layout = array('faq');
 
-$requete_slides = $accueil_db->prepare("SELECT * FROM slides");
-$requete_slides->execute();
-$slides = $requete_slides->fetchAll();
-
-$requete_cartes = $accueil_db->prepare("SELECT * FROM cartes");
-$requete_cartes->execute();
-$cartes = $requete_cartes->fetchAll();
-
+require 'includes/ini_variables.php';
 require 'includes/header.php';
 
 ob_start(); ?>
@@ -73,6 +64,8 @@ renderModal('new_carte', 'Ajouter une carte', $new_carte_content);
 
 ?>
 
+<button class="btn btn-<?=$slider ? 'primary' : 'warning' ?>" type="button"><a class="text-white" href="toggle_slider.php"><?=$slider ? 'Désactiver' : 'Réactiver' ?> le slider</a></button>
+
 <form class="mt-3" method="POST" action="update_homepage.php" enctype="multipart/form-data">
     <div class="container">
         <div class="card-deck" style="column-count:3">
@@ -82,7 +75,7 @@ renderModal('new_carte', 'Ajouter une carte', $new_carte_content);
                     <div class="card-body">
                         <input type="file" name="image_slide[<?=$slide['id']?>]">
                         <div class="mt-2 text-center">
-                            <button class="btn btn-danger" type="button" onclick="confirm('Êtes vous sûr ?')"><a class="text-white" href=" delete_slide.php?id=<?=$slide['id']?>">Supprimer</a></button>
+                            <button class="btn btn-danger" type="button" onclick="confirm('Êtes vous sûr ?')"><a class="text-white" href="delete_slide.php?id=<?=$slide['id']?>">Supprimer</a></button>
                         </div>
                     </div>
                 </div>

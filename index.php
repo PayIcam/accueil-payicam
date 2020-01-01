@@ -7,13 +7,7 @@ $Auth->allow('member');
 $title_for_layout = 'Accueil';
 $js_for_layout = array('bootstrap.min.js', 'indice_gala');
 
-$slides = $accueil_db->prepare("SELECT * FROM slides");
-$slides->execute();
-$slides = $slides->fetchAll();
-
-$cartes = $accueil_db->prepare("SELECT * FROM cartes");
-$cartes->execute();
-$cartes = $cartes->fetchAll();
+require 'includes/ini_variables.php';
 
 #Le vote doit être totalement refait parce que là c'est un foutoir.
 $param_vote = $accueil_db->prepare('SELECT * FROM vote_option');
@@ -46,29 +40,31 @@ if ('Toulouse' === $site) {
 
 include 'includes/header.php'; ?>
 
-<div id="carousel" style="padding-top: 0px ; margin-bottom: 20px; border-radius: 4px;" class="carousel slide" data-ride="carousel">
-	<ol class="carousel-indicators">
-	<?php foreach ($slides as $slide) { ?>
-		<li data-target="#carousel" data-slide-to="<?= $slide['id'] ?>" class="active"></li>
-	<?php } ?>
-	</ol>
-	<div class="carousel-inner">
-	<?php foreach ($slides as $key => $slide) { ?>
-		<div id="<?= $slide["id"]?>" class="carousel-item <?= $key == 0 ? "active" : "" ?>">
-			<img class="d-block w-100" src="img/<?= $slide["url"]?>" alt="<?= $slide["alt"]?>">
-			<div class="carousel-caption d-none d-md-block"> </div>
-		</div>
-		<?php } ?>
-	</div>
-	<a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		<span class="sr-only">Previous</span>
-	</a>
-	<a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-		<span class="carousel-control-next-icon" aria-hidden="true"></span>
-		<span class="sr-only">Next</span>
-	</a>
-</div>
+<?php if($slider): ?>
+    <div id="carousel" style="padding-top: 0px ; margin-bottom: 20px; border-radius: 4px;" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+        <?php foreach ($slides as $slide) { ?>
+            <li data-target="#carousel" data-slide-to="<?= $slide['id'] ?>" class="active"></li>
+        <?php } ?>
+        </ol>
+        <div class="carousel-inner">
+        <?php foreach ($slides as $key => $slide) { ?>
+            <div id="<?= $slide["id"]?>" class="carousel-item <?= $key == 0 ? "active" : "" ?>">
+                <img class="d-block w-100" src="img/<?= $slide["url"]?>" alt="<?= $slide["alt"]?>">
+                <div class="carousel-caption d-none d-md-block"> </div>
+            </div>
+            <?php } ?>
+        </div>
+        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+<?php endif; ?>
 
 <?php if (($date_actuelle > $jour_avant) && ($date_actuelle < $jour_apres) && in_array($promo, [24, 123, 122, 121, 120, 119, 2023, 2022, 2021, 2020, 2019]) && $site == 'Lille') {
 	if ($vote_fait != false) { ?>
