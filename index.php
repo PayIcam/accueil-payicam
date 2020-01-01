@@ -15,7 +15,7 @@ $param_vote->execute();
 $infos_vote = $param_vote->fetch();
 
 $my_vote = $accueil_db->prepare('SELECT * FROM vote_has_voters WHERE email=:email');
-$my_vote->execute(['email' => $_SESSION['login']]);
+$my_vote->execute(['email' => $user['login']]);
 $vote_fait = $my_vote->fetch();
 
 $date_actuelle = date("Y-m-d H:i:s");
@@ -27,7 +27,7 @@ date_default_timezone_set('Europe/Paris');
 setlocale(LC_TIME, 'fr_FR.utf8','fra');
 
 $promo_site = $ginger_db->prepare('SELECT promo, site FROM users WHERE mail=:email');
-$promo_site->execute(['email' => $_SESSION['login']]);
+$promo_site->execute(['email' => $user['login']]);
 $promo_site = $promo_site->fetch();
 
 $promo = $promo_site['promo'];
