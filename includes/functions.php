@@ -39,7 +39,7 @@ class Functions{
     /**
      *
      * @param <type> $message
-     * @param <type> $type 
+     * @param <type> $type
      */
     static function setFlash($message, $type = 'success'){ // On créer un tableau dans lequel on stock un message et un type qu'on place dans la variable flash de la variable $_session
         $_SESSION['flash'][] = array(
@@ -93,41 +93,67 @@ class Functions{
 
 
 function upload_image($index, $type, $id=null, $array=null) {
-    var_dump($id);
+    global $accueil_db;
+
     if(!in_array($type, ['slide', 'carte'])) {
         Functions::setFlashAndRedirect('index_admin.php', "Le type renseigné n'existe pas", "warning");
     }
-    global $DB;
-
-    $extensions = array('.png', '.jpeg', '.gif');
-    $dossier = 'img/';
 
     $name = empty($array) ? $_FILES[$index]['name'] : $_FILES[$index]['name'][$id];
-
     $extension = strrchr($name, '.');
-    if(!in_array($extension, $extensions)) {
+
+    if(!in_array(strtolower($extension), ['.png', '.jpeg', '.gif', '.jpg'])) {
         Functions::setFlashAndRedirect('index_admin.php', "Une des images n'est pas du bon format (jpeg/png/gif)", "warning");
     }
-    $fichier = $dossier . $type . '_' . $id . $extension;
+
+    $file_id = $accueil_db->query("SELECT MAX(id)+1 file_id FROM cartes");
+    $file_id = $file_id->fetch()['file_id'];
+    $file_id = $id === null ? $file_id : $id;
+
+    $file_name = $type . '_' . $file_id . $extension;
+    $full_path = 'img/'.$file_name;
 
     $tmp_name = empty($array) ? $_FILES[$index]['tmp_name'] : $_FILES[$index]['tmp_name'][$id];
 
-    if(move_uploaded_file($tmp_name, $fichier)) {
-        if($type=='slide') {
-            $requete_update_slide = $DB->prepare("UPDATE payicam_accueil_slide SET slide_image=:fichier WHERE slide_id=:id");
+    if(move_uploaded_file($tmp_name, $full_path)) {
+        if(null !== $id) {
+            if($type=='slide') {
+                $requete_update_slide = $accueil_db->prepare("UPDATE slides SET url=:file_name WHERE slide_id=:id");
+            }
+            elseif($type=='carte') {
+                $requete_update_slide = $accueil_db->prepare("UPDATE cartes SET photo_url=:file_name WHERE carte_id=:id");
+            }
+            else {
+                die("Le type d'image est incorrect");
+            }
+            $requete_update_slide->execute(array("fichier" => $file_name, "id" => $id));
+        } else {
+            return $file_name;
         }
-        elseif($type=='carte') {
-            $requete_update_slide = $DB->prepare("UPDATE payicam_carte SET carte_photo=:fichier WHERE carte_id=:id");
-        }
-        else {
-            die("Le type d'image est incorrect");
-        }
-        $requete_update_slide->execute(array("fichier" => $fichier, "id" => $id));
     }
     else {
-        var_dump($_FILES[$index]["error"]);
-        var_dump($fichier);
-        die('rdc");"');
         Functions::setFlashAndRedirect('index_admin.php', "Pour une raison inconnue, l'upload n'a pas fonctionné", "warning");
     }
+}
+
+function renderModal($id, $title, $content) { ?>
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#<?=$id?>"><?=$title?></button>
+
+    <div class="modal fade" id="<?=$id?>" tabindex="-1" role="dialog" aria-labelledby="<?=$id?>" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="<?=$id?>"><?=$title?></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                <div class="modal-body">
+                    <?=$content?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php
 }
