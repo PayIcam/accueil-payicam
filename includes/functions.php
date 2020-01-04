@@ -80,6 +80,12 @@ class Functions{
         if($i>0){return TRUE;}
         else{return FALSE;}
     }
+
+    static function setFlashAndRedirect($message, $type, $url) {
+        self::setFlash($message, $type);
+        header('Location: ' . $url);
+        die();
+    }
 }
 
 

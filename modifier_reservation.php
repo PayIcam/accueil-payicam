@@ -1,26 +1,19 @@
 <?php
+
 require_once 'includes/_header.php';
 
-try{
+try {
     $DB = new PDO('mysql:host=localhost;dbname=payicam_accueil;charset=utf8','root','',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-    } catch(Exeption $e) {
+} catch(Exeption $e) {
     die('erreur:'.$e->getMessage());
-
 }
 
-$requete_reservations = $DB->prepare("SELECT * FROM reservation");
-$requete_reservations->execute();
+$requete_reservations = $DB->query("SELECT * FROM reservation");
 $reservations = $requete_reservations->fetchAll();
 
-	if ($_POST['reservation_statue'] == 'En attente') { $statue == w; }
-	if ($_POST['reservation_statue'] == 'Accepter la réservation') { $statue == v; }
-	if ($_POST['reservation_statue'] == 'Refuser la réservation') { $statue == a; }
-	if ($_POST['reservation_statue'] == 'Conclure la réservation')	{ $statue == f; }
+$update = $DB->prepare('UPDATE reservation SET status=:status WHERE reservation_id=:reservation_id');
+$update->execute(array('status' => $_POST['reservation_status'], 'reservation_id' => $_POST['reservation_id']));
 
-			$requete='INSERT INTO reservation ("status") WHERE($_POST['reservation_id'] == $reservations['reservation_id']) VALUES("'.$statue.'")';
-			$resultat = $DB->query($requete);
-			if ($resultat)
-				header ('location: reservation.php');
-			else
-				echo 'Erreur';
+header('Location: reservation_admin.php');
+
 ?>

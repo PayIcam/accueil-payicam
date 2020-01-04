@@ -8,6 +8,14 @@ try {
     die('erreur:'.$e->getMessage());
 }
 
+$createur = $DB->prepare('SELECT email FROM item WHERE item_id=:item_id');
+$createur->execute(array('item_id' => $_GET['object_id']));
+$createur = $createur->fetch()['email'];
+
+if ($_SESSION['login'] !== $createur) {
+	Functions::setFlashAndRedirect('Vous ne pouvez pas supprimer les objets des autres', 'danger', 'reservation.php');
+}
+
 $delete = $DB->prepare('UPDATE item SET visibility=:visibility WHERE item_id=:item_id');
 $delete->execute(array('visibility' => 1, 'item_id' => $_GET['object_id']));
 
