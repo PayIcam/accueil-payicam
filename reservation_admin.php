@@ -42,7 +42,7 @@ $statuses = [
     'F' => [
         'name' => 'Finie',
         'class' => 'secondary',
-        'status' => 'V'
+        'status' => 'F'
     ],
     'C' => [
         'name' => 'Commandé',
@@ -80,7 +80,29 @@ $statuses = [
                 <td><?= $reservation['start_date']; ?></td>
                 <td><?= $reservation['end_date']; ?></td>
                 <td>
-                    <button type="button" class="btn btn-<?=$status['class']?>" data-toggle="modal" data-target="#modal_reservation_<?=$reservation['reservation_id']?>"><?=$status['name']?></button>
+
+                    <?php if ($status['status'] == 'W') { ?>
+                        <a class="btn btn-success" href="modifier_reservation.php?reservation_status=V&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-circle-check"></span></a>
+                        <a class="btn btn-danger" href="modifier_reservation.php?reservation_status=A&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-circle-x"></span></a>
+                    <?php } ?>
+
+                    <?php if ($status['status'] == 'V') { ?>
+                        <a class="btn btn-warning" href="modifier_reservation.php?reservation_status=C&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-share"></span></a>
+                    <?php } ?>
+
+                    <?php if ($status['status'] == 'C') { ?>
+                        <a class="btn btn-primary" href="modifier_reservation.php?reservation_status=F&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-clock"></span></a>
+                    <?php } ?>
+                    
+                    <?php if ($status['status'] == 'F') { ?>
+                        <a class="btn btn-secondary"><span class="oi oi-task"></span></a>
+                    <?php } ?>
+
+                    <?php if ($status['status'] == 'A') { ?>
+                        <a class="btn btn-secondary"><span class="oi oi-x"></span></a>
+                    <?php } ?>
+
+                    <!-- <button type="button" class="btn btn-<?=$status['class']?>" data-toggle="modal" data-target="#modal_reservation_<?=$reservation['reservation_id']?>"><?=$status['name']?></button>
                     <div class="modal fade" id="modal_reservation_<?=$reservation['reservation_id']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
@@ -107,7 +129,7 @@ $statuses = [
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </td>
             </tr>
         <?php } ?>

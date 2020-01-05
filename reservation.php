@@ -74,7 +74,9 @@ $items = $requete_items->fetchAll();
                                     </div>
                                 </div>
                             </div>
-                            <a class="btn btn-danger" href="supprimer_objet.php?object_id=<?= $item['item_id']; ?>" role="button"><span class="oi oi-trash"></span></a>
+                            <?php if ($_SESSION['login'] === $item['email']) { ?>
+                                <a class="btn btn-danger" href="supprimer_objet.php?object_id=<?= $item['item_id']; ?>" role="button"><span class="oi oi-trash"></span></a>
+                            <?php } ?>
                         </center></td>
                     </tr>
         <?php
