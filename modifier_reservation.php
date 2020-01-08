@@ -14,9 +14,6 @@ $reservations = $requete_reservations->fetchAll();
 $update = $DB->prepare('UPDATE reservation SET status=:status WHERE reservation_id=:reservation_id');
 $update->execute(array('status' => $_GET['reservation_status'], 'reservation_id' => $_GET['reservation_id']));
 
-// $update = $DB->prepare('UPDATE reservation SET status=:status WHERE reservation_id=:reservation_id');
-// $update->execute(array('status' => $_POST['reservation_status'], 'reservation_id' => $_POST['reservation_id']));
-
 header('Location: reservation_admin.php');
 
 ?>

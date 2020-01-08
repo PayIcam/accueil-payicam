@@ -82,54 +82,28 @@ $statuses = [
                 <td>
 
                     <?php if ($status['status'] == 'W') { ?>
-                        <a class="btn btn-success" href="modifier_reservation.php?reservation_status=V&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-circle-check"></span></a>
-                        <a class="btn btn-danger" href="modifier_reservation.php?reservation_status=A&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-circle-x"></span></a>
+                        <a class="btn btn-success" title="Valider la réservation" href="modifier_reservation.php?reservation_status=V&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-circle-check"></span></a>
+                        <a class="btn btn-danger" title="Refuser la réservation" href="modifier_reservation.php?reservation_status=A&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-circle-x"></span></a>
                     <?php } ?>
 
                     <?php if ($status['status'] == 'V') { ?>
-                        <a class="btn btn-warning" href="modifier_reservation.php?reservation_status=C&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-share"></span></a>
+                        <a class="btn" title="Valider la réservation" href="modifier_reservation.php?reservation_status=W&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-circle-check" title="Réservation validée, cliquez pour annuler"></span></a>
+                        <a class="btn btn-warning" title="Valider la récupération des objets" href="modifier_reservation.php?reservation_status=C&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-share"></span></a>
                     <?php } ?>
 
                     <?php if ($status['status'] == 'C') { ?>
-                        <a class="btn btn-primary" href="modifier_reservation.php?reservation_status=F&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-clock"></span></a>
+                        <a class="btn" title="Les objets ont été récupéré, cliquez pour annuler" href="modifier_reservation.php?reservation_status=V&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-share"></span></a>
+                        <a class="btn btn-primary" title="En cours, cliquez à la réception des objets" href="modifier_reservation.php?reservation_status=F&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-clock"></span></a>
                     <?php } ?>
                     
                     <?php if ($status['status'] == 'F') { ?>
-                        <a class="btn btn-secondary"><span class="oi oi-task"></span></a>
+                        <a class="btn btn-secondary" title="Les objets ont été rendu, cliquez pour annuler" href="modifier_reservation.php?reservation_status=C&amp;reservation_id=<?= $reservation['reservation_id']; ?>"><span class="oi oi-task"></span></a>
                     <?php } ?>
 
                     <?php if ($status['status'] == 'A') { ?>
-                        <a class="btn btn-secondary"><span class="oi oi-x"></span></a>
+                        <a class="btn btn-secondary" title="Réservation refusée, cliquez pour annuler" href="modifier_reservation.php?reservation_status=W&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-x"></span></a>
                     <?php } ?>
 
-                    <!-- <button type="button" class="btn btn-<?=$status['class']?>" data-toggle="modal" data-target="#modal_reservation_<?=$reservation['reservation_id']?>"><?=$status['name']?></button>
-                    <div class="modal fade" id="modal_reservation_<?=$reservation['reservation_id']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Statut de la réservation</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <form method="post" action="modifier_reservation.php">
-                                    <div class="modal-body">
-                                        <select class="selectpicker" multiple data-max-options="4" name="reservation_status">
-                                            <?php foreach ($statuses as $key => $status) { ?>
-                                                <option value="<?=$key?>"><?=$status['name']?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <textarea class="form-control" name= "reservation_raison" autofocus placeholder="Raison du nouveau statut" rows="4"></textarea>
-                                        <input type="hidden" name="reservation_id" value="<?php echo $reservation['reservation_id']; ?>">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                        <button type="submit" class="btn btn-primary" action="modifier_reservation.php">Valider</button>  
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div> -->
                 </td>
             </tr>
         <?php } ?>
