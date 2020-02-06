@@ -3,36 +3,19 @@ require_once 'includes/_header.php';
 $Auth->allow('member');
 require_once ROOT_PATH.'class/DB.php';
 $title_for_layout = 'Vote PayIcam';
-$confSQL = $_CONFIG['conf_accueil'];
-$conf_sql_promo = $_CONFIG['conf_sql_promo'];
-
-try{
-  $DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-} catch(Exeption $e) {
-  die('erreur:'.$e->getMessage());
-}
-try
-{
-  $DB_promo = new PDO('mysql:host='.$conf_sql_promo['sql_host'].';dbname='.$conf_sql_promo['sql_db'].';charset=utf8',$conf_sql_promo['sql_user'],$conf_sql_promo['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-}
-catch(Exeption $e)
-{
-  die('erreur:'.$e->getMessage());
-}
-
 
 $user = $Auth->getUser();
-$my_vote = $DB->prepare('SELECT * FROM vote_has_voters WHERE email = :email');
+$my_vote = $accueil_db->prepare('SELECT * FROM vote_has_voters WHERE email = :email');
 $my_vote -> bindParam('email', $user['email'], PDO::PARAM_STR);
 $my_vote -> execute();
 $vote_fait = $my_vote->fetch();
 
-$param_vote = $DB->prepare('SELECT * FROM vote_option'); //Prévu pour contenir un unique vote dans la bdd d'où l'absence de condition
+$param_vote = $accueil_db->prepare('SELECT * FROM vote_option'); //Prévu pour contenir un unique vote dans la bdd d'où l'absence de condition
 $param_vote -> execute();
 $infos_vote = $param_vote->fetch();
 
 
-$promo = $DB_promo->prepare('SELECT promo, site FROM users WHERE mail = :email');
+$promo = $ginger_db->prepare('SELECT promo, site FROM users WHERE mail = :email');
 $promo -> bindParam('email', $user['email'], PDO::PARAM_STR);
 $promo->execute();
 $promo_votant = $promo->fetch();
