@@ -69,13 +69,6 @@ class Functions{
         }
     }
 
-    static function setFlashAndRedirect($url, $message, $type = 'success'){ // On créer un tableau dans lequel on stock un message et un type qu'on place dans la variable flash de la variable $_session
-        self::setFlash($message, $type);
-        header('Location: ' . $url);
-        die();
-    }
-
-
     static function isPage(){
         $i=0;
         foreach (func_get_args() as $key => $v){
@@ -86,6 +79,12 @@ class Functions{
         }
         if($i>0){return TRUE;}
         else{return FALSE;}
+    }
+
+    static function setFlashAndRedirect($message, $type, $url) {
+        self::setFlash($message, $type);
+        header('Location: ' . $url);
+        die();
     }
 }
 

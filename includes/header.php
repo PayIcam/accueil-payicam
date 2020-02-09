@@ -16,6 +16,7 @@
 
         <!-- Le styles -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/open-iconic-bootstrap.min.css" rel="stylesheet">
         <link href="css/main.css" rel="stylesheet">
         <link href="css/flipclock.css" rel="stylesheet">
         <link rel="shortcut icon" href="favicon.png" />
@@ -50,6 +51,7 @@
                             </div>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="reservation.php">Réservations</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav my-2 my-lg-0">
@@ -60,34 +62,32 @@
                     </ul>
                 </div>
             </div>
-
         </nav>
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="exampleModalLabel">Horaires du BarIcam</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-auto">
-                                    <img src="img/logobaricam.png" style="height: 160px; width: auto; padding: 10px" alt="bar logo">
-                                </div>
-                                <div class="col-md-auto" style="padding-top: 15px">
-                                    <strong>Lundi :</strong> 21h30 - 23h <br>
-                                    <strong>Mardi (sans alcools) :</strong> 17h30 - 19h <br>
-                                    <strong>Mercredi :</strong> 22h00 - 23h30 <br>
-                                    <strong>Jeudi :</strong> 18h00 - 20h30 <br>
-                                    <strong>Vendredi :</strong> 21h30 - 23h
-                                </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel">Horaires du BarIcam</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-auto">
+                                <img src="img/logobaricam.png" style="height: 160px; width: auto; padding: 10px" alt="bar logo">
+                            </div>
+                            <div class="col-md-auto" style="padding-top: 15px">
+                                <strong>Lundi :</strong> 21h30 - 23h <br>
+                                <strong>Mardi (sans alcools) :</strong> 17h30 - 19h <br>
+                                <strong>Mercredi :</strong> 22h00 - 23h30 <br>
+                                <strong>Jeudi :</strong> 18h00 - 20h30 <br>
+                                <strong>Vendredi :</strong> 21h30 - 23h
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         <div class="container">
-
-    <?= Functions::flash(); ?>
+            <?= Functions::flash(); ?>

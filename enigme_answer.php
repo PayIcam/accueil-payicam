@@ -5,21 +5,13 @@ $Auth->allow('member');
 $user = $Auth->getUser();
 
 if(isset($_GET['answer'])) {
-    $confSQL = $_CONFIG['conf_accueil'];
-
-    try {
-        $db = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-    } catch(Exeption $e) {
-        die('erreur:'.$e->getMessage());
-    }
-
-    $answer = $db->query('SELECT answer, banned_users FROM enigmes');
+    $answer = $accueil_db->query('SELECT answer, banned_users FROM enigmes');
     $answer = $answer->fetch();
     $banned_users = json_decode($answer['banned_users']);
     $answer = $answer['answer'];
 
     if($_GET['answer'] == $answer) {
-        $is_first = $db->query('SELECT COUNT(*) FROM enigme_answers');
+        $is_first = $accueil_db->query('SELECT COUNT(*) FROM enigme_answers');
         $is_first = $is_first->fetch()['COUNT(*)'] == 0 ? true : false;
 
         if($Auth->hasRole('super-admin')) {
@@ -45,7 +37,7 @@ if(isset($_GET['answer'])) {
         }
 
 
-        $insert = $db->prepare('INSERT INTO enigme_answers(email, answer) VALUES (:email, :answer)');
+        $insert = $accueil_db->prepare('INSERT INTO enigme_answers(email, answer) VALUES (:email, :answer)');
         $insert->execute(array('email' => $user['email'], 'answer' => $_GET['answer']));
         if($is_first) {
             Functions::setFlash("Bon ok t'as gagné", 'success');
