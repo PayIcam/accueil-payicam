@@ -31,6 +31,6 @@ $new_object = array(
 $add_object = $DB->prepare('INSERT INTO item(name, description, quantity, email, visibility) VALUES(:name, :description, :quantity, :email, :visibility)');
 $add_object->execute($new_object);
 
-header ('location: reservation.php');
+Functions::setFlashAndRedirect('Objet ajouté', 'success', 'reservation.php');
 
 ?>
