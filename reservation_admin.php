@@ -8,46 +8,60 @@ require_once ROOT_PATH.'class/DB.php';
 include('config.php');
 $title_for_layout = 'Accueil';
 $js_for_layout = array('bootstrap.min.js', 'indice_gala');
-$confSQL = $_CONFIG['conf_accueil'];
-
-try {
-    $DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-} catch(Exeption $e) {
-    die('erreur:'.$e->getMessage());
-}
 
 include 'includes/header.php'; // insertion du fichier header.php : entête, barre de navigation
 
-$requete_reservations = $DB->query("SELECT * FROM reservation");
+if($Auth->hasRole('super-admin')) {
+    $requete_reservations = $accueil_db->query("SELECT * FROM reservation");
+} else {
+    $requete_reservations = $accueil_db->prepare("SELECT * FROM reservation WHERE item_id IN (SELECT item_id FROM item WHERE email LIKE :email)");
+    $requete_reservations->execute(['email' => '%'.$_SESSION['login'].'%']);
+}
+
 $reservations = $requete_reservations->fetchAll();
-$requete_items = $DB->query("SELECT * FROM item");
+$requete_items = $accueil_db->query("SELECT * FROM item");
 $items = $requete_items->fetchAll();
 
 $statuses = [
     'V' => [
         'name' => 'Validée',
         'class' => 'success',
-        'status' => 'V'
+        'status' => 'V',
+        'icon' => 'thumb-up',
+        'next' => 'C',
+        'previous' => 'W'
     ],
     'A' => [
         'name' => 'Refusée',
         'class' => 'danger',
-        'status' => 'A'
+        'status' => 'A',
+        'icon' => 'thumb-down',
+        'next' => 'V',
+        'previous' => null
     ],
     'W' => [
         'name' => 'En attente',
-        'class' => 'primary',
-        'status' => 'W'
+        'class' => 'info',
+        'status' => 'W',
+        'icon' => 'question-mark',
+        'next' => 'V',
+        'previous' => 'A'
     ],
     'F' => [
         'name' => 'Finie',
-        'class' => 'secondary',
-        'status' => 'F'
+        'class' => 'success',
+        'status' => 'F',
+        'icon' => 'task',
+        'next' => null,
+        'previous' => 'C'
     ],
     'C' => [
-        'name' => 'Commandé',
-        'class' => 'secondary',
-        'status' => 'C'
+        'name' => 'Commandée',
+        'class' => 'primary',
+        'status' => 'C',
+        'icon' => 'data-transfer-download',
+        'next' => 'V',
+        'previous' => 'F'
     ]
 ];
 
@@ -62,48 +76,36 @@ $statuses = [
             <th class="text-center" scope="col">Demandeur</th>
             <th class="text-center" scope="col">Début</th>
             <th class="text-center" scope="col">Fin</th>
+            <th class="text-center" scope="col">Status</th>
             <th class="text-center" scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
       	<?php
-        foreach($reservations as $reservation) { 
+        foreach($reservations as $reservation) {
             $status = $statuses[$reservation['status']];
             ?>
             <tr>
                 <th scope="row"><?= $reservation['reservation_id']; ?></th>
                 <td>
-                <?php foreach($items as $item) {  
+                <?php foreach($items as $item) {
                     if ($reservation['item_id'] == $item['item_id']) { echo $item['name']; } } ?></td>
-                <td><?= $reservation['quantity']; ?></td>
+                <td><?= $reservation['quantity']; ?> / <?= $item['quantity']; ?></td>
                 <td><?= $reservation['email']; ?></td>
-                <td><?= $reservation['start_date']; ?></td>
-                <td><?= $reservation['end_date']; ?></td>
+                <td><?= date('d/m/Y', strtotime($reservation['start_date'])); ?></td>
+                <td><?= date('d/m/Y', strtotime($reservation['end_date'])); ?></td>
                 <td>
-
-                    <?php if ($status['status'] == 'W') { ?>
-                        <a class="btn btn-success" title="Valider la réservation" href="modifier_reservation.php?reservation_status=V&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-circle-check"></span></a>
-                        <a class="btn btn-danger" title="Refuser la réservation" href="modifier_reservation.php?reservation_status=A&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-circle-x"></span></a>
+                    <span class="badge badge-pill badge-<?=$status['class']?> oi oi-<?=$status['icon']?>"> </span>
+                </td>
+                <td>
+                    <?php if(!empty($status['next'])) {
+                        $next_status = $statuses[$status['next']]; ?>
+                        <a class="btn btn-<?=$next_status['class']?>" title="<?=$next_status['name']?>" href="modifier_reservation.php?reservation_status=<?=$next_status['status']?>&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-<?=$next_status['icon']?>"></span></a>
+                    <?php }
+                    if(!empty($status['previous'])) {
+                        $previous_status = $statuses[$status['previous']]; ?>
+                        <a class="btn btn-<?=$previous_status['class']?>" title="<?=$previous_status['name']?>" href="modifier_reservation.php?reservation_status=<?=$previous_status['status']?>&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-<?=$previous_status['icon']?>"></span></a>
                     <?php } ?>
-
-                    <?php if ($status['status'] == 'V') { ?>
-                        <a class="btn" title="Valider la réservation" href="modifier_reservation.php?reservation_status=W&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-circle-check" title="Réservation validée, cliquez pour annuler"></span></a>
-                        <a class="btn btn-warning" title="Valider la récupération des objets" href="modifier_reservation.php?reservation_status=C&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-share"></span></a>
-                    <?php } ?>
-
-                    <?php if ($status['status'] == 'C') { ?>
-                        <a class="btn" title="Les objets ont été récupéré, cliquez pour annuler" href="modifier_reservation.php?reservation_status=V&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-share"></span></a>
-                        <a class="btn btn-primary" title="En cours, cliquez à la réception des objets" href="modifier_reservation.php?reservation_status=F&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-clock"></span></a>
-                    <?php } ?>
-                    
-                    <?php if ($status['status'] == 'F') { ?>
-                        <a class="btn btn-secondary" title="Les objets ont été rendu, cliquez pour annuler" href="modifier_reservation.php?reservation_status=C&amp;reservation_id=<?= $reservation['reservation_id']; ?>"><span class="oi oi-task"></span></a>
-                    <?php } ?>
-
-                    <?php if ($status['status'] == 'A') { ?>
-                        <a class="btn btn-secondary" title="Réservation refusée, cliquez pour annuler" href="modifier_reservation.php?reservation_status=W&amp;reservation_id=<?= $reservation['reservation_id']; ?>" role="button"><span class="oi oi-x"></span></a>
-                    <?php } ?>
-
                 </td>
             </tr>
         <?php } ?>

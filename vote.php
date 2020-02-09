@@ -3,36 +3,19 @@ require_once 'includes/_header.php';
 $Auth->allow('member');
 require_once ROOT_PATH.'class/DB.php';
 $title_for_layout = 'Vote PayIcam';
-$confSQL = $_CONFIG['conf_accueil'];
-$conf_sql_promo = $_CONFIG['conf_sql_promo'];
-
-try{
-  $DB = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-} catch(Exeption $e) {
-  die('erreur:'.$e->getMessage());
-}
-try
-{
-  $DB_promo = new PDO('mysql:host='.$conf_sql_promo['sql_host'].';dbname='.$conf_sql_promo['sql_db'].';charset=utf8',$conf_sql_promo['sql_user'],$conf_sql_promo['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-}
-catch(Exeption $e)
-{
-  die('erreur:'.$e->getMessage());
-}
-
 
 $user = $Auth->getUser();
-$my_vote = $DB->prepare('SELECT * FROM vote_has_voters WHERE email = :email');
+$my_vote = $accueil_db->prepare('SELECT * FROM vote_has_voters WHERE email = :email');
 $my_vote -> bindParam('email', $user['email'], PDO::PARAM_STR);
 $my_vote -> execute();
 $vote_fait = $my_vote->fetch();
 
-$param_vote = $DB->prepare('SELECT * FROM vote_option'); //Prévu pour contenir un unique vote dans la bdd d'où l'absence de condition
+$param_vote = $accueil_db->prepare('SELECT * FROM vote_option'); //Prévu pour contenir un unique vote dans la bdd d'où l'absence de condition
 $param_vote -> execute();
 $infos_vote = $param_vote->fetch();
 
 
-$promo = $DB_promo->prepare('SELECT promo, site FROM users WHERE mail = :email');
+$promo = $ginger_db->prepare('SELECT promo, site FROM users WHERE mail = :email');
 $promo -> bindParam('email', $user['email'], PDO::PARAM_STR);
 $promo->execute();
 $promo_votant = $promo->fetch();
@@ -42,7 +25,7 @@ if ($vote_fait != false){
   header('Location:index.php');
   die();
 }
-if (!in_array($promo_votant['promo'], [122, 120]) || $promo_votant['site'] != "Lille" ){
+if (!in_array($promo_votant['promo'], [120, 121, 122, 123, 124, 2020, 2021, 2022, 2023, 2024, 24, 25]) || $promo_votant['site'] != "Lille" ){
   Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
   header('Location:index.php');
   die();
@@ -71,17 +54,17 @@ include 'includes/header.php';
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <body>
   <div id="morph">
-    <div class="sep_bouton" id="sep_bouton_choix_2">
-      <img src="img/choix2.jpg" type="button" id="choix_2" class='rounded-circle' alt="choix_2" data-toggle="modal" data-target="#choix_2Modal">
-    </div>
     <div class="sep_bouton" id="sep_bouton_choix_1">
-      <img src="img/choix1.jpg" type="button" alt="choix_1" class='rounded-circle' id="choix_1" data-toggle="modal" data-target="#choix_1Modal">
+      <img src="img/choix1.png" type="button" alt="choix_1" class='rounded-circle' id="choix_1" data-toggle="modal" data-target="#choix_1Modal">
     </div>
+    <!-- <div class="sep_bouton" id="sep_bouton_choix_2">
+      <img src="img/choix2.jpg" type="button" id="choix_2" class='rounded-circle' alt="choix_2" data-toggle="modal" data-target="#choix_2Modal">
+    </div> -->
     <!-- <div class="sep_bouton" id="sep_bouton_choix_3">
       <img src="img/choix1.png" type="button" alt="choix_3" class='rounded-circle' id="choix_3">
     </div> -->
-    <div id="sep_bouton_bas">
-        <!-- <img src="img/choix.png" type="button" alt="choix_1" class='rounded-circle' id="choix_1" data-toggle="modal" data-target="#blancModal"> -->
+    <div class="sep_bouton" id="sep_bouton_choix_2">
+        <img src="img/choix2.png" type="button" alt="choix_2" class='rounded-circle' id="choix_2" data-toggle="modal" data-target="#blancModal">
       <!-- <input type="button" class="btn btn-secondary btn-lg" value="Je vote blanc" data-toggle="modal" data-target="#blancModal"></input> -->
     </div>
   </div>
@@ -105,7 +88,9 @@ include 'includes/header.php';
             <p>Ce vote est définitif, êtes-vous sûr?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            <a href="https://www.youtube.com/watch?v=APaQbw1mrOM">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            </a>
             <input type="hidden" name='vote' value="<?php echo ($infos_vote['choix_2']) ?>">
             <input type="submit" class="btn btn-light" value="<?php echo("Je vote ".$infos_vote['choix_2']) ?>" >
           </div>
@@ -127,7 +112,9 @@ include 'includes/header.php';
             <p>Ce vote est définitif, êtes-vous sûr?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            <a href="https://www.youtube.com/watch?v=APaQbw1mrOM">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            </a>
             <input type="hidden" name='vote' value="<?php echo ($infos_vote['choix_1']) ?>">
             <input type="submit" class="btn btn-warning" value="<?php echo("Je vote ".$infos_vote['choix_1']) ?>" >
           </div>
@@ -149,7 +136,9 @@ include 'includes/header.php';
             <p>Ce vote est définitif, êtes-vous sûr?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            <a href="https://www.youtube.com/watch?v=V-PD5iz7qdE">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            </a>
             <input type="hidden" name='vote' value="blanc">
             <input type="submit" class="btn btn-light" value="Je vote blanc">
           </div>

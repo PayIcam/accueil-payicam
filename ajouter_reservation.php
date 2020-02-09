@@ -20,6 +20,4 @@ $new_reservation = array(
 $add_reservation = $DB->prepare('INSERT INTO reservation(email, quantity, start_date, end_date, status, item_id) VALUES(:mail, :quantity, :start_date, :end_date, :status, :item)');
 $add_reservation->execute($new_reservation);
 
-header ('location: reservation.php');
-
-?>
+Functions::setFlashAndRedirect('Réservation effectuée', 'success', 'reservation.php');

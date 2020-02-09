@@ -5,17 +5,10 @@ $Auth->allow('member');
 $user = $Auth->getUser();
 $title_for_layout = 'Enigme';
 $js_for_layout = array('enigme');
-$confSQL = $_CONFIG['conf_accueil'];
 
-try {
-    $db = new PDO('mysql:host='.$confSQL['sql_host'].';dbname='.$confSQL['sql_db'].';charset=utf8',$confSQL['sql_user'],$confSQL['sql_pass'],array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
-} catch(Exeption $e) {
-    die('erreur:'.$e->getMessage());
-}
-
-$enigme = $db->query('SELECT * FROM enigmes');
+$enigme = $accueil_db->query('SELECT * FROM enigmes');
 $enigme = $enigme->fetch();
-$user_answer = $db->prepare('SELECT * FROM enigme_answers WHERE email = :email');
+$user_answer = $accueil_db->prepare('SELECT * FROM enigme_answers WHERE email = :email');
 $user_answer->execute(array('email' => $user['email']));
 $user_answer = $user_answer->fetch();
 
