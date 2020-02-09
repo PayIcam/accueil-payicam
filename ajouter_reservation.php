@@ -3,7 +3,7 @@
 require_once 'includes/_header.php';
 
 $new_reservation = array(
-	'mail' => $_SESSION['login'],
+	'mail' => $Auth->getUser()['email'],
 	'quantity' => htmlspecialchars($_POST['reservation_quantity']),
 	'start_date' => htmlspecialchars($_POST['reservation_start_date']),
 	'end_date' => htmlspecialchars($_POST['reservation_end_date']),

@@ -12,7 +12,7 @@ $createur = $DB->prepare('SELECT email FROM item WHERE item_id=:item_id');
 $createur->execute(array('item_id' => $_GET['object_id']));
 $createur = $createur->fetch()['email'];
 
-if ($_SESSION['login'] !== $createur) {
+if ($Auth->getUser()['email'] !== $createur) {
 	Functions::setFlashAndRedirect('Vous ne pouvez pas supprimer les objets des autres', 'danger', 'reservation.php');
 }
 

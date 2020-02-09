@@ -18,7 +18,7 @@ $new_object = array(
 	'name' => htmlspecialchars($_POST['object_name']),
 	'description' => htmlspecialchars($_POST['object_description']),
 	'quantity' => htmlspecialchars($_POST['object_quantity']),
-	'email' => $_SESSION['login'],
+	'email' => $Auth->getUser()['email'],
 	'visibility' => '0'
 );
 

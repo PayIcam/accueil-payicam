@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS `item` (
   `description` LONGTEXT NULL,
   `quantity` INT NOT NULL,
   `email` VARCHAR(255) NOT NULL,
+  `visibility` VARCHAR(1) NOT NULL NOT NULL,
   PRIMARY KEY (`item_id`))
 ENGINE = InnoDB;
 

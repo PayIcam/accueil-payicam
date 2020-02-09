@@ -15,7 +15,7 @@ if($Auth->hasRole('super-admin')) {
     $requete_reservations = $accueil_db->query("SELECT * FROM reservation");
 } else {
     $requete_reservations = $accueil_db->prepare("SELECT * FROM reservation WHERE item_id IN (SELECT item_id FROM item WHERE email LIKE :email)");
-    $requete_reservations->execute(['email' => '%'.$_SESSION['login'].'%']);
+    $requete_reservations->execute(['email' => '%'.$Auth->getUser()['email'].'%']);
 }
 
 $reservations = $requete_reservations->fetchAll();

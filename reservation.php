@@ -19,7 +19,7 @@ if($Auth->hasRole('super-admin')) {
     $canSeeReservations = true;
 } else {
     foreach ($items as $item) {
-        if(strstr($item['email'], $_SESSION['login'])) {
+        if(strstr($item['email'], $Auth->getUser()['email'])) {
             $canSeeReservations = true;
             break;
         }
@@ -75,7 +75,7 @@ if($Auth->hasRole('super-admin')) {
                                 </div>
                             </div>
                         </div>
-                        <?php if (in_array($_SESSION['login'], explode(';', $item['email'])) || $Auth->hasRole('super-admin')) { ?>
+                        <?php if (in_array($Auth->getUser()['email'], explode(';', $item['email'])) || $Auth->hasRole('super-admin')) { ?>
                             <a class="btn btn-danger" href="supprimer_objet.php?object_id=<?= $item['item_id']; ?>" role="button"><span class="oi oi-trash"></span></a>
                         <?php } ?>
                     </td>
