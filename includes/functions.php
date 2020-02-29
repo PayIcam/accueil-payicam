@@ -81,7 +81,7 @@ class Functions{
         else{return FALSE;}
     }
 
-    static function setFlashAndRedirect($message, $type, $url) {
+    static function setFlashAndRedirect($url, $message, $type="success") {
         self::setFlash($message, $type);
         header('Location: ' . $url);
         die();

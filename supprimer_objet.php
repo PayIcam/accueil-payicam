@@ -7,7 +7,7 @@ $createur->execute(array('item_id' => $_GET['object_id']));
 $createur = $createur->fetch()['email'];
 
 if ($Auth->getUser()['email'] !== $createur) {
-	Functions::setFlashAndRedirect('Vous ne pouvez pas supprimer les objets des autres', 'danger', 'reservation.php');
+	Functions::setFlashAndRedirect('reservation.php', 'Vous ne pouvez pas supprimer les objets des autres', 'danger');
 }
 
 $delete = $accueil_db->prepare('UPDATE item SET visibility=:visibility WHERE item_id=:item_id');
