@@ -90,7 +90,8 @@ include 'includes/header.php';
                 </div>
             </div>
         </div>
-
+    </form>
+    <form action="a_voter.php" method="post">
         <div class="modal fade" id="muertoModal" tabindex="-1" role="dialog" aria-labelledby="muerto_label" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -112,7 +113,8 @@ include 'includes/header.php';
                 </div>
             </div>
         </div>
-
+    </form>
+    <form action="a_voter.php" method="post">
         <div class="modal fade" id="fbiModal" tabindex="-1" role="dialog" aria-labelledby="fbi_label" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -134,7 +136,8 @@ include 'includes/header.php';
                 </div>
             </div>
         </div>
-
+    </form>
+    <form action="a_voter.php" method="post">
         <div class="modal fade" id="miliModal" tabindex="-1" role="dialog" aria-labelledby="mili_label" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
