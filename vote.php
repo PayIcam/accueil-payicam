@@ -55,25 +55,19 @@ include 'includes/header.php';
 <body>
     <div id="morph">
         <div class="sep_bouton" id="sep_bouton_choix_1">
-            <img src="img/ICAM'IONNEURS.png" type="button" class='rounded-circle' id="camion" data-toggle="modal" data-target="#camionModal">
-        </div>
-        <div class="sep_bouton" id="sep_bouton_choix_1">
-            <img src="img/ICAM'UERTOS.png" type="button" class='rounded-circle' id="muerto" data-toggle="modal" data-target="#muertoModal">
-        </div>
-        <div class="sep_bouton" id="sep_bouton_choix_1">
-            <img src="img/MIL'ICAM.jpg" type="button" class='rounded-circle' id="mili" data-toggle="modal" data-target="#miliModal">
+            <img src="img/mirage.png" type="button" class='rounded-circle' id="mirage" data-toggle="modal" data-target="#mirageModal">
         </div>
         <div class="sep_bouton" id="sep_bouton_choix_2">
-            <img src="img/FBICAM.jpg" type="button" alt="choix_2" class='rounded-circle' id="fbi" data-toggle="modal" data-target="#fbiModal">
+            <img src="img/pyramide.png" type="button" alt="choix_2" class='rounded-circle' id="pyramide" data-toggle="modal" data-target="#pyramideModal">
         </div>
     </div>
 
     <form action="a_voter.php" method="post">
-        <div class="modal fade" id="camionModal" tabindex="-1" role="dialog" aria-labelledby="camion_label" aria-hidden="true">
+        <div class="modal fade" id="mirageModal" tabindex="-1" role="dialog" aria-labelledby="camion_label" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="choix_2_label">Pour une intégration réussie, épanouissante et dynamique, votez ICAM'ionneurs!</h5>
+                        <h5 class="modal-title" id="choix_2_label">Voter Mirage</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -84,19 +78,19 @@ include 'includes/header.php';
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         </a>
-                        <input type="hidden" name='vote' value="ICAM'IONNEURS">
-                        <input type="submit" class="btn btn-light" value="Je vote ICAM'IONNEURS">
+                        <input type="hidden" name='vote' value="MIRAGE">
+                        <input type="submit" class="btn btn-light" value="Je vote Mirage">
                     </div>
                 </div>
             </div>
         </div>
     </form>
     <form action="a_voter.php" method="post">
-        <div class="modal fade" id="muertoModal" tabindex="-1" role="dialog" aria-labelledby="muerto_label" aria-hidden="true">
+        <div class="modal fade" id="pyramideModal" tabindex="-1" role="dialog" aria-labelledby="muerto_label" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="choix_2_label">Votar icam'uerto</h5>
+                        <h5 class="modal-title" id="choix_2_label">Voter Pyramide</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -107,59 +101,13 @@ include 'includes/header.php';
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         </a>
-                        <input type="hidden" name='vote' value="ICAM'uerto">
-                        <input type="submit" class="btn btn-light" value="Je vote ICAM'uerto">
+                        <input type="hidden" name='vote' value="PYRAMIDE">
+                        <input type="submit" class="btn btn-light" value="Je vote Pyramide">
                     </div>
                 </div>
             </div>
         </div>
     </form>
-    <form action="a_voter.php" method="post">
-        <div class="modal fade" id="fbiModal" tabindex="-1" role="dialog" aria-labelledby="fbi_label" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="choix_2_label">Pensez à l'intégration, écoutez votre coeur, votez FBICAM</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Ce vote est définitif, êtes-vous sûr?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        </a>
-                        <input type="hidden" name='vote' value="FBICAM">
-                        <input type="submit" class="btn btn-light" value="Je vote FBICAM">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-    <form action="a_voter.php" method="post">
-        <div class="modal fade" id="miliModal" tabindex="-1" role="dialog" aria-labelledby="mili_label" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="choix_2_label">Il est encore temps de faire le bon choix soldat !</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Ce vote est définitif, êtes-vous sûr?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        </a>
-                        <input type="hidden" name='vote' value="MIL'ICAM">
-                        <input type="submit" class="btn btn-light" value="Je vote MIL'ICAM">
-                    </div>
-                </div>
-            </div>
-        </div>
 
-    </form>
 
 <?php include 'includes/footer.php';?>
