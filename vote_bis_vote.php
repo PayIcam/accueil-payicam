@@ -8,12 +8,14 @@ $user = $Auth->getUser();
 // require_once 'class/Config.php';
 // require_once 'includes/functions.php';
 // require_once 'class/Auth.class.php';
+// require_once 'class/DB.php';
 // require "config.php";
 // require_once 'class/DB.php';
 // $conf_accueil = $_CONFIG['accueil_db'];
 // $conf_ginger = $_CONFIG['ginger_db'];
 // $accueil_db = new PDO('mysql:host='.$conf_accueil['sql_host'].';dbname='.$conf_accueil['sql_db'].';charset=utf8', $conf_accueil['sql_user'], $conf_accueil['sql_pass'], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
 // $ginger_db = new PDO('mysql:host='.$conf_ginger['sql_host'].';dbname='.$conf_ginger['sql_db'].';charset=utf8', $conf_ginger['sql_user'], $conf_ginger['sql_pass'], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
+// $user = ['email' => 'gregoire.giraud@2020.icam.fr'];
 
 if(empty($_GET['vote_id']) || empty($_GET['candidate_id'])) {
     Functions::setFlash("Cher ami, il se trouve que tu essaye de faire des carabistouilles. Arrêtes s'il te plait.", 'danger');
@@ -64,10 +66,10 @@ if(!($filiere_ok && $promo_ok && $site_ok)) {
     die();
 }
 
-$self_votes = $accueil_db->prepare('SELECT COUNT(*) FROM vote_bis_votes WHERE vote_id = :vote_id and email=:email');
+$self_votes = $accueil_db->prepare('SELECT candidate_id FROM vote_bis_votes WHERE vote_id = :vote_id and email=:email');
 $self_votes->execute(['vote_id' => $_GET['vote_id'], 'email' => $user['email']]);
-$self_votes = $self_votes->fetch()['COUNT(*)'];
-$votes_restants = $vote['votes_allowed'] - $self_votes;
+$self_votes = $self_votes->fetchAll();
+$votes_restants = $vote['votes_allowed'] - count($self_votes);
 
 if($votes_restants <= 0) {
     Functions::setFlash("Tu as déjà utilisé tous tes votes !", 'danger');
@@ -83,6 +85,14 @@ if(!$candidate_exists) {
     Functions::setFlash("Tu me fais tellement perdre mon temps.", 'danger');
     header('Location:index.php');
     die();
+}
+
+foreach ($self_votes as $self_vote) {
+    if($_GET['candidate_id'] == $self_vote['candidate_id']) {
+        Functions::setFlash("Tu as déjà fait le vote pour cette personne.", 'danger');
+        header("Location: vote_bis.php?vote_id=" . $_GET['vote_id']);
+        die();
+    }
 }
 
 $insert = $accueil_db->prepare('INSERT INTO vote_bis_votes(vote_id, candidate_id, email) VALUES (:vote_id, :candidate_id, :email)');

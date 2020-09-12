@@ -3,18 +3,20 @@
 require_once 'includes/_header.php';
 $Auth->allow('member');
 require_once 'class/DB.php';
-$title_for_layout = 'Vote bis';
 $user = $Auth->getUser();
-// $user = ['email' => 'gregoire.giraud@2020.icam.fr'];
+$title_for_layout = 'Vote bis';
 
 // require_once 'class/Config.php';
 // require_once 'includes/functions.php';
 // require_once 'class/Auth.class.php';
+// require_once 'class/DB.php';
 // require "config.php";
 // $conf_accueil = $_CONFIG['accueil_db'];
 // $conf_ginger = $_CONFIG['ginger_db'];
 // $accueil_db = new PDO('mysql:host='.$conf_accueil['sql_host'].';dbname='.$conf_accueil['sql_db'].';charset=utf8', $conf_accueil['sql_user'], $conf_accueil['sql_pass'], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
 // $ginger_db = new PDO('mysql:host='.$conf_ginger['sql_host'].';dbname='.$conf_ginger['sql_db'].';charset=utf8', $conf_ginger['sql_user'], $conf_ginger['sql_pass'], array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
+// $title_for_layout = 'Vote bis';
+// $user = ['email' => 'gregoire.giraud@2020.icam.fr'];
 
 if(empty($_GET['vote_id'])) {
     Functions::setFlash("Cher ami, il se trouve que tu essaye de faire des carabistouilles. Arrêtes s'il te plait.", 'danger');
@@ -90,15 +92,19 @@ if ($now > $vote['end_date']) {
     <?php include 'includes/footer.php'; die();
 }
 
-$self_votes = $accueil_db->prepare('SELECT COUNT(*) FROM vote_bis_votes WHERE vote_id = :vote_id and email=:email');
+$self_votes = $accueil_db->prepare('SELECT candidate_id FROM vote_bis_votes WHERE vote_id = :vote_id and email=:email');
 $self_votes->execute(['vote_id' => $_GET['vote_id'], 'email' => $user['email']]);
-$self_votes = $self_votes->fetch()['COUNT(*)'];
-$votes_restants = $vote['votes_allowed'] - $self_votes;
+$self_votes = $self_votes->fetchAll();
+$votes_restants = $vote['votes_allowed'] - count($self_votes);
 
 if($votes_restants > 0) {
     $candidates = $accueil_db->prepare('SELECT * FROM vote_bis_candidates WHERE vote_id = :vote_id');
     $candidates->execute(['vote_id' => $_GET['vote_id']]);
     $candidates = $candidates->fetchAll();
+    $self_vote_ids = [];
+    foreach ($self_votes as $self_vote) {
+        $self_vote_ids[] = $self_vote['candidate_id'];
+    }
 
     include 'includes/header.php'; ?>
     <h1> Vote - <?= $vote['name'] ?> <h1>
@@ -115,7 +121,13 @@ if($votes_restants > 0) {
             <?php foreach ($candidates as $candidate) { ?>
                 <tr>
                     <th><?= $candidate['name'] ?></th>
-                    <td><a class="button" href="vote_bis_vote.php?vote_id=<?=$_GET['vote_id']?>&candidate_id=<?=$candidate['id']?>">Voter</a></td>
+                    <td> <?php
+                        if(!in_array($candidate['id'], $self_vote_ids)) { ?>
+                            <a class="btn btn-primary" href="vote_bis_vote.php?vote_id=<?=$_GET['vote_id']?>&candidate_id=<?=$candidate['id']?>">Voter</a>
+                        <?php } else { ?>
+                            Vote déjà fait.
+                        <?php } ?>
+                    </td>
                 </tr>
             <?php } ?>
         </tbody>
