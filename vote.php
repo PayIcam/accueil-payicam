@@ -25,10 +25,11 @@ if ($vote_fait != false){
   header('Location:index.php');
   die();
 }
-if (!in_array($promo_votant['promo'], [120, 121, 122, 123, 124, 2020, 2021, 2022, 2023, 2024, 24, 25]) || $promo_votant['site'] != "Lille" ){
-  Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
-  header('Location:index.php');
-  die();
+if (!in_array($promo_votant['promo'], [121, 122, 123, 124, 125, 2021, 2022, 2023, 2024, 2025, 24, 25, 26]) || $promo_votant['site'] != "Lille" ){
+    die();
+ Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
+ header('Location:index.php');
+ die();
 }
 
 $date_actuelle=date("Y-m-d H:i:s");
@@ -55,10 +56,10 @@ include 'includes/header.php';
 <body>
     <div id="morph">
         <div class="sep_bouton" id="sep_bouton_choix_1">
-            <img src="img/mirage.png" type="button" class='rounded-circle' id="mirage" data-toggle="modal" data-target="#mirageModal">
+            <img src="img/lama.jpg" type="button" class='rounded-circle' id="mirage" data-toggle="modal" data-target="#mirageModal">
         </div>
         <div class="sep_bouton" id="sep_bouton_choix_2">
-            <img src="img/pyramide.png" type="button" alt="choix_2" class='rounded-circle' id="pyramide" data-toggle="modal" data-target="#pyramideModal">
+            <img src="img/toucan.jpg" type="button" alt="choix_2" class='rounded-circle' id="pyramide" data-toggle="modal" data-target="#pyramideModal">
         </div>
     </div>
 

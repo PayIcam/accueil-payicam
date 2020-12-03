@@ -37,12 +37,12 @@ else{
     // header('Location: https://www.youtube.com/watch?v=ShNHTyyKHZ4');
     die();
   }
-  elseif ($promo_votant['promo'] == 0){
-    Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
-    header('Location:index.php');
-    die();
+
+  if (!in_array($promo_votant['promo'], [121, 122, 123, 124, 125, 2021, 2022, 2023, 2024, 2025, 24, 25, 26]) || $promo_votant['site'] != "Lille" ){
+     Functions::setFlash("Vous n'êtes pas autorisé à voter",'warning');
+     header('Location:index.php');
+     die();
   }
-  else{
 
     $enreg= $accueil_db->prepare('INSERT INTO vote_has_voters (email, promo, choice) values (:email, :promo, :choice)');
 
@@ -68,7 +68,6 @@ else{
       Functions::setFlash("Votre vote n'a pas été enregistré, si le problème persiste, contactez PayIcam",'danger');
       header('Location:index.php');
     }
-  }
 }
 
   ?>
