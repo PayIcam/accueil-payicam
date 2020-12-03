@@ -79,7 +79,7 @@ include 'includes/header.php';
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         </a>
-                        <input type="hidden" name='vote' value="MIRAGE">
+                        <input type="hidden" name='vote' value="Bohemian">
                         <input type="submit" class="btn btn-light" value="Je vote Bohemian">
                     </div>
                 </div>
@@ -102,7 +102,7 @@ include 'includes/header.php';
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         </a>
-                        <input type="hidden" name='vote' value="PYRAMIDE">
+                        <input type="hidden" name='vote' value="Eldorado">
                         <input type="submit" class="btn btn-light" value="Je vote Eldorado">
                     </div>
                 </div>
