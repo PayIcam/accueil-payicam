@@ -80,7 +80,7 @@ include 'includes/header.php';
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         </a>
                         <input type="hidden" name='vote' value="MIRAGE">
-                        <input type="submit" class="btn btn-light" value="Je vote Mirage">
+                        <input type="submit" class="btn btn-light" value="Je vote Bohemian">
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@ include 'includes/header.php';
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         </a>
                         <input type="hidden" name='vote' value="PYRAMIDE">
-                        <input type="submit" class="btn btn-light" value="Je vote Pyramide">
+                        <input type="submit" class="btn btn-light" value="Je vote Eldorado">
                     </div>
                 </div>
             </div>
