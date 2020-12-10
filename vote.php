@@ -56,7 +56,7 @@ include 'includes/header.php';
 <body>
     <div id="morph">
         <div class="sep_bouton" id="sep_bouton_choix_1">
-            <img src="img/lama.jpg" type="button" class='rounded-circle' id="mirage" data-toggle="modal" data-target="#mirageModal">
+            <img src="img/bohemian.png" type="button" class='rounded-circle' id="mirage" data-toggle="modal" data-target="#mirageModal">
         </div>
         <div class="sep_bouton" id="sep_bouton_choix_2">
             <img src="img/toucan.jpg" type="button" alt="choix_2" class='rounded-circle' id="pyramide" data-toggle="modal" data-target="#pyramideModal">
