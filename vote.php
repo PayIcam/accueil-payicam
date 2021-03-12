@@ -56,10 +56,10 @@ include 'includes/header.php';
 <body>
     <div id="morph">
         <div class="sep_bouton" id="sep_bouton_choix_1">
-            <img src="img/bohemian.png" type="button" class='rounded-circle' id="mirage" data-toggle="modal" data-target="#mirageModal">
+            <img src="img/Viperactif.jpg" type="button" class='rounded-circle' id="mirage" data-toggle="modal" data-target="#mirageModal">
         </div>
         <div class="sep_bouton" id="sep_bouton_choix_2">
-            <img src="img/toucan.jpg" type="button" alt="choix_2" class='rounded-circle' id="pyramide" data-toggle="modal" data-target="#pyramideModal">
+            <img src="img/pangolin.png" type="button" alt="choix_2" class='rounded-circle' id="pyramide" data-toggle="modal" data-target="#pyramideModal">
         </div>
     </div>
 
@@ -68,7 +68,7 @@ include 'includes/header.php';
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="choix_2_label">Voter Bohemian</h5>
+                        <h5 class="modal-title" id="choix_2_label">Voter Viperactif</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -79,8 +79,8 @@ include 'includes/header.php';
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         </a>
-                        <input type="hidden" name='vote' value="Bohemian">
-                        <input type="submit" class="btn btn-light" value="Je vote Bohemian">
+                        <input type="hidden" name='vote' value="Viperactif">
+                        <input type="submit" class="btn btn-light" value="Je vote Viperactif">
                     </div>
                 </div>
             </div>
@@ -91,7 +91,7 @@ include 'includes/header.php';
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="choix_2_label">Voter Eldorado</h5>
+                        <h5 class="modal-title" id="choix_2_label">Voter Pangolin</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -102,8 +102,8 @@ include 'includes/header.php';
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         </a>
-                        <input type="hidden" name='vote' value="Eldorado">
-                        <input type="submit" class="btn btn-light" value="Je vote Eldorado">
+                        <input type="hidden" name='vote' value="Pangolin">
+                        <input type="submit" class="btn btn-light" value="Je vote Pangolin">
                     </div>
                 </div>
             </div>
